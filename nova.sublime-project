@@ -1,0 +1,30 @@
+{
+	"build_systems":
+	[
+		{
+			"file_regex": "(src.\\w+..pp)\\(([0-9]+)\\).:.error",
+			"name": "Nova",
+			"shell_cmd": "build.bat",
+			"encoding": "cp866",
+			"variants":
+			[
+				{
+					"name": "Run",
+					"shell_cmd": "build.bat && \"bin/win32_nova\""
+				},
+				{
+					"name": "Debug",
+					"shell_cmd": "build.bat && devenv \"bin/win32_nova.exe\""
+				}
+			],
+			"working_dir": "$project_path"
+		}
+	],
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "src"
+		}
+	]
+}

@@ -1,0 +1,1555 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fil",
+				"file_str"
+			],
+			[
+				"screen",
+				"screen_coords"
+			],
+			[
+				"mouse",
+				"mouse_y"
+			],
+			[
+				"sc",
+				"screen_dimension_y"
+			],
+			[
+				"scre",
+				"screen_dimension_y"
+			],
+			[
+				"scr",
+				"screen_dimension_y"
+			],
+			[
+				"scree",
+				"screen_dimension_x"
+			],
+			[
+				"ran",
+				"random_float"
+			],
+			[
+				"part",
+				"particles"
+			],
+			[
+				"mass",
+				"mass_after_erase"
+			],
+			[
+				"file",
+				"file_stream"
+			],
+			[
+				"if",
+				"ifstream"
+			],
+			[
+				"file_",
+				"file_stream"
+			],
+			[
+				"srh",
+				"shader_src"
+			],
+			[
+				"re",
+				"reserve"
+			],
+			[
+				"read",
+				"read_result"
+			],
+			[
+				"win",
+				"window_dimension_y"
+			],
+			[
+				"windo",
+				"window_dimension_x"
+			],
+			[
+				"wind",
+				"window_dimension_x"
+			],
+			[
+				"ac",
+				"acceleration"
+			],
+			[
+				"gr",
+				"gravity"
+			],
+			[
+				"legnth",
+				"length_squared"
+			],
+			[
+				"min",
+				"min_distance"
+			],
+			[
+				"get",
+				"get_particle_radius"
+			],
+			[
+				"positio",
+				"position"
+			],
+			[
+				"vec2_",
+				"vec2_mul_float"
+			],
+			[
+				"vec",
+				"vec2_length"
+			],
+			[
+				"del",
+				"delta_time"
+			],
+			[
+				"len",
+				"length_squared"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"u",
+				"uint32_t"
+			],
+			[
+				"other",
+				"other_particle"
+			],
+			[
+				"new",
+				"new_particle"
+			],
+			[
+				"pa",
+				"particle_position"
+			],
+			[
+				"oth",
+				"other_particle_gravity"
+			],
+			[
+				"part_",
+				"particle_position"
+			],
+			[
+				"parti",
+				"particle_index"
+			],
+			[
+				"get_",
+				"get_particle_radius"
+			],
+			[
+				"rad",
+				"radius_id"
+			],
+			[
+				"mesh",
+				"mesh_vert_count"
+			],
+			[
+				"div",
+				"division_count"
+			],
+			[
+				"di",
+				"division_count"
+			],
+			[
+				"cir",
+				"circle_division_count"
+			],
+			[
+				"vec2",
+				"vec2_mul_float"
+			],
+			[
+				"ne",
+				"next_buffer_index"
+			],
+			[
+				"this",
+				"this_buffer_index"
+			],
+			[
+				"GLFW",
+				"GLFW_PRESS"
+			],
+			[
+				"off",
+				"offset_y"
+			],
+			[
+				"of",
+				"offset_x"
+			],
+			[
+				"patr",
+				"particle_index"
+			],
+			[
+				"nor",
+				"normalized_my"
+			],
+			[
+				"random",
+				"random_sample_in_circle"
+			],
+			[
+				"rand",
+				"rand_float"
+			],
+			[
+				"position",
+				"position_id"
+			],
+			[
+				"pr",
+				"program_id"
+			],
+			[
+				"frag",
+				"frag_id"
+			],
+			[
+				"vert",
+				"vert_id"
+			],
+			[
+				"com",
+				"compile_shader_from_source"
+			],
+			[
+				"shader",
+				"shader_src"
+			],
+			[
+				"in",
+				"info_log"
+			],
+			[
+				"inf",
+				"info_log_length"
+			],
+			[
+				"info",
+				"info_log_length"
+			],
+			[
+				"src",
+				"src_path"
+			],
+			[
+				"glCle",
+				"glClearColor"
+			],
+			[
+				"out",
+				"outer_color"
+			],
+			[
+				"lc",
+				"local_pos"
+			],
+			[
+				"loca",
+				"local_pos"
+			],
+			[
+				"Float",
+				"FloatMath"
+			],
+			[
+				"set",
+				"set_float1"
+			],
+			[
+				"vel",
+				"vel_id"
+			],
+			[
+				"mo",
+				"motion_vec"
+			],
+			[
+				"avg",
+				"avg_pos"
+			],
+			[
+				"create",
+				"create_circle"
+			],
+			[
+				"i_",
+				"i_color"
+			],
+			[
+				"con",
+				"continue"
+			],
+			[
+				"a",
+				"acceleration"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"ve",
+				"velocity"
+			],
+			[
+				"size",
+				"size_of_float"
+			],
+			[
+				"Flae",
+				"FALSE"
+			],
+			[
+				"grav",
+				"gravity"
+			],
+			[
+				"gra",
+				"grav_y"
+			],
+			[
+				"Mouse",
+				"MouseButton1"
+			],
+			[
+				"KeyE",
+				"KeyEscape"
+			],
+			[
+				"ra",
+				"random"
+			],
+			[
+				"sin",
+				"sin_time"
+			],
+			[
+				"wi",
+				"with_c_str"
+			],
+			[
+				"Get",
+				"GetAttribLocation"
+			],
+			[
+				"window",
+				"window_hint"
+			],
+			[
+				"VERTE",
+				"VERTEX_DATA"
+			],
+			[
+				"Ar",
+				"ARRAY_BUFFER"
+			],
+			[
+				"PR",
+				"GetProgramiv"
+			],
+			[
+				"as",
+				"as_slice"
+			],
+			[
+				"si",
+				"sin_time"
+			],
+			[
+				"gl",
+				"glfw"
+			],
+			[
+				"gbuf",
+				"gBuffer1"
+			],
+			[
+				"Vec",
+				"Vector4"
+			],
+			[
+				"cam",
+				"camRot"
+			],
+			[
+				"shad",
+				"shadowRes"
+			],
+			[
+				"t",
+				"texel"
+			],
+			[
+				"setShaderfloat",
+				"setShaderFloat3"
+			],
+			[
+				"lView",
+				"lViewProjection"
+			],
+			[
+				"L",
+				"lProjection"
+			],
+			[
+				"getS",
+				"getScreenWidth"
+			],
+			[
+				"depth",
+				"depthMul"
+			],
+			[
+				"glBind",
+				"glBindAttribLocation"
+			],
+			[
+				"world",
+				"worldPos"
+			],
+			[
+				"sphere",
+				"sphereMat"
+			],
+			[
+				"view",
+				"viewProjection"
+			],
+			[
+				"Light",
+				"LIGHT_COUNT"
+			],
+			[
+				"key",
+				"keyIsDown"
+			],
+			[
+				"light",
+				"lightMat"
+			],
+			[
+				"static",
+				"static_cast"
+			],
+			[
+				"no",
+				"normal"
+			],
+			[
+				"rough",
+				"roughness"
+			],
+			[
+				"GGX",
+				"GGX_Specular"
+			],
+			[
+				"norma",
+				"normalize"
+			],
+			[
+				"vis",
+				"visibility"
+			],
+			[
+				"N",
+				"NdotL"
+			],
+			[
+				"spec",
+				"specular"
+			],
+			[
+				"rou",
+				"roughnessValue"
+			],
+			[
+				"direc",
+				"direction0"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"tex",
+				"texCoord"
+			],
+			[
+				"sampler",
+				"sampler2"
+			],
+			[
+				"gV",
+				"gVertShader"
+			],
+			[
+				"getScreen",
+				"getScreenHeight"
+			],
+			[
+				"getSc",
+				"getScreenHeight"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/win32_nova.cpp",
+			"settings":
+			{
+				"buffer_size": 9184,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/math.cpp",
+			"settings":
+			{
+				"buffer_size": 1546,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/math.hpp",
+			"settings":
+			{
+				"buffer_size": 861,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/basic.frag",
+			"settings":
+			{
+				"buffer_size": 145,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/basic.vert",
+			"settings":
+			{
+				"buffer_size": 316,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nova.sublime-project",
+			"settings":
+			{
+				"buffer_size": 479,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "build.bat",
+			"settings":
+			{
+				"buffer_size": 365,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Nova",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"debug",
+				"Build: Debug"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"de",
+				"Build: Debug"
+			],
+			[
+				"build",
+				"Build: Debug"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packcontr",
+				"Package Control: Remove Package"
+			],
+			[
+				"packagecon",
+				"Package Control: Install Package"
+			],
+			[
+				"packcon",
+				"Package Control: Enable Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packcontrol",
+				"Package Control: Install Package"
+			],
+			[
+				"packg",
+				"Package Control: Install Package"
+			],
+			[
+				"b",
+				"Build: Update"
+			],
+			[
+				"",
+				"Build: Run Bash"
+			],
+			[
+				"Package Control: remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"bui",
+				"Build: Clean"
+			],
+			[
+				"build test",
+				"Build: Test"
+			],
+			[
+				"buil",
+				"Build: Test"
+			],
+			[
+				"buildtest",
+				"Build: Test"
+			],
+			[
+				"buildtes",
+				"Build: Test"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"sublime",
+				"Set Syntax: SublimeClangErrorPanel"
+			],
+			[
+				"sublimec",
+				"Set Syntax: SublimeClangErrorPanel"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 387.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"SublimeClang",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/albertelwin/Nova/repo/src"
+	],
+	"file_history":
+	[
+		"/C/Users/albertelwin/Nova/repo/src/math.cpp",
+		"/C/Users/albertelwin/Utilities/source/open_sublime.cpp",
+		"/C/Users/albertelwin/Utilities/source/test_file.cpp",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/src/basic.vert",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/src/basic.vert",
+		"/C/MinGW/msys/1.0/home/albertelwin/Rand/Reverse.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/build.bat",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/src/basic.frag",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/dat/basic.vert",
+		"/C/MinGW/msys/1.0/home/albertelwin/Rand/ReverseWord.cpp",
+		"/C/Users/albertelwin/Downloads/glew-1.11.0-win32/glew-1.11.0/bin/Release/x64/glewinfo.txt",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/win32_nova.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/rnd/build.bat",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/rnd/src/win32_nova.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/rnd/main.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/nova.sublime-project",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/src/win32_nova.cpp",
+		"/C/Users/albertelwin/Downloads/glfw-3.0.4.bin.WIN64/glfw-3.0.4.bin.WIN64/COPYING.txt",
+		"/C/Users/albertelwin/Downloads/handmade_hero_041_source/handmade_hero_day_001_source/code/build.bat",
+		"/C/Users/albertelwin/Downloads/handmade_hero_041_source/handmade_hero_day_001_source/license.txt",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/shell.bat",
+		"/C/Users/albertelwin/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/start_up.bat",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Installed Packages/Highlight Build Errors.sublime-package",
+		"/C/MinGW/msys/1.0/home/albertelwin/Nova/source/win32_nova.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Projects/Frag.sublime-project",
+		"/C/MinGW/msys/1.0/home/albertelwin/Rust/paths.txt",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeClang/SublimeClang.sublime-settings",
+		"/C/MinGW/msys/1.0/home/albertelwin/Rand/Empty.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Rand/lambda.cs",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/src/math.rs",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/Redox.sublime-build",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/src/main.rs",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/builds/change_log.txt",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/images/nova_wallpaper_black - Copy.png",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/Cargo.toml",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/builds/0x0003/change_log.txt",
+		"/C/Users/albertelwin/Dropbox/SpaceBudgie/Projects/Glitchspace/Builds/Alpha/alpha_1_8/glitchspace_alpha_1_8_change_log.txt",
+		"/C/Users/albertelwin/Glitchspace/repo/Assets/Scripts/Gameplay/Portal.cs",
+		"/C/Users/albertelwin/Downloads/GPU_Caps_Viewer_1.22.0/GPU_Caps_Viewer_1.22.0.0/media/particles.cl",
+		"/C/Users/albertelwin/Downloads/GPU_Caps_Viewer_1.22.0/GPU_Caps_Viewer_1.22.0.0/Start_OpenCL_Particles.bat",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/src/graphics.rs",
+		"/C/Users/albertelwin/Downloads/GPU_GEMS_NBodySim/GPU_GEMS_NBodySim/Assets/Scripts/NBodySim.cs",
+		"/C/Users/albertelwin/Downloads/GPU_GEMS_NBodySim/GPU_GEMS_NBodySim/Assets/Shaders/IntegrateBodies.compute",
+		"/C/Users/albertelwin/Downloads/GPU_GEMS_NBodySim/GPU_GEMS_NBodySim/Assets/Shaders/ParticleShader.shader",
+		"/C/MSYS2/home/albertelwin/Rust/Odd/sex_game.rs",
+		"/C/Users/albertelwin/Frag/repo/Include/GL/glew.h",
+		"/C/Users/albertelwin/Frag/repo/Media/Shaders/PathTracer.frag",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/.gitignore",
+		"/C/Users/albertelwin/Glitchspace/repo/Assets/Plugins/FMOD/FMOD_StudioSystem.cs",
+		"/C/Users/albertelwin/Glitchspace/repo/Assets/Scripts/Framework/GameLevel.cs",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/tests/math.rs",
+		"/C/MSYS2/home/albertelwin/Rust/Nova/src/vec.rs",
+		"/C/MSYS2/home/albertelwin/Rust/Stellar/Cargo.toml",
+		"/C/MSYS2/home/albertelwin/Rust/Stellar/src/main.rs",
+		"/C/MSYS2/home/albertelwin/Rust/Stellar/stellar.sublime-project",
+		"/C/Program Files (x86)/Sublime Text 3/Packages/C++.sublime-package",
+		"/C/Program Files (x86)/Steam/SteamApps/common/Glitchspace/glitchspace_alpha_1_7_1_change_log.txt",
+		"/C/MSYS2/home/albertelwin/Rust/glfw-rs/Cargo.toml",
+		"/C/MSYS2/home/albertelwin/.bash_profile",
+		"/C/MSYS2/home/albertelwin/Rust/Stellar/.gitignore",
+		"/C/MSYS2/home/albertelwin/Rust/main.rs",
+		"/C/MSYS2/home/albertelwin/.profile",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/gauss_blur.essl",
+		"/C/Users/albertelwin/Downloads/shadows/Shadows/Mesh.hlsl",
+		"/C/Program Files (x86)/Steam/SteamApps/common/Super Meat Boy/buttonmap.cfg",
+		"/C/Users/albertelwin/Downloads/shadows/Shadows/SetupShadows.hlsl",
+		"/C/Users/albertelwin/Glitchspace/repo/Assets/Scripts/Null/NodeImpl/ClockImpl.cs",
+		"/C/Users/albertelwin/Downloads/shadows/Shadows/PCFKernels.hlsl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/depth_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/depth_vert.essl",
+		"/C/Users/albertelwin/Frag/repo/Media/Shaders/DepthPass.vert",
+		"/C/Users/albertelwin/Frag/repo/Media/Shaders/DepthPass.frag",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/ggx_vert.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Geometry.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Geometry.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/blur_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Include/glm/core/func_noise.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/post_composite_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/ggx_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Main.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/VertexBuffer.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/VertexBuffer.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Application.cpp",
+		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/LaunchGame.cs",
+		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/Player.cs",
+		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/BuySell.cs",
+		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/CloseGame.cs",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/font_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/render_texture_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Application.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/OpenGLES2.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Enums.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/EnumsFwd.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/FrameBuffer.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/FrameBuffer.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Texture.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Texture.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Image.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Win32Util.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Image.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Shader.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Shader.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Font.hpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/UserInterface.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/OpenGLES2.cpp",
+		"/C/Users/albertelwin/Glitchspace/repo/Assets/Editor/LandscapeInspector.cs",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Font.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Win32Input.hpp",
+		"/C/Users/albertelwin/AppData/Local/Temp/Temp1_Frag.zip/Frag/Source/Application.cpp",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/gaussian_blur_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/blur_covariants_frag.essl",
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/bar_frag.essl",
+		"/C/Users/albertelwin/Downloads/horror - Copy.png",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeGDB/Default.sublime-keymap",
+		"/C/Users/albertelwin/AppData/Local/Temp/Temp1_Submission.zip/repo/Source/OpenCL.cpp",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeGDB/SublimeGDB.sublime-settings",
+		"/C/MinGW/msys/1.0/home/albertelwin/Terminal/trunk/Assets/Shaders/Desaturate.shd",
+		"/C/MinGW/msys/1.0/home/albertelwin/Terminal/trunk/Code/Caffeine/Platform.hpp",
+		"/C/Users/albertelwin/Glitchspace/repo/Assets/Scripts/Null/Shaders/UIOnTop.shader",
+		"/C/Users/albertelwin/Downloads/tiger0 - Copy.png",
+		"/C/Users/albertelwin/Downloads/tiger.jpg",
+		"/C/Users/albertelwin/Downloads/tiger.gif",
+		"/C/Users/albertelwin/Downloads/tiger - Copy.jpg",
+		"/C/Users/albertelwin/Downloads/tiger0.png",
+		"/C/Users/albertelwin/Downloads/tiger0.bmp",
+		"/C/Users/albertelwin/Downloads/tiger1.png"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"name",
+			"normalized_mouse",
+			"screen_dimension_y",
+			"screen_dimension_x",
+			"particle_count",
+			"shader_src",
+			"file",
+			"unsigned",
+			"char",
+			"window_dimension_y",
+			"window_dimension_x",
+			"pos",
+			"rnd",
+			"vec_add",
+			"max_particle_count",
+			"particle_buffers[next_buffer_index]",
+			"particle_buffers[this_buffer_index]",
+			" * 0.002f",
+			"position_from_other_particle",
+			"gravity_constant",
+			"newton_gravity_constant",
+			"it.",
+			", 0.f",
+			"uint32_t",
+			"512.f",
+			"y_objects",
+			"circle_",
+			"particles_buffers",
+			"particles",
+			"/",
+			"2.f;",
+			"last_frame_time",
+			"Vec2",
+			"basic",
+			"static ",
+			"buffer",
+			"get_executable_path",
+			"rand_float",
+			"static_cast",
+			"(",
+			"static_cast",
+			"mouse_",
+			"const",
+			"const normalized_mx = ((static_cast<float>(mouse_x) - 0.5f) * 2.f) / 512.f;\n		float const normalized_my = ((static_cast<float>(mouse_y) - 0.5f) * 2.f) / 512.f;\n\n		float const normalized_mx = static_cast<float>(mouse_x) / 512.f;\n		float const normalized_my",
+			"float",
+			"static_cast",
+			"contents",
+			"_src",
+			"vert_src",
+			"temp_error_callback",
+			"error_callback",
+			"\\",
+			"_In_",
+			"/",
+			"\\\\",
+			"GetUniformLocation",
+			"getuniformlocation",
+			"uint",
+			"for Vec2 {",
+			", Vec2>",
+			"FloatMath",
+			"as uint",
+			"uint",
+			"usize",
+			"i",
+			"uint",
+			"int",
+			"uint",
+			"%CARGO%",
+			"_",
+			"res_id",
+			"screen_coords",
+			"mouse_pos",
+			"half_dim",
+			"dim",
+			"normalize",
+			"half_dim",
+			"normalize",
+			"glfw::Press",
+			"    glfw::",
+			"Event(",
+			"    glfw::",
+			"WindowHint",
+			"window_hint",
+			"(glfw::",
+			"glfw::",
+			"rust",
+			"640",
+			"matter",
+			"Hydrogen",
+			"+\n",
+			"1ceIZIrGhr3W7pt5j",
+			"acceleration",
+			"8.0f",
+			"0.0",
+			" *",
+			"640",
+			"len",
+			" * 0.5",
+			"avg_pos",
+			"cam_pos",
+			"avg_pos",
+			"avg_id",
+			"0,",
+			"radius",
+			"dt",
+			"vec_len",
+			"vector_length",
+			"matter.len()",
+			"1.0",
+			"cargo",
+			"%CARGO%",
+			"dt",
+			"5.0",
+			"dist",
+			"pos",
+			"matter[i].position",
+			"num",
+			"std::num",
+			"FloatMath",
+			"*x",
+			"gravity",
+			"20",
+			"h",
+			"velocity",
+			"640",
+			"Mouse",
+			"ptr_offset"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/win32_nova.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								276,
+								276
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 26.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/math.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1546,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 362.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/math.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 861,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								287,
+								287
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 41.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/basic.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 145,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19,
+								19
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/basic.vert",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 316,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								53,
+								53
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "nova.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 479,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								392,
+								392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "build.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 365,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								244,
+								244
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Batch File/Batch File.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang":
+	{
+		"height": 100.0
+	},
+	"output.exec":
+	{
+		"height": 200.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "nova.sublime-project",
+	"replace":
+	{
+		"height": 38.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"win32_nova.cpp"
+			],
+			[
+				"ma",
+				"math.hpp"
+			],
+			[
+				"win",
+				"win32_nova.cpp"
+			],
+			[
+				"basic",
+				"basic.vert"
+			],
+			[
+				"math",
+				"math.hpp"
+			],
+			[
+				"m",
+				"math.cpp"
+			],
+			[
+				"main",
+				"main.rs"
+			],
+			[
+				"graph",
+				"graphics.rs"
+			],
+			[
+				"basi",
+				"basic.frag"
+			],
+			[
+				"frag",
+				"basic.frag"
+			],
+			[
+				"bs",
+				"basic.vert"
+			],
+			[
+				"bas",
+				"basic.frag"
+			],
+			[
+				"gr",
+				"graphics.rs"
+			],
+			[
+				"app",
+				"Source\\Application.cpp"
+			],
+			[
+				"ggx",
+				"Shaders\\ggx_frag.essl"
+			],
+			[
+				"post",
+				"Shaders\\post_composite_frag.essl"
+			],
+			[
+				"gu",
+				"C:\\MinGW\\msys\\1.0\\home\\albertelwin\\Frag\\Media\\Shaders\\gauss_blur.essl"
+			],
+			[
+				"appl",
+				"Source\\Application.hpp"
+			],
+			[
+				"blur",
+				"Shaders\\blur_frag.essl"
+			],
+			[
+				"enum",
+				"Source\\Enums.hpp"
+			],
+			[
+				"ope",
+				"Source\\OpenGLES2.hpp"
+			],
+			[
+				"g",
+				"Shaders\\ggx_vert.essl"
+			],
+			[
+				"ap",
+				"Source\\Application.cpp"
+			],
+			[
+				"openg",
+				"Source\\OpenGLES2.cpp"
+			],
+			[
+				"gg",
+				"Shaders\\ggx_frag.essl"
+			],
+			[
+				"op",
+				"Source\\OpenGLES2.cpp"
+			],
+			[
+				"depth",
+				"Shaders\\depth_frag.essl"
+			],
+			[
+				"gemo",
+				"Source\\Geometry.cpp"
+			],
+			[
+				"vert",
+				"Source\\VertexBuffer.hpp"
+			],
+			[
+				"image.cpp",
+				"Source\\Image.cpp"
+			],
+			[
+				"a",
+				"Source\\Application.cpp"
+			],
+			[
+				"en",
+				"Source\\Enums.hpp"
+			],
+			[
+				"blu",
+				"Shaders\\blur_frag.essl"
+			],
+			[
+				"font",
+				"Source\\Font.cpp"
+			],
+			[
+				"land",
+				"C:\\Users\\albertelwin\\Glitchspace\\repo\\Assets\\Editor\\LandscapeInspector.cs"
+			],
+			[
+				"com",
+				"Shaders\\post_composite_frag.essl"
+			],
+			[
+				"fon",
+				"Source\\Font.cpp"
+			],
+			[
+				"ren",
+				"Shaders\\render_texture_frag.essl"
+			],
+			[
+				"render",
+				"Shaders\\render_texture_frag.essl"
+			],
+			[
+				"rnd",
+				"Shaders\\render_texture_frag.essl"
+			],
+			[
+				"rend",
+				"Shaders\\render_texture_frag.essl"
+			],
+			[
+				"win32",
+				"Source\\Win32Input.hpp"
+			],
+			[
+				"open",
+				"Source\\OpenGLES2.hpp"
+			],
+			[
+				"image",
+				"Source\\Image.hpp"
+			],
+			[
+				"em",
+				"Source\\Enums.hpp"
+			],
+			[
+				"user",
+				"Source\\UserInterface.cpp"
+			],
+			[
+				"v",
+				"Source\\VertexBuffer.hpp"
+			],
+			[
+				"ver",
+				"Source\\VertexBuffer.cpp"
+			],
+			[
+				"te",
+				"Source\\Texture.hpp"
+			],
+			[
+				"fr",
+				"Source\\FrameBuffer.hpp"
+			],
+			[
+				"shader",
+				"Source\\Shader.hpp"
+			],
+			[
+				"sh",
+				"Source\\Shader.cpp"
+			],
+			[
+				"shad",
+				"Source\\Shader.cpp"
+			],
+			[
+				"fra",
+				"Source\\FrameBuffer.hpp"
+			],
+			[
+				"fram",
+				"Source\\FrameBuffer.hpp"
+			],
+			[
+				"texture",
+				"Source\\Texture.cpp"
+			],
+			[
+				"t",
+				"Source\\Texture.hpp"
+			],
+			[
+				"sm",
+				"Source\\SmartPtr.hpp"
+			],
+			[
+				"map",
+				"Source\\Maps.cpp"
+			],
+			[
+				"ba",
+				"Shaders\\bar_frag.essl"
+			],
+			[
+				"bar",
+				"Shaders\\bar_vert.essl"
+			],
+			[
+				"playercon",
+				"C:\\Users\\albertelwin\\7dfps\\repo\\Assets\\Code\\Gameplay\\Actors\\PlayerController.cs"
+			],
+			[
+				"wind",
+				"C:\\MinGW\\msys\\1.0\\home\\albertelwin\\Frag\\Window.cpp"
+			],
+			[
+				"window.c",
+				"C:\\MinGW\\msys\\1.0\\home\\albertelwin\\Frag\\Window.cpp"
+			],
+			[
+				"window",
+				"C:\\MinGW\\msys\\1.0\\home\\albertelwin\\Frag\\Window.hpp"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 50.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
