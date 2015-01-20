@@ -5,16 +5,15 @@
 			"file_regex": "(src.\\w+..pp)\\(([0-9]+)\\).:.error",
 			"name": "Nova",
 			"shell_cmd": "build.bat",
-			"encoding": "cp866",
 			"variants":
 			[
 				{
 					"name": "Run",
-					"shell_cmd": "build.bat && \"bin/win32_nova\""
+					"shell_cmd": "\"bin/nova\""
 				},
 				{
 					"name": "Debug",
-					"shell_cmd": "build.bat && devenv \"bin/win32_nova.exe\""
+					"shell_cmd": "devenv \"bin/nova.exe\""
 				}
 			],
 			"working_dir": "$project_path"

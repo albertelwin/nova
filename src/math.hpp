@@ -28,6 +28,8 @@ namespace math {
 	Vec2 vec2_mul_float(Vec2 const & v, float x);
 	Vec2 vec2_div_float(Vec2 const & v, float x);
 
+	Vec2 vec2_lerp(Vec2 const & v0, Vec2 const & v1, float t);
+
 	Vec2 vec2_normalize(Vec2 const & v);
 	float vec2_length(Vec2 const & v);
 	float vec2_length_squared(Vec2 const & v);

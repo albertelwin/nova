@@ -56,6 +56,12 @@ namespace math {
 		return { v.x / x, v.y / x};
 	}
 
+	Vec2 vec2_lerp(Vec2 const & v0, Vec2 const & v1, float t) {
+		math::Vec2 const u = math::vec2_mul_float(v0, (1.f - t));
+		math::Vec2 const v = math::vec2_mul_float(v1, t);
+		return math::vec2_add(u, v);
+	}
+
 	Vec2 vec2_normalize(Vec2 const & v) {
 		float length = vec2_length(v);
 		return (length > 0.f) ? vec2_div_float(v, length) : math::VEC2_ZERO;
