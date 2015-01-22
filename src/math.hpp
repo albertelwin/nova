@@ -14,6 +14,7 @@ namespace math {
 
 	float min_float(float x, float y);
 	float max_float(float x, float y);
+	float clamp_float(float x, float u, float v);
 
 	float random_float();
 	Vec2 random_sample_circle();
@@ -29,6 +30,7 @@ namespace math {
 	Vec2 vec2_div_float(Vec2 const & v, float x);
 
 	Vec2 vec2_lerp(Vec2 const & v0, Vec2 const & v1, float t);
+	Vec2 vec2_clamp(Vec2 const &v, float x, float y);
 
 	Vec2 vec2_normalize(Vec2 const & v);
 	float vec2_length(Vec2 const & v);

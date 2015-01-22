@@ -4,16 +4,316 @@
 		"selected_items":
 		[
 			[
-				"COMM",
-				"COMMON_LINKER_FLAGS"
+				"XInputGet",
+				"XInputGetState"
+			],
+			[
+				"x_input_state",
+				"x_input_get_state_stub"
+			],
+			[
+				"x_in",
+				"x_input_func"
+			],
+			[
+				"XIn",
+				"XInputGetStateFunc"
+			],
+			[
+				"x",
+				"x_input_library"
+			],
+			[
+				"XInpu",
+				"XInputGetStateFunc"
+			],
+			[
+				"ERROR",
+				"ERROR_DEVICE_NOT_CONNECTED"
+			],
+			[
+				"scre",
+				"screen_coords"
+			],
+			[
+				"ini",
+				"initial_aspect_ratio"
+			],
+			[
+				"acit",
+				"active_player_count"
+			],
+			[
+				"control",
+				"controller_1_state"
+			],
+			[
+				"contr",
+				"controller_0_state"
+			],
+			[
+				"player",
+				"player_id"
+			],
+			[
+				"con",
+				"controller_1_connected"
+			],
+			[
+				"controler",
+				"controller_0_connected"
+			],
+			[
+				"contro",
+				"controller_1_connected"
+			],
+			[
+				"controller",
+				"controller_0_connected"
+			],
+			[
+				"connn",
+				"controller_0_connected"
+			],
+			[
+				"act",
+				"active_player_count"
+			],
+			[
+				"aci",
+				"active_player_count"
+			],
+			[
+				"player_color",
+				"player_color_id"
+			],
+			[
+				"player_r",
+				"player_particle_radius"
+			],
+			[
+				"map",
+				"mapped_stick"
+			],
+			[
+				"stick",
+				"stick_y"
+			],
+			[
+				"stick_",
+				"stick_scale_value"
+			],
+			[
+				"raw",
+				"raw_stick_y"
+			],
+			[
+				"raw_st",
+				"raw_stick_y"
+			],
+			[
+				"damp",
+				"damping_factor"
+			],
+			[
+				"mapped",
+				"mapped_stick1"
+			],
+			[
+				"mapp",
+				"mapped_stick0"
+			],
+			[
+				"v",
+				"v"
+			],
+			[
+				"grav",
+				"gravity"
+			],
+			[
+				"parti",
+				"particles"
+			],
+			[
+				"particl",
+				"particles"
+			],
+			[
+				"totla",
+				"total_read_input_time"
 			],
 			[
 				"get",
 				"get_current_time"
 			],
 			[
+				"unma",
+				"unmapped_x0"
+			],
+			[
+				"GLFW",
+				"GLFW_PRESS"
+			],
+			[
+				"init",
+				"initial_aspect_ratio"
+			],
+			[
+				"initial",
+				"initial_aspect_ratio"
+			],
+			[
+				"GLFW_",
+				"GLFW_JOYSTICK_1"
+			],
+			[
+				"player_",
+				"player_particles"
+			],
+			[
+				"stic",
+				"stick_scale_value"
+			],
+			[
+				"player_part",
+				"player_particles"
+			],
+			[
+				"VEc",
+				"VEC2_ZERO"
+			],
+			[
+				"player_p",
+				"player_particles"
+			],
+			[
+				"vert",
+				"vert_count"
+			],
+			[
+				"player_vert",
+				"player_vertex_buffer"
+			],
+			[
+				"glUnif",
+				"glUniform2f"
+			],
+			[
+				"player_0_",
+				"player_0_particle"
+			],
+			[
+				"player_0",
+				"player_0_start_position"
+			],
+			[
+				"ax",
+				"axis_count"
+			],
+			[
+				"GL",
+				"GL_TRUE"
+			],
+			[
+				"glfw",
+				"glfwJoystickPresent"
+			],
+			[
+				"particle_vert",
+				"particle_verts"
+			],
+			[
+				"ii",
+				"initial_player_mass"
+			],
+			[
+				"pos",
+				"position_off_screen"
+			],
+			[
+				"min",
+				"min_distance_sqr"
+			],
+			[
+				"particle",
+				"particle_radius"
+			],
+			[
+				"player_parti",
+				"player_particle_radius"
+			],
+			[
+				"is",
+				"is_full_screen"
+			],
+			[
 				"part",
-				"particles"
+				"particle_gravity"
+			],
+			[
+				"length",
+				"length_squared"
+			],
+			[
+				"sta",
+				"start_particle_update_time"
+			],
+			[
+				"size_",
+				"size_in_bytes"
+			],
+			[
+				"verte",
+				"vertex_buffer_id"
+			],
+			[
+				"ver",
+				"vert_memory"
+			],
+			[
+				"use",
+				"usage_flag"
+			],
+			[
+				"mesh",
+				"mesh_vert_count"
+			],
+			[
+				"aspec",
+				"aspect_ratio"
+			],
+			[
+				"screen",
+				"screen_dimension_x"
+			],
+			[
+				"m",
+				"mesh_verts"
+			],
+			[
+				"size",
+				"sizeof"
+			],
+			[
+				"me",
+				"mesh_vert_size"
+			],
+			[
+				"random",
+				"random_float"
+			],
+			[
+				"scr",
+				"screen_y"
+			],
+			[
+				"const",
+				"const"
+			],
+			[
+				"COMM",
+				"COMMON_LINKER_FLAGS"
 			],
 			[
 				"gr",
@@ -36,16 +336,8 @@
 				"vec2_length_squared"
 			],
 			[
-				"scr",
-				"screen_coords"
-			],
-			[
 				"fil",
 				"file_str"
-			],
-			[
-				"screen",
-				"screen_coords"
 			],
 			[
 				"mouse",
@@ -53,10 +345,6 @@
 			],
 			[
 				"sc",
-				"screen_dimension_y"
-			],
-			[
-				"scre",
 				"screen_dimension_y"
 			],
 			[
@@ -116,10 +404,6 @@
 				"length_squared"
 			],
 			[
-				"min",
-				"min_distance"
-			],
-			[
 				"positio",
 				"position"
 			],
@@ -138,10 +422,6 @@
 			[
 				"len",
 				"length_squared"
-			],
-			[
-				"pos",
-				"position"
 			],
 			[
 				"u",
@@ -168,20 +448,12 @@
 				"particle_position"
 			],
 			[
-				"parti",
-				"particle_index"
-			],
-			[
 				"get_",
 				"get_particle_radius"
 			],
 			[
 				"rad",
 				"radius_id"
-			],
-			[
-				"mesh",
-				"mesh_vert_count"
 			],
 			[
 				"div",
@@ -208,10 +480,6 @@
 				"this_buffer_index"
 			],
 			[
-				"GLFW",
-				"GLFW_PRESS"
-			],
-			[
 				"off",
 				"offset_y"
 			],
@@ -226,10 +494,6 @@
 			[
 				"nor",
 				"normalized_my"
-			],
-			[
-				"random",
-				"random_sample_in_circle"
 			],
 			[
 				"rand",
@@ -248,272 +512,8 @@
 				"frag_id"
 			],
 			[
-				"vert",
-				"vert_id"
-			],
-			[
 				"com",
 				"compile_shader_from_source"
-			],
-			[
-				"shader",
-				"shader_src"
-			],
-			[
-				"in",
-				"info_log"
-			],
-			[
-				"inf",
-				"info_log_length"
-			],
-			[
-				"info",
-				"info_log_length"
-			],
-			[
-				"src",
-				"src_path"
-			],
-			[
-				"glCle",
-				"glClearColor"
-			],
-			[
-				"out",
-				"outer_color"
-			],
-			[
-				"lc",
-				"local_pos"
-			],
-			[
-				"loca",
-				"local_pos"
-			],
-			[
-				"Float",
-				"FloatMath"
-			],
-			[
-				"set",
-				"set_float1"
-			],
-			[
-				"vel",
-				"vel_id"
-			],
-			[
-				"mo",
-				"motion_vec"
-			],
-			[
-				"avg",
-				"avg_pos"
-			],
-			[
-				"create",
-				"create_circle"
-			],
-			[
-				"i_",
-				"i_color"
-			],
-			[
-				"con",
-				"continue"
-			],
-			[
-				"a",
-				"acceleration"
-			],
-			[
-				"po",
-				"position"
-			],
-			[
-				"ve",
-				"velocity"
-			],
-			[
-				"size",
-				"size_of_float"
-			],
-			[
-				"Flae",
-				"FALSE"
-			],
-			[
-				"grav",
-				"gravity"
-			],
-			[
-				"gra",
-				"grav_y"
-			],
-			[
-				"Mouse",
-				"MouseButton1"
-			],
-			[
-				"KeyE",
-				"KeyEscape"
-			],
-			[
-				"ra",
-				"random"
-			],
-			[
-				"sin",
-				"sin_time"
-			],
-			[
-				"wi",
-				"with_c_str"
-			],
-			[
-				"Get",
-				"GetAttribLocation"
-			],
-			[
-				"window",
-				"window_hint"
-			],
-			[
-				"VERTE",
-				"VERTEX_DATA"
-			],
-			[
-				"Ar",
-				"ARRAY_BUFFER"
-			],
-			[
-				"PR",
-				"GetProgramiv"
-			],
-			[
-				"as",
-				"as_slice"
-			],
-			[
-				"si",
-				"sin_time"
-			],
-			[
-				"gl",
-				"glfw"
-			],
-			[
-				"gbuf",
-				"gBuffer1"
-			],
-			[
-				"Vec",
-				"Vector4"
-			],
-			[
-				"cam",
-				"camRot"
-			],
-			[
-				"shad",
-				"shadowRes"
-			],
-			[
-				"t",
-				"texel"
-			],
-			[
-				"setShaderfloat",
-				"setShaderFloat3"
-			],
-			[
-				"lView",
-				"lViewProjection"
-			],
-			[
-				"L",
-				"lProjection"
-			],
-			[
-				"getS",
-				"getScreenWidth"
-			],
-			[
-				"depth",
-				"depthMul"
-			],
-			[
-				"glBind",
-				"glBindAttribLocation"
-			],
-			[
-				"world",
-				"worldPos"
-			],
-			[
-				"sphere",
-				"sphereMat"
-			],
-			[
-				"view",
-				"viewProjection"
-			],
-			[
-				"Light",
-				"LIGHT_COUNT"
-			],
-			[
-				"key",
-				"keyIsDown"
-			],
-			[
-				"light",
-				"lightMat"
-			],
-			[
-				"static",
-				"static_cast"
-			],
-			[
-				"no",
-				"normal"
-			],
-			[
-				"rough",
-				"roughness"
-			],
-			[
-				"GGX",
-				"GGX_Specular"
-			],
-			[
-				"norma",
-				"normalize"
-			],
-			[
-				"vis",
-				"visibility"
-			],
-			[
-				"N",
-				"NdotL"
-			],
-			[
-				"spec",
-				"specular"
-			],
-			[
-				"rou",
-				"roughnessValue"
-			],
-			[
-				"direc",
-				"direction0"
-			],
-			[
-				"y",
-				"y"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "src/win32_main.cpp",
 			"settings":
 			{
-				"buffer_size": 8187,
+				"buffer_size": 18529,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "src/math.cpp",
 			"settings":
 			{
-				"buffer_size": 1754,
+				"buffer_size": 1848,
 				"line_ending": "Windows"
 			}
 		},
@@ -539,7 +539,7 @@
 			"file": "src/math.hpp",
 			"settings":
 			{
-				"buffer_size": 922,
+				"buffer_size": 1020,
 				"line_ending": "Windows"
 			}
 		},
@@ -560,10 +560,26 @@
 			}
 		},
 		{
+			"file": "src/particle.vert",
+			"settings":
+			{
+				"buffer_size": 253,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/particle.frag",
+			"settings":
+			{
+				"buffer_size": 148,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "nova.sublime-project",
 			"settings":
 			{
-				"buffer_size": 417,
+				"buffer_size": 430,
 				"line_ending": "Unix"
 			}
 		},
@@ -571,7 +587,7 @@
 			"file": "build.bat",
 			"settings":
 			{
-				"buffer_size": 515,
+				"buffer_size": 524,
 				"line_ending": "Windows"
 			}
 		}
@@ -584,6 +600,14 @@
 		[
 			[
 				"debug",
+				"Build: Debug"
+			],
+			[
+				"deb",
+				"Build: Debug"
+			],
+			[
+				"d",
 				"Build: Debug"
 			],
 			[
@@ -711,12 +735,21 @@
 	],
 	"file_history":
 	[
+		"/C/Users/albertelwin/Downloads/handmade_hero_048_source/handmade_hero_day_025_source/code/win32_handmade.cpp",
+		"/C/Users/albertelwin/Downloads/handmade_hero_048_source/handmade_hero_day_025_source/code/build.bat",
+		"/C/Users/albertelwin/Nova/builds/change_log.txt",
+		"/C/Users/albertelwin/Nova/repo/src/math_main.cpp",
+		"/C/Users/albertelwin/Downloads/glfw-3.1/src/winmm_joystick.c",
+		"/C/Users/albertelwin/Downloads/glfw-3.1/src/winmm_joystick.h",
+		"/C/Users/albertelwin/Downloads/glfw-3.1/src/iokit_joystick.h",
+		"/C/Users/albertelwin/Downloads/glfw-3.1/src/win32_window.c",
+		"/C/Users/albertelwin/Downloads/glfw-3.1/src/wl_window.c",
+		"/C/Users/albertelwin/Nova/repo/src/gamepad_main.cpp",
 		"/C/Users/albertelwin/Nova/repo/src/lib_main.cpp",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/CMakeLists.txt",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/glfw-3.1/CMakeLists.txt",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/glfw-3.1/examples/CMakeLists.txt",
 		"/C/Users/albertelwin/Downloads/glfw-3.0.4.bin.WIN64/glfw-3.0.4.bin.WIN64/COPYING.txt",
-		"/C/Users/albertelwin/Nova/builds/change_log.txt",
 		"/C/Users/albertelwin/Nova/repo/src/win32_nova.cpp",
 		"/C/Users/albertelwin/Nova/repo/.gitignore",
 		"/C/Users/albertelwin/Nova/repo/src/math.cpp",
@@ -829,16 +862,7 @@
 		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Font.cpp",
 		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Win32Input.hpp",
 		"/C/Users/albertelwin/AppData/Local/Temp/Temp1_Frag.zip/Frag/Source/Application.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/gaussian_blur_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/blur_covariants_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/bar_frag.essl",
-		"/C/Users/albertelwin/Downloads/horror - Copy.png",
-		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeGDB/Default.sublime-keymap",
-		"/C/Users/albertelwin/AppData/Local/Temp/Temp1_Submission.zip/repo/Source/OpenCL.cpp",
-		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeGDB/SublimeGDB.sublime-settings",
-		"/C/MinGW/msys/1.0/home/albertelwin/Terminal/trunk/Assets/Shaders/Desaturate.shd",
-		"/C/MinGW/msys/1.0/home/albertelwin/Terminal/trunk/Code/Caffeine/Platform.hpp",
-		"/C/Users/albertelwin/Glitchspace/repo/Assets/Scripts/Null/Shaders/UIOnTop.shader"
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/gaussian_blur_frag.essl"
 	],
 	"find":
 	{
@@ -857,6 +881,78 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"x_input_get_state_func",
+			"load_x_input_library",
+			"XInputGetStateFunc",
+			"x_input_get_state_func",
+			"x_input_func",
+			"player_particles[i]",
+			"player_count",
+			"32767.f",
+			"? 0 : -1",
+			"stick_",
+			"10",
+			"apply_dead_zone",
+			"position",
+			"x",
+			"x.",
+			"Vec2",
+			"v",
+			"const",
+			"x0",
+			"player_particles[i]",
+			"player_0_particle",
+			"player_index",
+			"player_1_start_position",
+			"gravity.x + direction_to_particle.y",
+			"gravity.x",
+			"player_0_particle",
+			"2f",
+			"{ ",
+			"move_stick_1",
+			"move_stick_0",
+			"move_stick",
+			"player_0_particle_radius",
+			"player_particle",
+			"axis",
+			"screen_dimension_x",
+			" 3",
+			"3",
+			"768",
+			"RELEASE_COMPILER_FLAGS",
+			".mass",
+			"uint32_t",
+			"gravity.",
+			" particl",
+			"gravity",
+			"particles[i].position",
+			"true",
+			"const",
+			"total_render_time",
+			"start_particle_update_time",
+			"window_size_x_int",
+			"window_size_y",
+			"window_size_x",
+			"initial_window_",
+			"initial_window_x",
+			"screen_dimension_y_int",
+			"screen_dimension_x_int",
+			"player_vertex_buffer_id",
+			"uint32_t",
+			"vertex_buffer_id",
+			"mesh_verts",
+			"mesh_vert_count",
+			"mesh_verts",
+			"particle_vert_size_in_bytes",
+			"mesh_vert_count",
+			"vertex_buffer_id",
+			"mesh_size_in_bytes",
+			"screen_dimension_x",
+			"aspect_id",
+			"particles",
+			"compile_shader_from_source",
+			"link_shader_program",
+			"%u",
 			" ON)",
 			"ON)",
 			"on",
@@ -912,79 +1008,7 @@
 			"/",
 			"2.f;",
 			"last_frame_time",
-			"Vec2",
-			"basic",
-			"static ",
-			"buffer",
-			"get_executable_path",
-			"rand_float",
-			"static_cast",
-			"(",
-			"static_cast",
-			"mouse_",
-			"const",
-			"const normalized_mx = ((static_cast<float>(mouse_x) - 0.5f) * 2.f) / 512.f;\n		float const normalized_my = ((static_cast<float>(mouse_y) - 0.5f) * 2.f) / 512.f;\n\n		float const normalized_mx = static_cast<float>(mouse_x) / 512.f;\n		float const normalized_my",
-			"float",
-			"static_cast",
-			"contents",
-			"_src",
-			"vert_src",
-			"temp_error_callback",
-			"error_callback",
-			"\\",
-			"_In_",
-			"/",
-			"\\\\",
-			"GetUniformLocation",
-			"getuniformlocation",
-			"uint",
-			"for Vec2 {",
-			", Vec2>",
-			"FloatMath",
-			"as uint",
-			"uint",
-			"usize",
-			"i",
-			"uint",
-			"int",
-			"uint",
-			"%CARGO%",
-			"_",
-			"res_id",
-			"screen_coords",
-			"mouse_pos",
-			"half_dim",
-			"dim",
-			"normalize",
-			"half_dim",
-			"normalize",
-			"glfw::Press",
-			"    glfw::",
-			"Event(",
-			"    glfw::",
-			"WindowHint",
-			"window_hint",
-			"(glfw::",
-			"glfw::",
-			"rust",
-			"640",
-			"matter",
-			"Hydrogen",
-			"+\n",
-			"1ceIZIrGhr3W7pt5j",
-			"acceleration",
-			"8.0f",
-			"0.0",
-			" *",
-			"640",
-			"len",
-			" * 0.5",
-			"avg_pos",
-			"cam_pos",
-			"avg_pos",
-			"avg_id",
-			"0,",
-			"radius"
+			"Vec2"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1002,7 +1026,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -1011,15 +1035,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8187,
+						"buffer_size": 18529,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								219,
-								219
+								713,
+								713
 							]
 						],
 						"settings":
@@ -1028,10 +1052,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1541.0,
+						"translation.y": 248.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1040,15 +1064,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1754,
+						"buffer_size": 1848,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								302,
-								302
+								1534,
+								1534
 							]
 						],
 						"settings":
@@ -1057,10 +1081,10 @@
 							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 411.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1069,15 +1093,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 922,
+						"buffer_size": 1020,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								332,
+								332
 							]
 						],
 						"settings":
@@ -1085,10 +1109,10 @@
 							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 36.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1104,8 +1128,8 @@
 						"selection":
 						[
 							[
-								19,
-								19
+								134,
+								134
 							]
 						],
 						"settings":
@@ -1116,7 +1140,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1132,8 +1156,8 @@
 						"selection":
 						[
 							[
-								312,
-								312
+								223,
+								223
 							]
 						],
 						"settings":
@@ -1144,24 +1168,80 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "nova.sublime-project",
+					"file": "src/particle.vert",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 417,
+						"buffer_size": 253,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								131,
-								131
+								181,
+								181
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/particle.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 148,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								65,
+								65
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "nova.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								375,
+								375
 							]
 						],
 						"settings":
@@ -1173,24 +1253,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 515,
+						"buffer_size": 524,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								515,
-								515
+								474,
+								474
 							]
 						],
 						"settings":
@@ -1201,7 +1281,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1262,12 +1342,36 @@
 		"selected_items":
 		[
 			[
-				"",
-				"lib_main.cpp"
+				"bas",
+				"basic.frag"
+			],
+			[
+				"math_m",
+				"math_main.cpp"
+			],
+			[
+				"bui",
+				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
 			],
 			[
 				"main",
-				"win32_main.cpp"
+				"math_main.cpp"
+			],
+			[
+				"build",
+				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
+			],
+			[
+				"math",
+				"math.cpp"
+			],
+			[
+				"",
+				"math.cpp"
+			],
+			[
+				"basi",
+				"basic.vert"
 			],
 			[
 				"mth",
@@ -1278,20 +1382,12 @@
 				"C:\\Users\\albertelwin\\Nova\\repo\\nova.sublime-project"
 			],
 			[
-				"build",
-				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
-			],
-			[
 				"win32",
 				"win32_main.cpp"
 			],
 			[
 				"win",
 				"win32_nova.cpp"
-			],
-			[
-				"math",
-				"math.cpp"
 			],
 			[
 				"ma",
@@ -1310,20 +1406,12 @@
 				"graphics.rs"
 			],
 			[
-				"basi",
-				"basic.frag"
-			],
-			[
 				"frag",
 				"basic.frag"
 			],
 			[
 				"bs",
 				"basic.vert"
-			],
-			[
-				"bas",
-				"basic.frag"
 			],
 			[
 				"gr",
@@ -1560,7 +1648,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": false,
-	"side_bar_width": 50.0,
+	"side_bar_width": 90.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

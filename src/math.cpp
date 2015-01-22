@@ -13,6 +13,10 @@ namespace math {
 		return x > y ? x : y;
 	}
 
+	float clamp_float(float x, float u, float v) {
+		return (x > u) ? ((x < v) ? x : v) : u;
+	}
+
 	float random_float() {
 		return (static_cast<float>(rand()) / static_cast<float>(RAND_MAX));
 	}

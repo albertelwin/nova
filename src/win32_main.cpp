@@ -1,5 +1,6 @@
 
 #include <windows.h>
+#include <xinput.h>
 
 #define GLEW_STATIC
 
@@ -20,6 +21,28 @@
 #include <basic.vert>
 #include <basic.frag>
 #include <particle.vert>
+#include <particle.frag>
+
+typedef DWORD WINAPI XInputGetStateProc(DWORD dwUserIndex, XINPUT_STATE *pState);
+DWORD WINAPI x_input_get_state_stub(DWORD dwUserIndex, XINPUT_STATE *pState) {
+	return ERROR_DEVICE_NOT_CONNECTED;
+}
+
+XInputGetStateProc * load_x_input_library() {
+	HMODULE x_input_library = LoadLibraryA("xinput1_3.dll");
+	if(x_input_library) {
+		XInputGetStateProc * x_input_get_state_proc = (XInputGetStateProc *)(GetProcAddress(x_input_library, "XInputGetState"));
+		if(x_input_get_state_proc) {
+			return x_input_get_state_proc;
+		}
+	}
+
+	return x_input_get_state_stub;
+}
+
+
+XInputGetStateProc * x_input_get_state = load_x_input_library();
+#define XInputGetState x_input_get_state
 
 struct Particle {
 	math::Vec2 position;
@@ -113,6 +136,12 @@ VertexBuffer gl_create_vertex_buffer(uint32_t vert_count, uint32_t vert_size, GL
 	return { vert_count, vert_size, total_size_in_bytes, vertex_buffer_id };
 }
 
+math::Vec2 apply_dead_zone_mapping(math::Vec2 const & stick) {
+	float const dead_zone = 0.12f;
+	float const valid_range = 1.f - dead_zone;
+	return (math::vec2_length(stick) > dead_zone) ? math::vec2_div_float(math::vec2_sub_float(stick, dead_zone), valid_range) : math::VEC2_ZERO;
+};
+
 int main() {
 	glfwSetErrorCallback(error_callback);
 
@@ -144,7 +173,7 @@ int main() {
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	}
 
-	glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2), static_cast<double>(initial_window_size_y / 2));
+	glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2) * 0.25f, static_cast<double>(initial_window_size_y / 2));
 
 	glfwMakeContextCurrent(window);
 	glewExperimental = true;
@@ -159,9 +188,10 @@ int main() {
 	GLuint const player_vert_shader_id = gl_compile_shader_from_source(BASIC_VERT_SRC, GL_VERTEX_SHADER);
 	GLuint const player_frag_shader_id = gl_compile_shader_from_source(BASIC_FRAG_SRC, GL_FRAGMENT_SHADER);
 	GLuint const particle_vert_shader_id = gl_compile_shader_from_source(PARTICLE_VERT_SRC, GL_VERTEX_SHADER);
+	GLuint const particle_frag_shader_id = gl_compile_shader_from_source(PARTICLE_FRAG_SRC, GL_FRAGMENT_SHADER);
 
 	GLuint const player_program_id = gl_link_shader_program(player_vert_shader_id, player_frag_shader_id);
-	GLuint const particle_program_id = gl_link_shader_program(particle_vert_shader_id, player_frag_shader_id);
+	GLuint const particle_program_id = gl_link_shader_program(particle_vert_shader_id, particle_frag_shader_id);
 
 	GLuint const player_position_id = glGetUniformLocation(player_program_id, "position");
 	GLuint const player_radius_id = glGetUniformLocation(player_program_id, "radius");
@@ -192,10 +222,24 @@ int main() {
 
 	VertexBuffer const player_vertex_buffer = gl_create_vertex_buffer(player_vert_count, 2, &player_verts[0], GL_STATIC_DRAW);
 
+	float const initial_aspect_ratio = static_cast<float>(initial_window_size_x) / static_cast<float>(initial_window_size_y);
+
 	float const initial_player_mass = 2000.f;
 	float const player_particle_radius = get_particle_radius(initial_player_mass);
 
-	Particle player_particle = { { 0.f, 0.f }, math::VEC2_ZERO, initial_player_mass };
+	uint32_t const player_count = 2;
+
+	math::Vec2 const player_start_positions[player_count] = {
+		{ -0.75f * initial_aspect_ratio, 0.f },
+		{  0.75f * initial_aspect_ratio, 0.f},
+	};
+
+	Particle player_particles[player_count] = {};
+	for(uint32_t i = 0; i < player_count; i++) {
+		player_particles[i].position = player_start_positions[i];
+		player_particles[i].velocity = math::VEC2_ZERO;
+		player_particles[i].mass = initial_player_mass;
+	}
 
 	uint32_t const grid_size = 640;
 	uint32_t const max_particle_count = grid_size * grid_size;
@@ -213,7 +257,7 @@ int main() {
 			float const screen_x = ((static_cast<float>(x) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
 			float const screen_y = ((static_cast<float>(y) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
 
-			math::Vec2 const position = { screen_x * (static_cast<float>(initial_window_size_x) / static_cast<float>(initial_window_size_y)), screen_y };
+			math::Vec2 const position = { screen_x * initial_aspect_ratio, screen_y };
 
 			particles.push_back({ position, math::VEC2_ZERO, 1.f });
 		}
@@ -249,67 +293,183 @@ int main() {
 		float const screen_dimension_x = static_cast<float>(window_size_x_int);
 		float const screen_dimension_y = static_cast<float>(window_size_y_int);
 
-		double mouse_x;
-		double mouse_y;
-		glfwGetCursorPos(window, &mouse_x, &mouse_y);
-
-		math::Vec2 const screen_coords = {
-			(static_cast<float>(mouse_x) / (screen_dimension_x * 0.5f) - 1.f) * (screen_dimension_x / screen_dimension_y),
-			(static_cast<float>(mouse_y) / (screen_dimension_y * 0.5f) - 1.f) * -1.f,
-		};
-
-		player_particle.position = math::vec2_lerp(player_particle.position, screen_coords, delta_time * 8.f);
-
-		if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS) {
+		auto reset_game = [&]() {
 			particles.clear();
 			init_particles(particles);
-			player_particle.mass = initial_player_mass;
+
+			for(uint32_t i = 0; i < player_count; i++) {
+				player_particles[i].position = player_start_positions[i];
+				player_particles[i].velocity = math::VEC2_ZERO;
+				player_particles[i].mass = initial_player_mass;
+			}
+
+			glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2) * 0.25f, static_cast<double>(initial_window_size_y / 2));
+		};
+
+		uint32_t active_player_count = 1;
+
+		float const start_read_input_time = get_current_time();
+
+		auto move_player = [&](uint32_t i, XINPUT_STATE const & controller_state) {
+			float const raw_stick_x = static_cast<float>(controller_state.Gamepad.sThumbLX);
+			float const raw_stick_y = static_cast<float>(controller_state.Gamepad.sThumbLY);
+
+			float const short_max = 32767.f;
+			float const stick_x = raw_stick_x / (short_max + (raw_stick_x > 0.f ? 0.f : 1.f));
+			float const stick_y = raw_stick_y / (short_max + (raw_stick_y > 0.f ? 0.f : 1.f));
+
+			math::Vec2 const mapped_stick = apply_dead_zone_mapping({ stick_x, stick_y });
+
+			float const stick_scale_value = 2.f;
+			math::Vec2 const acceleration = math::vec2_mul_float(mapped_stick, stick_scale_value);
+			math::Vec2 const velocity = math::vec2_add(player_particles[i].velocity, math::vec2_mul_float(acceleration, delta_time));
+			math::Vec2 const position = math::vec2_add(player_particles[i].position, math::vec2_mul_float(velocity, delta_time));
+
+			float const damping_factor = 1.f - delta_time * 1.2f;
+			player_particles[i].velocity = math::vec2_mul_float(velocity, damping_factor);
+			player_particles[i].position = { math::clamp_float(position.x, -initial_aspect_ratio, initial_aspect_ratio), math::clamp_float(position.y, -1.f, 1.f ) };
+
+			if(controller_state.Gamepad.wButtons & XINPUT_GAMEPAD_START) {
+				reset_game();
+			}
+
+			active_player_count = 2;
+		};
+
+		XINPUT_STATE controller_0_state = {};
+		XINPUT_STATE controller_1_state = {};
+
+		bool const controller_0_connected = (XInputGetState(0, &controller_0_state) == ERROR_SUCCESS);
+		bool const controller_1_connected = (XInputGetState(1, &controller_1_state) == ERROR_SUCCESS);
+
+		bool const one_controller_connected = (controller_0_connected != controller_1_connected);
+
+		if(controller_0_connected) {
+			uint32_t const player_id = one_controller_connected ? 1 : 0;
+			move_player(player_id, controller_0_state);
 		}
 
+		if(controller_1_connected) {
+			move_player(1, controller_1_state);
+		}
+
+		// uint32_t const max_controller_count = (player_count < XUSER_MAX_COUNT) ? player_count : XUSER_MAX_COUNT;
+		// for(uint32_t i = 0; i < max_controller_count; i++) {
+		// 	XINPUT_STATE controller_state = {};
+		// 	if(XInputGetState(i, &controller_state) == ERROR_SUCCESS) {
+		// 		float const raw_stick_x = static_cast<float>(controller_state.Gamepad.sThumbLX);
+		// 		float const raw_stick_y = static_cast<float>(controller_state.Gamepad.sThumbLY);
+
+		// 		float const short_max = 32767.f;
+		// 		float const stick_x = raw_stick_x / (short_max + (raw_stick_x > 0.f ? 0.f : 1.f));
+		// 		float const stick_y = raw_stick_y / (short_max + (raw_stick_y > 0.f ? 0.f : 1.f));
+
+		// 		math::Vec2 const mapped_stick = apply_dead_zone_mapping({ stick_x, stick_y });
+
+		// 		float const stick_scale_value = 2.f;
+		// 		math::Vec2 const acceleration = math::vec2_mul_float(mapped_stick, stick_scale_value);
+		// 		math::Vec2 const velocity = math::vec2_add(player_particles[i].velocity, math::vec2_mul_float(acceleration, delta_time));
+		// 		math::Vec2 const position = math::vec2_add(player_particles[i].position, math::vec2_mul_float(velocity, delta_time));
+
+		// 		float const damping_factor = 1.f - delta_time * 1.2f;
+		// 		player_particles[i].velocity = math::vec2_mul_float(velocity, damping_factor);
+		// 		player_particles[i].position = { math::clamp_float(position.x, -initial_aspect_ratio, initial_aspect_ratio), math::clamp_float(position.y, -1.f, 1.f ) };
+
+		// 		if(controller_state.Gamepad.wButtons & XINPUT_GAMEPAD_START) {
+		// 			reset_game();
+		// 		}
+
+		// 		active_player_count = 2;
+		// 	}
+		// }
+
+		float const total_read_input_time = get_current_time() - start_read_input_time;
+
+		if(active_player_count == 1 || one_controller_connected) {
+			double mouse_x;
+			double mouse_y;
+			glfwGetCursorPos(window, &mouse_x, &mouse_y);
+
+			math::Vec2 const screen_coords = {
+				(static_cast<float>(mouse_x) / (screen_dimension_x * 0.5f) - 1.f) * (screen_dimension_x / screen_dimension_y),
+				(static_cast<float>(mouse_y) / (screen_dimension_y * 0.5f) - 1.f) * -1.f,
+			};
+
+			player_particles[0].position = math::vec2_lerp(player_particles[0].position, screen_coords, delta_time * 8.f);
+
+			if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS) {
+				reset_game();
+			}
+		}
+
+		// if(active_player_count > 1) {
+		// 	math::Vec2 const direction_to_player = math::vec2_sub(player_particles[0].position, player_particles[1].position);
+		// 	bool const players_touching = (math::vec2_length(direction_to_player) < player_particle_radius * 2.f);
+		// 	if(players_touching) {
+		// 		reset_game();
+		// 	}
+		// }
+
 		float const start_particle_update_time = get_current_time();
+
+		particle_verts.clear();
 
 		for(uint32_t i = 0; i < particles.size(); i++) {
 			math::Vec2 const current_position = particles[i].position;
 
-			math::Vec2 const direction_to_particle = { player_particle.position.x - current_position.x, player_particle.position.y - current_position.y };
-			//math::Vec2 const direction_to_particle = math::vec2_sub(player_particle.position, current_position);
+			math::Vec2 gravity = { 0.f, 0.f };
+			bool pause = false;
 
-			float const length_squared = direction_to_particle.x * direction_to_particle.x + direction_to_particle.y * direction_to_particle.y;
+			for(uint32_t j = 0; j < active_player_count; j++)
+			{
+				math::Vec2 const direction_to_particle = { player_particles[j].position.x - current_position.x, player_particles[j].position.y - current_position.y };
 
-			//float const min_distance = get_particle_radius(player_particle.mass) + get_particle_radius(particles[i].mass);
-			if(length_squared < min_distance_sqr) {
-				// if(particles[i].mass > 0.f) {
-				// 	player_particle.mass += particles[i].mass * 0.008f;	
-				// 	particles[i].mass = 0.f;
-				// }
+				float const length_squared = direction_to_particle.x * direction_to_particle.x + direction_to_particle.y * direction_to_particle.y;
+				if(length_squared < min_distance_sqr) {
+					pause = true;
+					// if(particles[i].mass > 0.f) {
+					// 	player_particles[j].mass += particles[i].mass * 0.008f;	
+					// 	particles[i].mass = 0.f;
+					// }
+				}
+				else {
+					float const gravity_constant = 0.00002;
+					float const particle_gravity = gravity_constant * (player_particles[j].mass / length_squared);
+
+					float const inv_length = (length_squared > 0.f) ? 1.f / std::sqrt(length_squared) : 0.f;
+
+					gravity.x += direction_to_particle.x * inv_length * particle_gravity;
+					gravity.y += direction_to_particle.y * inv_length * particle_gravity;
+				}
 			}
-			else {
-				float const gravity_constant = 0.00002;
-				//float const particle_gravity = gravity_constant * (player_particle.mass * particles[i].mass) / length_squared;
-				float const particle_gravity = gravity_constant * (player_particle.mass / length_squared);
 
-				float const inv_length = (length_squared > 0.f) ? 1.f / std::sqrt(length_squared) : 0.f;
-				math::Vec2 const gravity = { direction_to_particle.x * inv_length * particle_gravity, direction_to_particle.y * inv_length * particle_gravity };
+			if(!pause) {
+				particles[i].velocity.x += gravity.x * delta_time;
+				particles[i].velocity.y += gravity.y * delta_time;
 
-				//math::Vec2 const gravity = math::vec2_mul_float(math::vec2_normalize(direction_to_particle), particle_gravity);
-				//math::Vec2 const acceleration = math::vec2_div_float(gravity, particles[i].mass);
+				particles[i].position.x += particles[i].velocity.x * delta_time;
+				particles[i].position.y += particles[i].velocity.y * delta_time;
 
-				particles[i].velocity = { particles[i].velocity.x + gravity.x * delta_time, particles[i].velocity.y + gravity.y * delta_time };
-				particles[i].position = { current_position.x + particles[i].velocity.x * delta_time, current_position.y + particles[i].velocity.y * delta_time };
+				bool const out_of_bounds = (particles[i].position.x < -initial_aspect_ratio || particles[i].position.x > initial_aspect_ratio || particles[i].position.y < -1.f || particles[i].position.y > 1.f);
+				if(out_of_bounds) {
+					uint32_t const x = i % grid_size;
+					uint32_t const y = i / grid_size;
 
-				//particles[i].velocity = math::vec2_add(particles[i].velocity, math::vec2_mul_float(gravity, delta_time));
-				//particles[i].position = math::vec2_add(particles[i].position, math::vec2_mul_float(particles[i].velocity, delta_time));
+					float const screen_x = ((static_cast<float>(x) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
+					float const screen_y = ((static_cast<float>(y) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
+
+					particles[i].position.x = screen_x * initial_aspect_ratio;
+					particles[i].position.y = screen_y;
+
+					particles[i].velocity = math::VEC2_ZERO;
+				}
 			}
+
+			particle_verts.push_back(particles[i].position.x);
+			particle_verts.push_back(particles[i].position.y);
 		}
 
 		float const total_particle_update_time = get_current_time() - start_particle_update_time;
-
-		particle_verts.clear();
-		for(uint32_t i = 0; i < max_particle_count; i++) {
-			math::Vec2 const position = particles[i].position;
-			particle_verts.push_back(position.x);
-			particle_verts.push_back(position.y);
-		}
 
 		glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, particle_vertex_buffer.size_in_bytes, &particle_verts[0]);
@@ -325,10 +485,12 @@ int main() {
 
 		glUseProgram(player_program_id);
 		glUniform1f(player_aspect_id, aspect_ratio);
-		glUniform2f(player_position_id, player_particle.position.x, player_particle.position.y);
-		// glUniform1f(player_radius_id, get_particle_radius(player_particle.mass));
-		glUniform1f(player_radius_id, player_particle_radius);
-		glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
+
+		for(uint32_t i = 0; i < active_player_count; i++) {
+			glUniform2f(player_position_id, player_particles[i].position.x, player_particles[i].position.y);
+			glUniform1f(player_radius_id, player_particle_radius);
+			glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
+		}
 
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
@@ -339,7 +501,7 @@ int main() {
 		glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);
 
 		char txt_buffer[256] = {};
-		std::sprintf(txt_buffer, "nova, dt: %.3fs, pt: %.3fs", delta_time, total_particle_update_time);
+		std::sprintf(txt_buffer, "nova, dt: %.3fs, pt: %.3fs, it: %.3fs", delta_time, total_particle_update_time, total_read_input_time);
 		glfwSetWindowTitle(window, txt_buffer);
 
 		glfwSwapBuffers(window);
