@@ -15,22 +15,69 @@ namespace math {
 	float min_float(float x, float y);
 	float max_float(float x, float y);
 	float clamp_float(float x, float u, float v);
+	float frac_float(float x);
 
 	float random_float();
+	float psuedo_random_float();
 	Vec2 random_sample_circle();
-	
-	Vec2 vec2_add(Vec2 const & v0, Vec2 const & v1);
-	Vec2 vec2_sub(Vec2 const & v0, Vec2 const & v1);
-	Vec2 vec2_mul(Vec2 const & v0, Vec2 const & v1);
-	Vec2 vec2_div(Vec2 const & v0, Vec2 const & v1);
 
-	Vec2 vec2_add_float(Vec2 const & v, float x);
-	Vec2 vec2_sub_float(Vec2 const & v, float x);
-	Vec2 vec2_mul_float(Vec2 const & v, float x);
-	Vec2 vec2_div_float(Vec2 const & v, float x);
+	Vec2 operator+(Vec2 const & x, Vec2 const & y) {
+		Vec2 tmp = x;
+		tmp.x += y.x;
+		tmp.y += y.y;
+		return tmp;
+	}
+
+	Vec2 operator-(Vec2 const & x, Vec2 const & y) {
+		Vec2 tmp = x;
+		tmp.x -= y.x;
+		tmp.y -= y.y;
+		return tmp;
+	}
+
+	Vec2 operator*(Vec2 const & x, Vec2 const & y) {
+		Vec2 tmp = x;
+		tmp.x *= y.x;
+		tmp.y *= y.y;
+		return tmp;
+	}
+
+	Vec2 operator/(Vec2 const & x, Vec2 const & y) {
+		Vec2 tmp = x;
+		tmp.x /= y.x;
+		tmp.y /= y.y;
+		return tmp;
+	}
+
+	Vec2 operator+(Vec2 const & v, float x) {
+		Vec2 tmp = v;
+		tmp.x += x;
+		tmp.y += x;
+		return tmp;
+	}
+
+	Vec2 operator-(Vec2 const & v, float x) {
+		Vec2 tmp = v;
+		tmp.x -= x;
+		tmp.y -= x;
+		return tmp;
+	}
+
+	Vec2 operator*(Vec2 const & v, float x) {
+		Vec2 tmp = v;
+		tmp.x *= x;
+		tmp.y *= x;
+		return tmp;
+	}
+
+	Vec2 operator/(Vec2 const & v, float x) {
+		Vec2 tmp = v;
+		tmp.x /= x;
+		tmp.y /= x;
+		return tmp;
+	}
 
 	Vec2 vec2_lerp(Vec2 const & v0, Vec2 const & v1, float t);
-	Vec2 vec2_clamp(Vec2 const &v, float x, float y);
 
 	Vec2 vec2_normalize(Vec2 const & v);
 	float vec2_length(Vec2 const & v);

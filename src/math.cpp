@@ -17,8 +17,16 @@ namespace math {
 		return (x > u) ? ((x < v) ? x : v) : u;
 	}
 
+	float frac_float(float x) {
+		return x - static_cast<int32_t>(x);
+	}
+
 	float random_float() {
 		return (static_cast<float>(rand()) / static_cast<float>(RAND_MAX));
+	}
+
+	float pseudo_random_float(float x) {
+		return frac_float(std::sin(x * 12.9898f) * 43758.5453f);
 	}
 
 	Vec2 random_sample_in_circle() {
@@ -28,47 +36,13 @@ namespace math {
 		return { r * std::cos(t), r * std::sin(t) };
 	}
 
-	Vec2 vec2_add(Vec2 const & v0, Vec2 const & v1) {
-		return { v0.x + v1.x, v0.y + v1.y };
-	}
-
-	Vec2 vec2_sub(Vec2 const & v0, Vec2 const & v1) {
-		return { v0.x - v1.x, v0.y - v1.y };
-	}
-
-	Vec2 vec2_mul(Vec2 const & v0, Vec2 const & v1) {
-		return { v0.x * v0.x, v1.y * v1.y };
-	}
-
-	Vec2 vec2_div(Vec2 const & v0, Vec2 const & v1) {
-		return { v0.x / v0.x, v1.y / v1.y };
-	}
-
-	Vec2 vec2_add_float(Vec2 const & v, float x) {
-		return { v.x + x, v.y + x };
-	}
-
-	Vec2 vec2_sub_float(Vec2 const & v, float x) {
-		return { v.x - x, v.y - x };
-	}
-
-	Vec2 vec2_mul_float(Vec2 const & v, float x) {
-		return { v.x * x, v.y * x};
-	}
-
-	Vec2 vec2_div_float(Vec2 const & v, float x) {
-		return { v.x / x, v.y / x};
-	}
-
 	Vec2 vec2_lerp(Vec2 const & v0, Vec2 const & v1, float t) {
-		math::Vec2 const u = math::vec2_mul_float(v0, (1.f - t));
-		math::Vec2 const v = math::vec2_mul_float(v1, t);
-		return math::vec2_add(u, v);
+		return v0 * (1.f - t) + v1 * t;
 	}
 
 	Vec2 vec2_normalize(Vec2 const & v) {
 		float length = vec2_length(v);
-		return (length > 0.f) ? vec2_div_float(v, length) : math::VEC2_ZERO;
+		return (length > 0.f) ? v / length : math::VEC2_ZERO;
 	}
 
 	float vec2_length(Vec2 const & v) {

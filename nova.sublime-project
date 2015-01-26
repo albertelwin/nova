@@ -2,7 +2,7 @@
 	"build_systems":
 	[
 		{
-			"file_regex": "(src.\\w+..pp)\\(([0-9]+)\\).:.error",
+			"file_regex": "(src.\\w+..pp)\\(([0-9]+)\\).:.",
 			"name": "Nova",
 			"shell_cmd": "build.bat",
 			"variants":

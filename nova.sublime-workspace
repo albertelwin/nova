@@ -4,6 +4,98 @@
 		"selected_items":
 		[
 			[
+				"mon",
+				"monitor_size_y"
+			],
+			[
+				"player_vert",
+				"player_vert_count"
+			],
+			[
+				"ps",
+				"pseudo_random_float"
+			],
+			[
+				"init",
+				"initial_player_mass"
+			],
+			[
+				"parti",
+				"particle_verts"
+			],
+			[
+				"point_ver",
+				"point_vertex_buffer"
+			],
+			[
+				"glUni",
+				"glUniform1f"
+			],
+			[
+				"particle",
+				"particle_count"
+			],
+			[
+				"inv",
+				"inv_log_v_squared"
+			],
+			[
+				"log",
+				"log_v_squared"
+			],
+			[
+				"lg",
+				"log_v"
+			],
+			[
+				"2f",
+				"2f"
+			],
+			[
+				"u",
+				"u"
+			],
+			[
+				"get_",
+				"get_current_time"
+			],
+			[
+				"player_part",
+				"player_particle_radius"
+			],
+			[
+				"glUnif",
+				"glUniform1f"
+			],
+			[
+				"f",
+				"f"
+			],
+			[
+				"glUniform",
+				"glUniform2f"
+			],
+			[
+				"cur",
+				"current_y"
+			],
+			[
+				"PI",
+				"PI"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"v",
+				"v"
+			],
+			[
+				"const",
+				"const"
+			],
+			[
 				"XInputGet",
 				"XInputGetState"
 			],
@@ -18,10 +110,6 @@
 			[
 				"XIn",
 				"XInputGetStateFunc"
-			],
-			[
-				"x",
-				"x_input_library"
 			],
 			[
 				"XInpu",
@@ -124,16 +212,8 @@
 				"mapped_stick0"
 			],
 			[
-				"v",
-				"v"
-			],
-			[
 				"grav",
 				"gravity"
-			],
-			[
-				"parti",
-				"particles"
 			],
 			[
 				"particl",
@@ -156,10 +236,6 @@
 				"GLFW_PRESS"
 			],
 			[
-				"init",
-				"initial_aspect_ratio"
-			],
-			[
 				"initial",
 				"initial_aspect_ratio"
 			],
@@ -176,10 +252,6 @@
 				"stick_scale_value"
 			],
 			[
-				"player_part",
-				"player_particles"
-			],
-			[
 				"VEc",
 				"VEC2_ZERO"
 			],
@@ -190,14 +262,6 @@
 			[
 				"vert",
 				"vert_count"
-			],
-			[
-				"player_vert",
-				"player_vertex_buffer"
-			],
-			[
-				"glUnif",
-				"glUniform2f"
 			],
 			[
 				"player_0_",
@@ -234,10 +298,6 @@
 			[
 				"min",
 				"min_distance_sqr"
-			],
-			[
-				"particle",
-				"particle_radius"
 			],
 			[
 				"player_parti",
@@ -308,10 +368,6 @@
 				"screen_y"
 			],
 			[
-				"const",
-				"const"
-			],
-			[
 				"COMM",
 				"COMMON_LINKER_FLAGS"
 			],
@@ -322,10 +378,6 @@
 			[
 				"vec2_mu",
 				"vec2_mul_float"
-			],
-			[
-				"glUni",
-				"glUniform1f"
 			],
 			[
 				"radius",
@@ -424,10 +476,6 @@
 				"length_squared"
 			],
 			[
-				"u",
-				"uint32_t"
-			],
-			[
 				"other",
 				"other_particle"
 			],
@@ -448,10 +496,6 @@
 				"particle_position"
 			],
 			[
-				"get_",
-				"get_particle_radius"
-			],
-			[
 				"rad",
 				"radius_id"
 			],
@@ -470,50 +514,6 @@
 			[
 				"vec2",
 				"vec2_mul_float"
-			],
-			[
-				"ne",
-				"next_buffer_index"
-			],
-			[
-				"this",
-				"this_buffer_index"
-			],
-			[
-				"off",
-				"offset_y"
-			],
-			[
-				"of",
-				"offset_x"
-			],
-			[
-				"patr",
-				"particle_index"
-			],
-			[
-				"nor",
-				"normalized_my"
-			],
-			[
-				"rand",
-				"rand_float"
-			],
-			[
-				"position",
-				"position_id"
-			],
-			[
-				"pr",
-				"program_id"
-			],
-			[
-				"frag",
-				"frag_id"
-			],
-			[
-				"com",
-				"compile_shader_from_source"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "src/win32_main.cpp",
 			"settings":
 			{
-				"buffer_size": 18529,
+				"buffer_size": 18200,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "src/math.cpp",
 			"settings":
 			{
-				"buffer_size": 1848,
+				"buffer_size": 1190,
 				"line_ending": "Windows"
 			}
 		},
@@ -539,55 +539,15 @@
 			"file": "src/math.hpp",
 			"settings":
 			{
-				"buffer_size": 1020,
+				"buffer_size": 1520,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/basic.frag",
-			"settings":
-			{
-				"buffer_size": 145,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/basic.vert",
-			"settings":
-			{
-				"buffer_size": 316,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/particle.vert",
-			"settings":
-			{
-				"buffer_size": 253,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/particle.frag",
-			"settings":
-			{
-				"buffer_size": 148,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "nova.sublime-project",
-			"settings":
-			{
-				"buffer_size": 430,
-				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "build.bat",
 			"settings":
 			{
-				"buffer_size": 524,
+				"buffer_size": 594,
 				"line_ending": "Windows"
 			}
 		}
@@ -735,10 +695,16 @@
 	],
 	"file_history":
 	[
+		"/C/Users/albertelwin/Nova/repo/src/math_main.cpp",
+		"/C/Users/albertelwin/Nova/repo/src/basic.frag",
+		"/C/Users/albertelwin/Nova/repo/src/basic.vert",
+		"/C/Users/albertelwin/Nova/repo/src/particle.vert",
+		"/C/Users/albertelwin/Nova/repo/src/particle.frag",
+		"/C/Users/albertelwin/Nova/repo/nova.sublime-project",
+		"/C/Users/albertelwin/Downloads/handmade_hero_050_source/handmade_hero_day_017_source/code/build.bat",
 		"/C/Users/albertelwin/Downloads/handmade_hero_048_source/handmade_hero_day_025_source/code/win32_handmade.cpp",
 		"/C/Users/albertelwin/Downloads/handmade_hero_048_source/handmade_hero_day_025_source/code/build.bat",
 		"/C/Users/albertelwin/Nova/builds/change_log.txt",
-		"/C/Users/albertelwin/Nova/repo/src/math_main.cpp",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/src/winmm_joystick.c",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/src/winmm_joystick.h",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/src/iokit_joystick.h",
@@ -856,13 +822,7 @@
 		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Shader.hpp",
 		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Shader.cpp",
 		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Font.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/UserInterface.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/OpenGLES2.cpp",
-		"/C/Users/albertelwin/Glitchspace/repo/Assets/Editor/LandscapeInspector.cs",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Font.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Win32Input.hpp",
-		"/C/Users/albertelwin/AppData/Local/Temp/Temp1_Frag.zip/Frag/Source/Application.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/gaussian_blur_frag.essl"
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/UserInterface.cpp"
 	],
 	"find":
 	{
@@ -881,6 +841,53 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"= y;",
+			"<string>",
+			".push_back(",
+			");",
+			".push_back(",
+			"FLOAT_MAX",
+			"i",
+			"player_particles[0].",
+			"vec2_pseudo_random",
+			"point_vertex_buffer",
+			"[i]",
+			"player_vertex_buffer",
+			"(1.f / log_v_squared)",
+			" * (1.f - log_v)",
+			"std::log(v) * 0.2f",
+			"2.f",
+			"2",
+			"2.f",
+			"0.2f",
+			"64",
+			"2.f",
+			"0.02f",
+			"128",
+			"+",
+			" + z",
+			"16",
+			"128",
+			" * 2.f",
+			"96",
+			"128",
+			"particles[i].position.",
+			"32",
+			"current_",
+			"2.f",
+			"0.2",
+			"position",
+			" * 0f",
+			"0.5f",
+			"velocity",
+			"64",
+			"1f * v",
+			"128",
+			"1.8f",
+			"128",
+			"24",
+			"2.f",
+			"particles[i].position.",
 			"x_input_get_state_func",
 			"load_x_input_library",
 			"XInputGetStateFunc",
@@ -961,54 +968,7 @@
 			"ON",
 			"LIB_SUFFIX",
 			"REM",
-			"win32_main",
-			"build.bat && ",
-			"math::random_float();",
-			"min_size_t",
-			"player_particl",
-			"player_particle",
-			"player_partic",
-			"win32_nova",
-			"& x",
-			"v1",
-			"v0",
-			"v1",
-			"v0",
-			"it",
-			"position_to_particle",
-			"name",
-			"normalized_mouse",
-			"screen_dimension_y",
-			"screen_dimension_x",
-			"particle_count",
-			"shader_src",
-			"file",
-			"unsigned",
-			"char",
-			"window_dimension_y",
-			"window_dimension_x",
-			"pos",
-			"rnd",
-			"vec_add",
-			"max_particle_count",
-			"particle_buffers[next_buffer_index]",
-			"particle_buffers[this_buffer_index]",
-			" * 0.002f",
-			"position_from_other_particle",
-			"gravity_constant",
-			"newton_gravity_constant",
-			"it.",
-			", 0.f",
-			"uint32_t",
-			"512.f",
-			"y_objects",
-			"circle_",
-			"particles_buffers",
-			"particles",
-			"/",
-			"2.f;",
-			"last_frame_time",
-			"Vec2"
+			"win32_main"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1026,7 +986,7 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1035,15 +995,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18529,
+						"buffer_size": 18200,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								713,
-								713
+								7606,
+								7606
 							]
 						],
 						"settings":
@@ -1052,10 +1012,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 248.0,
+						"translation.y": 2937.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1064,15 +1024,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1848,
+						"buffer_size": 1190,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1534,
-								1534
+								1020,
+								1020
 							]
 						],
 						"settings":
@@ -1081,10 +1041,10 @@
 							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 411.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1093,48 +1053,20 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1020,
+						"buffer_size": 1520,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								332,
-								332
+								214,
+								214
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 36.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/basic.frag",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 145,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								134,
-								134
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1144,133 +1076,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "src/basic.vert",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 316,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								223,
-								223
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/particle.vert",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 253,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								181,
-								181
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/particle.frag",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 148,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								65,
-								65
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "nova.sublime-project",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 430,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								375,
-								375
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
+					"buffer": 3,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 524,
+						"buffer_size": 594,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								474,
-								474
+								594,
+								594
 							]
 						],
 						"settings":
@@ -1281,7 +1100,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1342,16 +1161,8 @@
 		"selected_items":
 		[
 			[
-				"bas",
-				"basic.frag"
-			],
-			[
-				"math_m",
+				"",
 				"math_main.cpp"
-			],
-			[
-				"bui",
-				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
 			],
 			[
 				"main",
@@ -1366,8 +1177,16 @@
 				"math.cpp"
 			],
 			[
-				"",
-				"math.cpp"
+				"bas",
+				"basic.frag"
+			],
+			[
+				"math_m",
+				"math_main.cpp"
+			],
+			[
+				"bui",
+				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
 			],
 			[
 				"basi",
