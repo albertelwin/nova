@@ -4,6 +4,170 @@
 		"selected_items":
 		[
 			[
+				"func",
+				"func_add"
+			],
+			[
+				"noise",
+				"noise_y"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"get_",
+				"get_initial_particle_velocity"
+			],
+			[
+				"ve",
+				"velocity"
+			],
+			[
+				"delt",
+				"delta_velocity"
+			],
+			[
+				"contr",
+				"controller_count"
+			],
+			[
+				"controller",
+				"controller_states"
+			],
+			[
+				"controller_",
+				"controller_count"
+			],
+			[
+				"control",
+				"controller_connected"
+			],
+			[
+				"glfw",
+				"glfwTerminate"
+			],
+			[
+				"tot",
+				"total_acceleration"
+			],
+			[
+				"raw_",
+				"raw_stick_x"
+			],
+			[
+				"stick",
+				"stick_y"
+			],
+			[
+				"sThum",
+				"sThumbLY"
+			],
+			[
+				"uint",
+				"uint16_t"
+			],
+			[
+				"sTh",
+				"sThumbLX"
+			],
+			[
+				"move",
+				"movement_factor"
+			],
+			[
+				"en",
+				"enable_v_sync"
+			],
+			[
+				"fir",
+				"friction_force"
+			],
+			[
+				"player_part",
+				"player_particles"
+			],
+			[
+				"fric",
+				"friction_force"
+			],
+			[
+				"fri",
+				"friction_factor"
+			],
+			[
+				"int",
+				"int16_t"
+			],
+			[
+				"particle_Vert",
+				"particle_vert_size"
+			],
+			[
+				"particle_ver",
+				"particle_vert_size"
+			],
+			[
+				"grid",
+				"grid_size"
+			],
+			[
+				"cel",
+				"cell_y"
+			],
+			[
+				"cell",
+				"cell_x"
+			],
+			[
+				"grad",
+				"gradient"
+			],
+			[
+				"x",
+				"x_int"
+			],
+			[
+				"stati",
+				"static_cast"
+			],
+			[
+				"inital",
+				"initial_window_size_x"
+			],
+			[
+				"init",
+				"initial_window_size_x"
+			],
+			[
+				"glUni",
+				"glUniform2f"
+			],
+			[
+				"particle_",
+				"particle_count"
+			],
+			[
+				"bloc",
+				"block_particles"
+			],
+			[
+				"block",
+				"block_particle_count"
+			],
+			[
+				"partic",
+				"particle_count"
+			],
+			[
+				"cell_",
+				"cell_particle_counts"
+			],
+			[
+				"scre",
+				"screen_y"
+			],
+			[
 				"mon",
 				"monitor_size_y"
 			],
@@ -16,20 +180,12 @@
 				"pseudo_random_float"
 			],
 			[
-				"init",
-				"initial_player_mass"
-			],
-			[
 				"parti",
 				"particle_verts"
 			],
 			[
 				"point_ver",
 				"point_vertex_buffer"
-			],
-			[
-				"glUni",
-				"glUniform1f"
 			],
 			[
 				"particle",
@@ -56,14 +212,6 @@
 				"u"
 			],
 			[
-				"get_",
-				"get_current_time"
-			],
-			[
-				"player_part",
-				"player_particle_radius"
-			],
-			[
 				"glUnif",
 				"glUniform1f"
 			],
@@ -82,10 +230,6 @@
 			[
 				"PI",
 				"PI"
-			],
-			[
-				"x",
-				"x"
 			],
 			[
 				"v",
@@ -120,24 +264,12 @@
 				"ERROR_DEVICE_NOT_CONNECTED"
 			],
 			[
-				"scre",
-				"screen_coords"
-			],
-			[
 				"ini",
 				"initial_aspect_ratio"
 			],
 			[
 				"acit",
 				"active_player_count"
-			],
-			[
-				"control",
-				"controller_1_state"
-			],
-			[
-				"contr",
-				"controller_0_state"
 			],
 			[
 				"player",
@@ -154,10 +286,6 @@
 			[
 				"contro",
 				"controller_1_connected"
-			],
-			[
-				"controller",
-				"controller_0_connected"
 			],
 			[
 				"connn",
@@ -182,10 +310,6 @@
 			[
 				"map",
 				"mapped_stick"
-			],
-			[
-				"stick",
-				"stick_y"
 			],
 			[
 				"stick_",
@@ -280,20 +404,12 @@
 				"GL_TRUE"
 			],
 			[
-				"glfw",
-				"glfwJoystickPresent"
-			],
-			[
 				"particle_vert",
 				"particle_verts"
 			],
 			[
 				"ii",
 				"initial_player_mass"
-			],
-			[
-				"pos",
-				"position_off_screen"
 			],
 			[
 				"min",
@@ -398,122 +514,6 @@
 			[
 				"sc",
 				"screen_dimension_y"
-			],
-			[
-				"scree",
-				"screen_dimension_x"
-			],
-			[
-				"ran",
-				"random_float"
-			],
-			[
-				"mass",
-				"mass_after_erase"
-			],
-			[
-				"file",
-				"file_stream"
-			],
-			[
-				"if",
-				"ifstream"
-			],
-			[
-				"file_",
-				"file_stream"
-			],
-			[
-				"srh",
-				"shader_src"
-			],
-			[
-				"re",
-				"reserve"
-			],
-			[
-				"read",
-				"read_result"
-			],
-			[
-				"win",
-				"window_dimension_y"
-			],
-			[
-				"windo",
-				"window_dimension_x"
-			],
-			[
-				"wind",
-				"window_dimension_x"
-			],
-			[
-				"ac",
-				"acceleration"
-			],
-			[
-				"legnth",
-				"length_squared"
-			],
-			[
-				"positio",
-				"position"
-			],
-			[
-				"vec2_",
-				"vec2_mul_float"
-			],
-			[
-				"vec",
-				"vec2_length"
-			],
-			[
-				"del",
-				"delta_time"
-			],
-			[
-				"len",
-				"length_squared"
-			],
-			[
-				"other",
-				"other_particle"
-			],
-			[
-				"new",
-				"new_particle"
-			],
-			[
-				"pa",
-				"particle_position"
-			],
-			[
-				"oth",
-				"other_particle_gravity"
-			],
-			[
-				"part_",
-				"particle_position"
-			],
-			[
-				"rad",
-				"radius_id"
-			],
-			[
-				"div",
-				"division_count"
-			],
-			[
-				"di",
-				"division_count"
-			],
-			[
-				"cir",
-				"circle_division_count"
-			],
-			[
-				"vec2",
-				"vec2_mul_float"
 			]
 		]
 	},
@@ -523,7 +523,31 @@
 			"file": "src/win32_main.cpp",
 			"settings":
 			{
-				"buffer_size": 18200,
+				"buffer_size": 18989,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/particle.vert",
+			"settings":
+			{
+				"buffer_size": 253,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/particle.frag",
+			"settings":
+			{
+				"buffer_size": 148,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/basic.frag",
+			"settings":
+			{
+				"buffer_size": 145,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,7 +555,7 @@
 			"file": "src/math.cpp",
 			"settings":
 			{
-				"buffer_size": 1190,
+				"buffer_size": 5131,
 				"line_ending": "Windows"
 			}
 		},
@@ -539,7 +563,7 @@
 			"file": "src/math.hpp",
 			"settings":
 			{
-				"buffer_size": 1520,
+				"buffer_size": 2066,
 				"line_ending": "Windows"
 			}
 		},
@@ -555,15 +579,19 @@
 	"build_system": "Nova",
 	"command_palette":
 	{
-		"height": 58.0,
+		"height": 104.0,
 		"selected_items":
 		[
 			[
-				"debug",
+				"debu",
 				"Build: Debug"
 			],
 			[
 				"deb",
+				"Build: Debug"
+			],
+			[
+				"debug",
 				"Build: Debug"
 			],
 			[
@@ -695,16 +723,57 @@
 	],
 	"file_history":
 	[
+		"/C/Users/albertelwin/Blog/blog.html",
+		"/C/Users/albertelwin/Blog/_config.yml",
+		"/C/Users/albertelwin/Blog/portfolio.html",
+		"/C/Users/albertelwin/Blog/_site/page2/index.html",
+		"/C/Users/albertelwin/Blog/_includes/nav.html",
+		"/C/Users/albertelwin/Blog/about.html",
+		"/C/Users/albertelwin/Blog/index.html",
+		"/C/Users/albertelwin/Blog/_includes/head.html",
+		"/C/Users/albertelwin/Blog/js/bootstrap.js",
+		"/C/Users/albertelwin/Blog/css/clean-blog.css",
+		"/C/Users/albertelwin/Blog/_site/index.html",
+		"/C/Users/albertelwin/Blog/js/clean-blog.js",
+		"/C/Users/albertelwin/Blog/js/jquery.js",
+		"/C/Users/albertelwin/Blog/_layouts/page.html",
+		"/C/Users/albertelwin/Blog/less/mixins.less",
+		"/C/Users/albertelwin/Blog/less/variables.less",
+		"/C/Users/albertelwin/Blog/less/clean-blog.less",
+		"/C/Users/albertelwin/Blog/css/bootstrap.css",
+		"/C/Users/albertelwin/Blog/_layouts/post.html",
+		"/C/Users/albertelwin/Blog/package.json",
+		"/C/Users/albertelwin/Blog/_layouts/default.html",
 		"/C/Users/albertelwin/Nova/repo/src/math_main.cpp",
+		"/C/Users/albertelwin/Blog/feed.xml",
+		"/C/Users/albertelwin/Blog/mail/contact_me.php",
+		"/C/Users/albertelwin/Blog/contact.html",
+		"/C/Users/albertelwin/Blog/LICENSE",
+		"/C/Users/albertelwin/Blog/.gitignore",
+		"/C/Users/albertelwin/_Blog/CNAME",
+		"/C/Users/albertelwin/Blog/_posts/2012-10-03-honors-project.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2012-10-17-global-illumination.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2012-10-10-demo_framework.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2013-02-13-opencl-path-tracing.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2013-02-13-polygon-model-rendering.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2013-02-27-acceleration-structures.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2013-04-22-explicit-light-sampling.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2013-04-22-native-client.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2013-04-22-native_client.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2013-08-21-glitchspace.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2015-02-02-glitchspace.markdown",
+		"/C/Users/albertelwin/Blog/_posts/2014-09-24-man-must-explore.markdown",
+		"/C/Users/albertelwin/Nova/repo/src/lambda_main.cpp",
+		"/C/Users/albertelwin/Nova/builds/change_log.txt",
+		"/C/Users/albertelwin/AppData/Local/Temp/Temp1_handmade_hero_day_045_source.zip/code/handmade.cpp",
+		"/C/Users/albertelwin/Nova/repo/src/particle.frag",
+		"/C/Users/albertelwin/Nova/repo/src/particle.vert",
 		"/C/Users/albertelwin/Nova/repo/src/basic.frag",
 		"/C/Users/albertelwin/Nova/repo/src/basic.vert",
-		"/C/Users/albertelwin/Nova/repo/src/particle.vert",
-		"/C/Users/albertelwin/Nova/repo/src/particle.frag",
 		"/C/Users/albertelwin/Nova/repo/nova.sublime-project",
 		"/C/Users/albertelwin/Downloads/handmade_hero_050_source/handmade_hero_day_017_source/code/build.bat",
 		"/C/Users/albertelwin/Downloads/handmade_hero_048_source/handmade_hero_day_025_source/code/win32_handmade.cpp",
 		"/C/Users/albertelwin/Downloads/handmade_hero_048_source/handmade_hero_day_025_source/code/build.bat",
-		"/C/Users/albertelwin/Nova/builds/change_log.txt",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/src/winmm_joystick.c",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/src/winmm_joystick.h",
 		"/C/Users/albertelwin/Downloads/glfw-3.1/src/iokit_joystick.h",
@@ -781,48 +850,7 @@
 		"/C/MSYS2/home/albertelwin/Rust/Stellar/.gitignore",
 		"/C/MSYS2/home/albertelwin/Rust/main.rs",
 		"/C/MSYS2/home/albertelwin/.profile",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/gauss_blur.essl",
-		"/C/Users/albertelwin/Downloads/shadows/Shadows/Mesh.hlsl",
-		"/C/Program Files (x86)/Steam/SteamApps/common/Super Meat Boy/buttonmap.cfg",
-		"/C/Users/albertelwin/Downloads/shadows/Shadows/SetupShadows.hlsl",
-		"/C/Users/albertelwin/Glitchspace/repo/Assets/Scripts/Null/NodeImpl/ClockImpl.cs",
-		"/C/Users/albertelwin/Downloads/shadows/Shadows/PCFKernels.hlsl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/depth_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/depth_vert.essl",
-		"/C/Users/albertelwin/Frag/repo/Media/Shaders/DepthPass.vert",
-		"/C/Users/albertelwin/Frag/repo/Media/Shaders/DepthPass.frag",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/ggx_vert.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Geometry.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Geometry.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/blur_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Include/glm/core/func_noise.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/post_composite_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/ggx_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Main.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/VertexBuffer.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/VertexBuffer.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Application.cpp",
-		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/LaunchGame.cs",
-		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/Player.cs",
-		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/BuySell.cs",
-		"/C/Users/albertelwin/Bears/repo/Assets/Scripts/Framework/CloseGame.cs",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/font_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/render_texture_frag.essl",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Application.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/OpenGLES2.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Enums.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/EnumsFwd.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/FrameBuffer.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/FrameBuffer.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Texture.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Texture.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Image.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Win32Util.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Image.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Shader.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Shader.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/Font.hpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Source/UserInterface.cpp"
+		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Media/Shaders/gauss_blur.essl"
 	],
 	"find":
 	{
@@ -841,134 +869,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"= y;",
-			"<string>",
-			".push_back(",
-			");",
-			".push_back(",
-			"FLOAT_MAX",
-			"i",
-			"player_particles[0].",
-			"vec2_pseudo_random",
-			"point_vertex_buffer",
-			"[i]",
-			"player_vertex_buffer",
-			"(1.f / log_v_squared)",
-			" * (1.f - log_v)",
-			"std::log(v) * 0.2f",
-			"2.f",
-			"2",
-			"2.f",
-			"0.2f",
-			"64",
-			"2.f",
-			"0.02f",
-			"128",
-			"+",
-			" + z",
-			"16",
-			"128",
-			" * 2.f",
-			"96",
-			"128",
-			"particles[i].position.",
-			"32",
-			"current_",
-			"2.f",
-			"0.2",
-			"position",
-			" * 0f",
+			"contact",
+			"navbar",
+			"site-heading",
+			"yourname",
+			"\n",
+			"math::VEC2_ZERO",
+			"{ 0.f, 0.f }",
+			"length",
+			"vec2_length",
+			"VEC2_ZERO",
+			"VEC2_ONE",
+			"FFFFFF",
+			" + math::simplex_noise(",
+			"math::simplex_noise",
 			"0.5f",
-			"velocity",
-			"64",
-			"1f * v",
-			"128",
-			"1.8f",
-			"128",
-			"24",
-			"2.f",
-			"particles[i].position.",
-			"x_input_get_state_func",
-			"load_x_input_library",
-			"XInputGetStateFunc",
-			"x_input_get_state_func",
-			"x_input_func",
-			"player_particles[i]",
-			"player_count",
-			"32767.f",
-			"? 0 : -1",
-			"stick_",
-			"10",
-			"apply_dead_zone",
+			" + 1.f",
+			";",
 			"position",
-			"x",
-			"x.",
+			"position.y + 1.f, position.x + 1.f),\n		};\n\n		return (velocity - 0.5f) * 2.f * 0.2f;\n	};\n\n	auto init_particles = [&]() {",
+			"position",
+			");",
+			"float const noise_",
+			"random_float",
+			"active_player_count",
+			"			for(uint32_t j = 0; j < active_player_count; j++)\n",
+			"wall_normal",
+			"wall_normal = { 0.f, 1.f };\n				player.velocity = wall_normal * math::dot(velocity, wall_normal);\n			}\n\n			if(position.y < 1.f || position.y > 1.f) {\n				math::Vec2 const \n			}",
+			"delta_position",
+			"position",
+			"clamp_float",
 			"Vec2",
-			"v",
-			"const",
-			"x0",
-			"player_particles[i]",
-			"player_0_particle",
+			"controller_0_state",
+			"max_player",
+			"controller_",
+			"bool const",
+			"_state",
+			"controller_",
+			"controller_0_state",
+			"aspect_ratio",
+			"initial_aspect_ratio",
+			"mapped_stick",
+			"normalized_stick",
+			"stick",
+			"desc",
+			"uint16_t",
+			"player_particles[player_id]",
+			"acceleration",
+			"movement_factor",
+			"vert_index",
+			"_index",
 			"player_index",
-			"player_1_start_position",
-			"gravity.x + direction_to_particle.y",
-			"gravity.x",
-			"player_0_particle",
-			"2f",
-			"{ ",
-			"move_stick_1",
-			"move_stick_0",
-			"move_stick",
-			"player_0_particle_radius",
-			"player_particle",
-			"axis",
-			"screen_dimension_x",
-			" 3",
-			"3",
-			"768",
-			"RELEASE_COMPILER_FLAGS",
-			".mass",
+			"stick",
+			"player_particles[i]",
+			"XInputGetState__",
+			"x_input_get_state",
+			"is_full_screen",
+			"TODO",
+			"int32_t",
+			"gi",
 			"uint32_t",
-			"gravity.",
-			" particl",
-			"gravity",
-			"particles[i].position",
-			"true",
-			"const",
-			"total_render_time",
-			"start_particle_update_time",
-			"window_size_x_int",
-			"window_size_y",
-			"window_size_x",
-			"initial_window_",
-			"initial_window_x",
-			"screen_dimension_y_int",
-			"screen_dimension_x_int",
-			"player_vertex_buffer_id",
-			"uint32_t",
-			"vertex_buffer_id",
-			"mesh_verts",
-			"mesh_vert_count",
-			"mesh_verts",
-			"particle_vert_size_in_bytes",
-			"mesh_vert_count",
-			"vertex_buffer_id",
-			"mesh_size_in_bytes",
-			"screen_dimension_x",
-			"aspect_id",
-			"particles",
-			"compile_shader_from_source",
-			"link_shader_program",
-			"%u",
-			" ON)",
-			"ON)",
-			"on",
-			"ON",
-			"on",
-			"ON",
-			"LIB_SUFFIX",
-			"REM",
-			"win32_main"
+			"G2",
+			"F2",
+			"gradient",
+			"permutations",
+			"permutations[] = { \n		151, 160, 137,  91,  90,  15, 131,  13,\n		201,  95,  96,  53, 194, 233,   7, 225,\n		140,  36, 103,  30,  69, 142,   8,  99,\n		 37, 240,  21,  10,  23, 190,   6, 148,",
+			"perm",
+			"float t",
+			"int",
+			"x0",
+			"X0",
+			"x0",
+			"X0",
+			"float",
+			"int",
+			"alpha",
+			"int32_t",
+			"int32_t const i1 = (x0 > y0) ? 1 : 0;\n	    int32_t const j1 = (x0 > y0) ? 0 : 1;\n\n	    // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and\n	    // a step",
+			"int16_t",
+			"alpha",
+			"maxAmplitude",
+			"float const screen_",
+			"color",
+			"grid_particles",
+			"noise",
+			"	// GLfloat const point_verts[] = { 0.f, 0.f };\n	// VertexBuffer const point_vertex_buffer = gl_create_vertex_buffer(1, 2, point_verts, GL_STATIC_DRAW);",
+			"noise > 0.5f",
+			"* 4.f",
+			"pos_",
+			"12",
+			" (",
+			"n2",
+			"n1",
+			"n0",
+			"grad3[",
+			"grad3",
+			" fl",
+			"float_",
+			"fastfloor",
+			"		0",
+			"  0",
+			" 0",
+			"sqrt",
+			"x",
+			"X",
+			"x",
+			"X",
+			"x",
+			"X",
+			"fastfloor",
+			"grad3[",
+			"grad3",
+			",",
+			",}",
+			"-}",
+			",}",
+			"},",
+			"),",
+			"new Grad(",
+			"                                 ",
+			"gradient",
+			"dot",
+			"int",
+			"F3",
+			"F2",
+			"G2",
+			"F2",
+			"G3",
+			"F3"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -995,15 +1023,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18200,
+						"buffer_size": 18989,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7606,
-								7606
+								9469,
+								9469
 							]
 						],
 						"settings":
@@ -1012,7 +1040,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2937.0,
+						"translation.y": 2154.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1020,53 +1048,139 @@
 				},
 				{
 					"buffer": 1,
-					"file": "src/math.cpp",
+					"file": "src/particle.vert",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1190,
+						"buffer_size": 253,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1020,
-								1020
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "src/math.hpp",
+					"file": "src/particle.frag",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1520,
+						"buffer_size": 148,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								214,
-								214
+								65,
+								65
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.tmLanguage"
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/basic.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 145,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/math.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								40,
+								40
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 996.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/math.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2066,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1937,
+								1937
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1076,7 +1190,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 6,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
@@ -1088,8 +1202,8 @@
 						"selection":
 						[
 							[
-								594,
-								594
+								435,
+								435
 							]
 						],
 						"settings":
@@ -1100,7 +1214,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1162,7 +1276,31 @@
 		[
 			[
 				"",
-				"math_main.cpp"
+				"win32_main.cpp"
+			],
+			[
+				"math",
+				"math.cpp"
+			],
+			[
+				"ma",
+				"math.hpp"
+			],
+			[
+				"pairt",
+				"particle.vert"
+			],
+			[
+				"frag",
+				"basic.frag"
+			],
+			[
+				"part",
+				"particle.frag"
+			],
+			[
+				"parti",
+				"particle.vert"
 			],
 			[
 				"main",
@@ -1171,10 +1309,6 @@
 			[
 				"build",
 				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
-			],
-			[
-				"math",
-				"math.cpp"
 			],
 			[
 				"bas",
@@ -1209,10 +1343,6 @@
 				"win32_nova.cpp"
 			],
 			[
-				"ma",
-				"math.hpp"
-			],
-			[
 				"basic",
 				"basic.vert"
 			],
@@ -1223,10 +1353,6 @@
 			[
 				"graph",
 				"graphics.rs"
-			],
-			[
-				"frag",
-				"basic.frag"
 			],
 			[
 				"bs",

@@ -1,4 +1,5 @@
 
+#define NOMINMAX
 #include <windows.h>
 #include <xinput.h>
 
@@ -53,14 +54,20 @@ struct VertexBuffer {
 	uint32_t vert_size;
 	uint32_t size_in_bytes;
 	GLuint id;
-};
+}; 
 
 float get_particle_radius(float mass) {
 	return std::sqrt(mass / math::PI) * 0.0032f;
 }
 
 void error_callback(int e, char const * desc) {
-	std::printf("ERROR: %d, %s\n", e, desc);
+	if(e == GLFW_VERSION_UNAVAILABLE) {
+		//TODO: Get OpenGL version
+		MessageBoxA(0, "Application requires OpenGL 3.3 or higher.", "Nova", MB_OK | MB_ICONERROR | MB_TOPMOST);
+	}
+	else {
+		std::printf("ERROR: %d, %s\n", e, desc);		
+	}
 }
 
 void key_callback(GLFWwindow * window, int key, int scan_code, int action, int mods) {
@@ -125,10 +132,21 @@ VertexBuffer gl_create_vertex_buffer(uint32_t vert_count, uint32_t vert_size, GL
 	return { vert_count, vert_size, total_size_in_bytes, vertex_buffer_id };
 }
 
-math::Vec2 apply_dead_zone_mapping(math::Vec2 const & stick) {
+math::Vec2 map_stick_to_vec2(int32_t stick_x, int32_t stick_y) {
+	float const raw_stick_x = static_cast<float>(stick_x);
+	float const raw_stick_y = static_cast<float>(stick_y);
+
+	float const short_max = 32767.f;
+	math::Vec2 const stick = {
+		raw_stick_x / (short_max + (raw_stick_x > 0.f ? 0.f : 1.f)),
+		raw_stick_y / (short_max + (raw_stick_y > 0.f ? 0.f : 1.f)),
+	};
+
 	float const dead_zone = 0.12f;
 	float const valid_range = 1.f - dead_zone;
-	return (math::vec2_length(stick) > dead_zone) ? (stick - dead_zone) / valid_range : math::VEC2_ZERO;
+
+	math::Vec2 const mapped_stick = (math::length(stick) > dead_zone) ? (stick - dead_zone) / valid_range : math::VEC2_ZERO;
+	return math::normalize(mapped_stick);
 };
 
 int main() {
@@ -137,6 +155,9 @@ int main() {
 	if(!glfwInit()) {
 		return 0;
 	}
+
+	bool const enable_full_screen = false;
+	bool const enable_v_sync = true;
 
 	glfwWindowHint(GLFW_SAMPLES, 16);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -148,12 +169,10 @@ int main() {
 	uint32_t const monitor_size_x = video_mode->width;
 	uint32_t const monitor_size_y = video_mode->height;
 
-	bool const is_full_screen = false;
+	uint32_t const initial_window_size_x = enable_full_screen ? monitor_size_x : 512;
+	uint32_t const initial_window_size_y = enable_full_screen ? monitor_size_y : 512;
 
-	uint32_t const initial_window_size_x = is_full_screen ? monitor_size_x : 960;
-	uint32_t const initial_window_size_y = is_full_screen ? monitor_size_y : 540;
-
-	GLFWwindow * window = glfwCreateWindow(initial_window_size_x, initial_window_size_y, "Nova", is_full_screen ? glfwGetPrimaryMonitor() : 0, 0);
+	GLFWwindow * window = glfwCreateWindow(initial_window_size_x, initial_window_size_y, "Nova", enable_full_screen ? glfwGetPrimaryMonitor() : 0, 0);
 	if(!window) {
 		glfwTerminate();
 		return 0;
@@ -162,16 +181,21 @@ int main() {
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, GL_TRUE);
 
-	if(is_full_screen) {
+	//if(enable_full_screen) {
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-	}
+	//}
 
-	glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2) * 0.25f, static_cast<double>(initial_window_size_y / 2));
+	//glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2) * 0.25f, static_cast<double>(initial_window_size_y / 2));
+	glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2), static_cast<double>(initial_window_size_y / 2));
 
 	glfwMakeContextCurrent(window);
 	glewExperimental = true;
 	if(glewInit() != GLEW_OK) {
 		return 0;
+	}
+
+	if(enable_v_sync) {
+		glfwSwapInterval(1);
 	}
 
 	GLuint vertex_array_id;
@@ -191,83 +215,92 @@ int main() {
 	GLuint const player_aspect_id = glGetUniformLocation(player_program_id, "aspect");
 
 	GLuint const particle_aspect_id = glGetUniformLocation(particle_program_id, "aspect");
+	GLuint const particle_camera_position_id = glGetUniformLocation(particle_program_id, "camera_position");
 
 	uint32_t const division_count = 64;
 	float const division_step = (math::PI * 2.f) / static_cast<float>(division_count);
 
 	uint32_t const player_vert_count = division_count * 3;
 	GLfloat player_verts[player_vert_count * 2];
-
 	for(uint32_t i = 0; i < division_count; i++) {
 		float const u = division_step * static_cast<float>(i + 0);
 		float const v = division_step * static_cast<float>(i + 1);
 
-		uint32_t const vert_index = i * 6;
+		uint32_t const vert_id = i * 6;
 
-		player_verts[vert_index + 0] = std::cos(u);
-		player_verts[vert_index + 1] = std::sin(u);
+		player_verts[vert_id + 0] = std::cos(u);
+		player_verts[vert_id + 1] = std::sin(u);
 
-		player_verts[vert_index + 2] = std::cos(v);
-		player_verts[vert_index + 3] = std::sin(v);
+		player_verts[vert_id + 2] = std::cos(v);
+		player_verts[vert_id + 3] = std::sin(v);
 
-		player_verts[vert_index + 4] = 0.f;
-		player_verts[vert_index + 5] = 0.f;
+		player_verts[vert_id + 4] = 0.f;
+		player_verts[vert_id + 5] = 0.f;
 	}
 
 	VertexBuffer const player_vertex_buffer = gl_create_vertex_buffer(player_vert_count, 2, player_verts, GL_STATIC_DRAW);
 
 	float const initial_aspect_ratio = static_cast<float>(initial_window_size_x) / static_cast<float>(initial_window_size_y);
 
-	float const initial_player_mass = 2000.f;
+	float const initial_player_mass = 2048.f;
 	float const player_particle_radius = get_particle_radius(initial_player_mass);
 
 	uint32_t const player_count = 2;
 
 	math::Vec2 const player_start_positions[player_count] = {
-		{ -0.75f * initial_aspect_ratio, 0.f },
+		// { -0.75f * initial_aspect_ratio, 0.f },
+		{ 0.f, 0.f },
 		{  0.75f * initial_aspect_ratio, 0.f},
 	};
 
-	Particle player_particles[player_count] = {};
+	Particle player_particles[player_count];
 	for(uint32_t i = 0; i < player_count; i++) {
 		player_particles[i].position = player_start_positions[i];
 		player_particles[i].velocity = math::VEC2_ZERO;
 		player_particles[i].mass = initial_player_mass;
 	}
 
+	math::Vec2 const world_size = { initial_aspect_ratio * 2.f, 2.f };
+	math::Vec2 const half_world_size = world_size * 0.5f;
+
+	//TODO: Get memory from the game memory pool
 	uint32_t const grid_size = 512;
 	uint32_t const max_particle_count = grid_size * grid_size;
-	//TODO: Get memory from the game memory pool
 	Particle * particles = new Particle[max_particle_count];
 
-	float const particle_radius = 0.001805f;
-	float const min_distance_sqr = (player_particle_radius + particle_radius) * (player_particle_radius + particle_radius);
+	auto init_particle = [&](uint32_t i) {
+		math::Vec2 const pos = {
+			static_cast<float>(i % grid_size) / static_cast<float>(grid_size),
+			static_cast<float>(i / grid_size) / static_cast<float>(grid_size),
+		};
 
-	//NOTE: This is temporary!!
-	auto init_particles = [&](Particle * particles, uint32_t particle_count) {
-		for(uint32_t i = 0; i < particle_count; i++) {
-			uint32_t const x = i % grid_size;
-			uint32_t const y = i / grid_size;
-
-			float const screen_x = ((static_cast<float>(x) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
-			float const screen_y = ((static_cast<float>(y) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
-
-			math::Vec2 const position = { screen_x * initial_aspect_ratio, screen_y };
-
-			particles[i] = { position, math::VEC2_ZERO, 1.f };
-		}
+		particles[i] = { (pos - 0.5f) * world_size, math::VEC2_ZERO, 1.f };
 	};
 
-	init_particles(particles, max_particle_count);
-
-	GLfloat * particle_verts = new GLfloat[max_particle_count * 2];
 	for(uint32_t i = 0; i < max_particle_count; i++) {
-		uint32_t const vert_index = i * 2;
-		particle_verts[vert_index + 0] = particles[i].position.x;
-		particle_verts[vert_index + 1] = particles[i].position.y;
+		init_particle(i);
 	}
 
-	VertexBuffer const particle_vertex_buffer = gl_create_vertex_buffer(max_particle_count, 2, particle_verts, GL_DYNAMIC_DRAW);
+	float const particle_radius = 0.001805f;
+	float const particle_mass_to_consume = 0.02f;
+
+	uint32_t const particle_vert_size = 2;
+	GLfloat * particle_verts = new GLfloat[max_particle_count * particle_vert_size];
+	for(uint32_t i = 0; i < max_particle_count; i++) {
+		uint32_t const vert_id = i * particle_vert_size;
+		particle_verts[vert_id + 0] = particles[i].position.x;
+		particle_verts[vert_id + 1] = particles[i].position.y;
+	}
+
+	VertexBuffer const particle_vertex_buffer = gl_create_vertex_buffer(max_particle_count, particle_vert_size, particle_verts, GL_DYNAMIC_DRAW);
+
+	uint32_t const max_cloud_particle_count = 2048 * 64;
+	GLfloat * cloud_verts = new GLfloat[max_cloud_particle_count * particle_vert_size];
+	for(uint32_t i = 0; i < max_cloud_particle_count * particle_vert_size; i++) {
+		cloud_verts[i] = 0.f;
+	}
+
+	VertexBuffer const cloud_vertex_buffer = gl_create_vertex_buffer(max_cloud_particle_count, particle_vert_size, cloud_verts, GL_DYNAMIC_DRAW);
 
 	GLfloat const point_verts[] = { 0.f, 0.f };
 	VertexBuffer const point_vertex_buffer = gl_create_vertex_buffer(1, 2, point_verts, GL_STATIC_DRAW);
@@ -292,113 +325,133 @@ int main() {
 		float const screen_dimension_y = static_cast<float>(window_size_y_int);
 
 		auto reset_game = [&]() {
-			init_particles(particles, max_particle_count);
+			for(uint32_t i = 0; i < max_particle_count; i++) {
+				init_particle(i);
+			}
 
 			for(uint32_t i = 0; i < player_count; i++) {
 				player_particles[i].position = player_start_positions[i];
 				player_particles[i].velocity = math::VEC2_ZERO;
 				player_particles[i].mass = initial_player_mass;
 			}
-
-			glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2) * 0.25f, static_cast<double>(initial_window_size_y / 2));
 		};
 
 		uint32_t active_player_count = 1;
 
 		float const start_read_input_time = get_current_time();
 
-		auto move_player = [&](uint32_t i, XINPUT_STATE const & controller_state) {
-			float const raw_stick_x = static_cast<float>(controller_state.Gamepad.sThumbLX);
-			float const raw_stick_y = static_cast<float>(controller_state.Gamepad.sThumbLY);
+		auto move_player = [](Particle & player, math::Vec2 const & acceleration, math::Vec2 const & world_bounds, float delta_time) {
+			float const speed = 2.f;
 
-			float const short_max = 32767.f;
-			float const stick_x = raw_stick_x / (short_max + (raw_stick_x > 0.f ? 0.f : 1.f));
-			float const stick_y = raw_stick_y / (short_max + (raw_stick_y > 0.f ? 0.f : 1.f));
+			math::Vec2 const friction_force = -player.velocity * 1.2f;
+			math::Vec2 const total_acceleration = acceleration * speed + friction_force;
 
-			math::Vec2 const mapped_stick = apply_dead_zone_mapping({ stick_x, stick_y });
+			math::Vec2 const velocity = player.velocity + (total_acceleration * delta_time);
+			math::Vec2 const position = player.position + (velocity * delta_time);
 
-			float const stick_scale_value = 2.f;
-			math::Vec2 const acceleration = mapped_stick * stick_scale_value;
-			math::Vec2 const velocity = player_particles[i].velocity + (acceleration * delta_time);
-			math::Vec2 const position = player_particles[i].position + (velocity * delta_time);
+			player.velocity = velocity;
+			player.position = { math::clamp(position.x, -world_bounds.x, world_bounds.x), math::clamp(position.y, -world_bounds.y, world_bounds.y ) };
 
-			float const damping_factor = 1.f - delta_time * 1.2f;
-			player_particles[i].velocity = velocity * damping_factor;
-			player_particles[i].position = { math::clamp_float(position.x, -initial_aspect_ratio, initial_aspect_ratio), math::clamp_float(position.y, -1.f, 1.f ) };
-
-			if(controller_state.Gamepad.wButtons & XINPUT_GAMEPAD_START) {
-				reset_game();
+			//TODO: velocity = velocity - (normal * dot(velocity, normal))
+			if(position.x < -world_bounds.x || position.x > world_bounds.x) {
+				math::Vec2 const bound_normal = { 0.f, 1.f };
+				player.velocity = bound_normal * math::dot(velocity, bound_normal);
 			}
 
-			active_player_count = 2;
+			if(position.y < -world_bounds.y || position.y > world_bounds.y) {
+				math::Vec2 const bound_normal = { 1.f, 0.f };
+				player.velocity = bound_normal * math::dot(velocity, bound_normal);
+			}
 		};
 
-		XINPUT_STATE controller_0_state = {};
-		XINPUT_STATE controller_1_state = {};
+		uint32_t const controller_count = 2;
+		XINPUT_STATE controller_states[controller_count];
 
-		bool const controller_0_connected = (XInputGetState(0, &controller_0_state) == ERROR_SUCCESS);
-		bool const controller_1_connected = (XInputGetState(1, &controller_1_state) == ERROR_SUCCESS);
+		bool const controller_connected[controller_count] = {
+			(XInputGetState(0, &controller_states[0]) == ERROR_SUCCESS),
+			(XInputGetState(1, &controller_states[1]) == ERROR_SUCCESS),
+		};
 
-		bool const one_controller_connected = (controller_0_connected != controller_1_connected);
+		//NOTE: Only works for two controllers
+		bool const one_controller_connected = (controller_connected[0] != controller_connected[1]);
 
-		if(controller_0_connected) {
-			uint32_t const player_id = one_controller_connected ? 1 : 0;
-			move_player(player_id, controller_0_state);
-		}
+		for(uint32_t i = 0; i < controller_count; i++) {
+			if(controller_connected[i]) {
+				int32_t const stick_x = controller_states[i].Gamepad.sThumbLX;
+				int32_t const stick_y = controller_states[i].Gamepad.sThumbLY;
+				math::Vec2 const movement = map_stick_to_vec2(stick_x, stick_y);
 
-		if(controller_1_connected) {
-			move_player(1, controller_1_state);
+				uint32_t const player_id = one_controller_connected ? 1 : i;
+				move_player(player_particles[player_id], movement, half_world_size, delta_time);
+
+				if(controller_states[i].Gamepad.wButtons & XINPUT_GAMEPAD_START) {
+					reset_game();
+				}
+
+				active_player_count = 2;
+			}
 		}
 
 		float const total_read_input_time = get_current_time() - start_read_input_time;
 
 		if(active_player_count == 1 || one_controller_connected) {
-			double mouse_x;
-			double mouse_y;
-			glfwGetCursorPos(window, &mouse_x, &mouse_y);
+			float const move_left = (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) ? -1.f : 0.f;
+			float const move_right = (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) ? 1.f : 0.f;
+			float const move_up = (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) ? 1.f : 0.f;
+			float const move_down = (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) ? -1.f : 0.f;
 
-			math::Vec2 const screen_coords = {
-				(static_cast<float>(mouse_x) / (screen_dimension_x * 0.5f) - 1.f) * (screen_dimension_x / screen_dimension_y),
-				(static_cast<float>(mouse_y) / (screen_dimension_y * 0.5f) - 1.f) * -1.f,
-			};
+			math::Vec2 const movement = math::normalize(math::Vec2{ move_left + move_right, move_up + move_down });
+			move_player(player_particles[0], movement, half_world_size, delta_time);
 
-			player_particles[0].position = math::vec2_lerp(player_particles[0].position, screen_coords, delta_time * 8.f);
-
-			if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS) {
+			if(glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) {
 				reset_game();
 			}
 		}
 
-		if(active_player_count > 1) {
-			math::Vec2 const direction_to_player = player_particles[0].position - player_particles[1].position;
-			bool const players_touching = (math::vec2_length(direction_to_player) < player_particle_radius * 2.f);
-			if(players_touching) {
-				reset_game();
-			}
-		}
+		// if(active_player_count > 1) {
+		// 	math::Vec2 const direction_to_player = player_particles[0].position - player_particles[1].position;
+		// 	bool const players_touching = (math::length(direction_to_player) < player_particle_radius * 2.f);
+		// 	if(players_touching) {
+		// 		reset_game();
+		// 	}
+		// }
 
 		float const start_particle_update_time = get_current_time();
 
-		for(uint32_t i = 0; i < max_particle_count; i++) {
-			math::Vec2 const current_position = particles[i].position;
+		float const gravity_constant = (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) ? 0.0012f : 0.00002f;
+		bool const pause_particle = !(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS);
 
-			math::Vec2 gravity = { 0.f, 0.f };
-			bool pause = false;
+		float const min_distance_sqr[2] = {
+			math::squared(get_particle_radius(player_particles[0].mass) + particle_radius),
+			math::squared(get_particle_radius(player_particles[1].mass) + particle_radius),
+		};
+
+		for(uint32_t i = 0; i < 0; i++) {
+		// for(uint32_t i = 0; i < max_particle_count; i++) {
+			math::Vec2 const current_position = particles[i].position;
+			math::Vec2 gravity = math::VEC2_ZERO;
+
+			bool paused = false;
 
 			for(uint32_t j = 0; j < active_player_count; j++)
 			{
 				math::Vec2 const direction_to_particle = { player_particles[j].position.x - current_position.x, player_particles[j].position.y - current_position.y };
 
 				float const length_squared = direction_to_particle.x * direction_to_particle.x + direction_to_particle.y * direction_to_particle.y;
-				if(length_squared < min_distance_sqr) {
-					pause = true;
+				if(length_squared < min_distance_sqr[j]) {
 					// if(particles[i].mass > 0.f) {
-					// 	player_particles[j].mass += particles[i].mass * 0.02f;	
+					// 	player_particles[j].mass += particle_mass_to_consume;	
 					// 	particles[i].mass = 0.f;
 					// }
+
+					// if(paused && pause_particle == false) {
+					// 	particles[i].velocity = particles[i].velocity * 16.f;
+					// }
+
+					paused = pause_particle;
 				}
 				else {
-					float const gravity_constant = 0.00002f;
+					//float const gravity_constant = 0.00002f;
 					float const particle_gravity = gravity_constant * (player_particles[j].mass / length_squared);
 
 					float const inv_length = (length_squared > 0.f) ? 1.f / std::sqrt(length_squared) : 0.f;
@@ -408,101 +461,117 @@ int main() {
 				}
 			}
 
-			if(!pause) {
+			if(!paused) {
 				particles[i].velocity.x += gravity.x * delta_time;
 				particles[i].velocity.y += gravity.y * delta_time;
 
 				particles[i].position.x += particles[i].velocity.x * delta_time;
-				particles[i].position.y += particles[i].velocity.y * delta_time;
-
-				bool const out_of_bounds = (particles[i].position.x < -initial_aspect_ratio || particles[i].position.x > initial_aspect_ratio || particles[i].position.y < -1.f || particles[i].position.y > 1.f);
-				if(out_of_bounds) {
-					uint32_t const x = i % grid_size;
-					uint32_t const y = i / grid_size;
-
-					float const screen_x = ((static_cast<float>(x) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
-					float const screen_y = ((static_cast<float>(y) / static_cast<float>(grid_size)) - 0.5f) * 2.f;
-
-					particles[i].position.x = screen_x * initial_aspect_ratio;
-					particles[i].position.y = screen_y;
-
-					particles[i].velocity = math::VEC2_ZERO;
-				}
+				particles[i].position.y += particles[i].velocity.y * delta_time;				
 			}
 
-			uint32_t const vert_index = i * 2;
-			particle_verts[vert_index + 0] = particles[i].position.x;
-			particle_verts[vert_index + 1] = particles[i].position.y;
+			bool const out_of_bounds = (particles[i].position.x < -half_world_size.x || particles[i].position.x > half_world_size.x || particles[i].position.y < -half_world_size.y || particles[i].position.y > half_world_size.y);
+			if(out_of_bounds) {
+				init_particle(i);
+			}
+
+			uint32_t const vert_id = i * particle_vert_size;
+			particle_verts[vert_id + 0] = particles[i].position.x;
+			particle_verts[vert_id + 1] = particles[i].position.y;
 		}
+
+		// float const total_particle_update_time = get_current_time() - start_particle_update_time;
+
+		for(uint32_t i = 0; i < 1; i++)
+		// for(uint32_t i = 0; i < active_player_count; i++)
+		{
+			float const half_radius = get_particle_radius(player_particles[i].mass) * 0.4f;
+
+			// uint32_t const particle_count = static_cast<uint32_t>(player_particles[i].mass - initial_player_mass) * 8;
+			for(uint32_t j = 0; j < max_cloud_particle_count; j++) {
+				float const u = static_cast<float>(j) / 1024.f;
+				float const v = math::pseudo_random_float(u) * 0.08f;
+
+				float const log_v = std::log(v) * half_radius;
+				float const inv_log_v_squared = 1.f / (log_v * log_v);
+
+				float const r_x = math::pseudo_random_float(u + static_cast<float>(i) * 0.2f);
+				float const r_y = math::pseudo_random_float(r_x);
+
+				float const t = (get_current_time() * r_x * 0.02f + r_y);// * math::PI * 2.f;
+
+				// float const x = std::cos(t * inv_log_v_squared) * log_v;
+				// float const y = std::sin(t * inv_log_v_squared) * log_v;
+
+				float const x = (math::simplex_noise(t * 8.f, 1.f) - 0.5f) * log_v * 7.2f;
+				float const y = (math::simplex_noise(t * 8.f, 4.f) - 0.5f) * log_v * 7.2f;
+
+				uint32_t const vert_id = j * particle_vert_size;
+				cloud_verts[vert_id + 0] = x;
+				cloud_verts[vert_id + 1] = y;
+			}
+		}	
 
 		float const total_particle_update_time = get_current_time() - start_particle_update_time;
 
-		glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, particle_vertex_buffer.size_in_bytes, particle_verts);
-
 		float const aspect_ratio = screen_dimension_y / screen_dimension_x;
+		// math::Vec2 const camera_position = player_particles[0].position;
+		math::Vec2 const camera_position = math::VEC2_ZERO;
 
 		glViewport(0, 0, static_cast<GLsizei>(screen_dimension_x), static_cast<GLsizei>(screen_dimension_y));
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, particle_vertex_buffer.size_in_bytes, particle_verts);
+		glVertexAttribPointer(0, particle_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
+
+		glUseProgram(particle_program_id);
+		glUniform1f(particle_aspect_id, aspect_ratio);
+		glUniform2f(particle_camera_position_id, camera_position.x, camera_position.y);
+		//glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);	
+
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, cloud_vertex_buffer.id);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, cloud_vertex_buffer.size_in_bytes, cloud_verts);
+		glVertexAttribPointer(0, cloud_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
+
+		glUseProgram(particle_program_id);
+		glUniform1f(particle_aspect_id, aspect_ratio);
+		glUniform2f(particle_camera_position_id, -player_particles[0].position.x, -player_particles[0].position.y);
+		glDrawArrays(GL_POINTS, 0, cloud_vertex_buffer.vert_count);	
+
 		glUseProgram(player_program_id);
 		glUniform1f(player_aspect_id, aspect_ratio);
 
-		// glEnableVertexAttribArray(0);
-		// glBindBuffer(GL_ARRAY_BUFFER, point_vertex_buffer.id);
-		// glVertexAttribPointer(0, point_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
-
-		// for(uint32_t i = 0; i < active_player_count; i++)
-		// {
-		// 	uint32_t const particle_count = 2048;
-		// 	for(uint32_t j = 0; j < particle_count; j++) {
-		// 		float const v = (static_cast<float>(j) / static_cast<float>(particle_count)) * 0.08f;
-		// 		float const log_v = std::log(v) * 0.04f;
-		// 		float const inv_log_v_squared = 1.f / (log_v * log_v);
-
-		// 		float const r_x = math::pseudo_random_float(v + static_cast<float>(i) * 0.2f);
-		// 		float const r_y = math::pseudo_random_float(r_x);
-
-		// 		float const t = (get_current_time() * r_x * 0.02f + r_y) * math::PI * 2.f;
-
-		// 		float const x = std::cos(t * inv_log_v_squared) * log_v;
-		// 		float const y = std::sin(t * inv_log_v_squared) * log_v;
-
-		// 		math::Vec2 const position = player_particles[i].position;
-
-		// 		glUniform2f(player_position_id, position.x + x, position.y + y);
-		// 		glUniform1f(player_radius_id, player_particle_radius);
-		// 		glDrawArrays(GL_POINTS, 0, point_vertex_buffer.vert_count);
-		// 	}
-		// }
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, point_vertex_buffer.id);
+		glVertexAttribPointer(0, point_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
 
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, player_vertex_buffer.id);
 		glVertexAttribPointer(0, player_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
 
 		for(uint32_t i = 0; i < active_player_count; i++) {
-			glUniform2f(player_position_id, player_particles[i].position.x, player_particles[i].position.y);
-			glUniform1f(player_radius_id, player_particle_radius);
-			glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
+			math::Vec2 const position = player_particles[i].position - camera_position;
+			float const radius = get_particle_radius(player_particles[i].mass);
+
+			glUniform2f(player_position_id, position.x, position.y);
+			glUniform1f(player_radius_id, radius);
+			//glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
 		}
 
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
-		glVertexAttribPointer(0, particle_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
-
-		glUseProgram(particle_program_id);
-		glUniform1f(particle_aspect_id, aspect_ratio);
-		glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);
-
 		char txt_buffer[256] = {};
-		std::sprintf(txt_buffer, "nova, dt: %.3fs, pt: %.3fs, it: %.3fs", delta_time, total_particle_update_time, total_read_input_time);
+		std::sprintf(txt_buffer, "nova, dt: %.3fs, pt: %.3fs, it: %.3fs, pm: %.3fm", delta_time, total_particle_update_time, total_read_input_time, player_particles[0].mass);
 		glfwSetWindowTitle(window, txt_buffer);
 
 		glfwSwapBuffers(window);
 	}
 
 	glfwDestroyWindow(window);
-	glfwTerminate();
+	glfwTerminate(); 
 
 	return 0;
 }
