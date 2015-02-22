@@ -9,6 +9,7 @@ uniform vec2 camera_position = vec2(0.0);
 void main() {
 	vec2 world_pos = i_position - camera_position;
 	gl_Position = vec4(world_pos.x * aspect, world_pos.y, 0.0, 1.0);
+	// gl_PointSize = (sin(gl_VertexID) + 1.0) * 64.0;
 }
 
 );

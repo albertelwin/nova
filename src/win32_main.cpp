@@ -294,7 +294,7 @@ int main() {
 
 	VertexBuffer const particle_vertex_buffer = gl_create_vertex_buffer(max_particle_count, particle_vert_size, particle_verts, GL_DYNAMIC_DRAW);
 
-	uint32_t const max_cloud_particle_count = 2048 * 64;
+	uint32_t const max_cloud_particle_count = 4096 * 8;// * 32;
 	GLfloat * cloud_verts = new GLfloat[max_cloud_particle_count * particle_vert_size];
 	for(uint32_t i = 0; i < max_cloud_particle_count * particle_vert_size; i++) {
 		cloud_verts[i] = 0.f;
@@ -498,12 +498,13 @@ int main() {
 				float const r_y = math::pseudo_random_float(r_x);
 
 				float const t = (get_current_time() * r_x * 0.02f + r_y);// * math::PI * 2.f;
+				// float const t = (2.f * r_x * 0.02f + r_y);
 
 				// float const x = std::cos(t * inv_log_v_squared) * log_v;
 				// float const y = std::sin(t * inv_log_v_squared) * log_v;
 
-				float const x = (math::simplex_noise(t * 8.f, 1.f) - 0.5f) * log_v * 7.2f;
-				float const y = (math::simplex_noise(t * 8.f, 4.f) - 0.5f) * log_v * 7.2f;
+				float const x = (math::simplex_noise(t * 8.f, 1.f) - 0.5f) * log_v * 2.4f;
+				float const y = (math::simplex_noise(t * 8.f, 6.f) - 0.5f) * log_v * 2.4f;
 
 				uint32_t const vert_id = j * particle_vert_size;
 				cloud_verts[vert_id + 0] = x;
@@ -520,18 +521,19 @@ int main() {
 		glViewport(0, 0, static_cast<GLsizei>(screen_dimension_x), static_cast<GLsizei>(screen_dimension_y));
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		// glEnable(GL_BLEND);
+		// glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		// glEnable(GL_PROGRAM_POINT_SIZE);
 
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, particle_vertex_buffer.size_in_bytes, particle_verts);
-		glVertexAttribPointer(0, particle_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
+		// glEnableVertexAttribArray(0);
+		// glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
+		// glBufferSubData(GL_ARRAY_BUFFER, 0, particle_vertex_buffer.size_in_bytes, particle_verts);
+		// glVertexAttribPointer(0, particle_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
 
-		glUseProgram(particle_program_id);
-		glUniform1f(particle_aspect_id, aspect_ratio);
-		glUniform2f(particle_camera_position_id, camera_position.x, camera_position.y);
-		//glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);	
+		// glUseProgram(particle_program_id);
+		// glUniform1f(particle_aspect_id, aspect_ratio);
+		// glUniform2f(particle_camera_position_id, camera_position.x, camera_position.y);
+		// glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);	
 
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, cloud_vertex_buffer.id);
