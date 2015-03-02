@@ -1,6 +1,6 @@
 
-#ifndef MATH_INCLUDED_HPP
-#define MATH_INCLUDED_HPP
+#ifndef NAMESPACE_MATH_INCLUDED_HPP
+#define NAMESPACE_MATH_INCLUDED_HPP
 
 //NOTE: Get rid of this?
 #include <cmath>
@@ -35,6 +35,10 @@ namespace math {
 
 	float squared(float x) {
 		return x * x;
+	}
+
+	float lerp(float x, float y, float t) {
+		return x * (1.f - t) + y * t;
 	}
 
 	float random_float();
@@ -104,6 +108,10 @@ namespace math {
 		tmp.x /= x;
 		tmp.y /= x;
 		return tmp;
+	}
+
+	Vec2 new_vec2(float x, float y) {
+		return { x, y };
 	}
 
 	float dot(Vec2 const & x, Vec2 const & y) {

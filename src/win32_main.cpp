@@ -180,14 +180,8 @@ int main() {
 
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, GL_TRUE);
-
-	//if(enable_full_screen) {
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-	//}
-
-	//glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2) * 0.25f, static_cast<double>(initial_window_size_y / 2));
-	glfwSetCursorPos(window, static_cast<double>(initial_window_size_x / 2), static_cast<double>(initial_window_size_y / 2));
-
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	
 	glfwMakeContextCurrent(window);
 	glewExperimental = true;
 	if(glewInit() != GLEW_OK) {
@@ -264,7 +258,7 @@ int main() {
 	math::Vec2 const half_world_size = world_size * 0.5f;
 
 	//TODO: Get memory from the game memory pool
-	uint32_t const grid_size = 512;
+	uint32_t const grid_size = 0;
 	uint32_t const max_particle_count = grid_size * grid_size;
 	Particle * particles = new Particle[max_particle_count];
 
@@ -294,7 +288,7 @@ int main() {
 
 	VertexBuffer const particle_vertex_buffer = gl_create_vertex_buffer(max_particle_count, particle_vert_size, particle_verts, GL_DYNAMIC_DRAW);
 
-	uint32_t const max_cloud_particle_count = 4096 * 8;// * 32;
+	uint32_t const max_cloud_particle_count = 4096 * 32;
 	GLfloat * cloud_verts = new GLfloat[max_cloud_particle_count * particle_vert_size];
 	for(uint32_t i = 0; i < max_cloud_particle_count * particle_vert_size; i++) {
 		cloud_verts[i] = 0.f;
@@ -308,10 +302,12 @@ int main() {
 	glClearColor(0.f, 0.f, 0.f, 0.f);
 
 	float this_frame_time = get_current_time();
+	uint32_t frame_count = 0;
 
 	while(!glfwWindowShouldClose(window)) {
 		float const last_frame_time = this_frame_time;
 		this_frame_time = get_current_time();
+		frame_count++;
 
 		float const delta_time = this_frame_time - last_frame_time;
 
@@ -408,14 +404,6 @@ int main() {
 			}
 		}
 
-		// if(active_player_count > 1) {
-		// 	math::Vec2 const direction_to_player = player_particles[0].position - player_particles[1].position;
-		// 	bool const players_touching = (math::length(direction_to_player) < player_particle_radius * 2.f);
-		// 	if(players_touching) {
-		// 		reset_game();
-		// 	}
-		// }
-
 		float const start_particle_update_time = get_current_time();
 
 		float const gravity_constant = (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) ? 0.0012f : 0.00002f;
@@ -426,35 +414,22 @@ int main() {
 			math::squared(get_particle_radius(player_particles[1].mass) + particle_radius),
 		};
 
-		for(uint32_t i = 0; i < 0; i++) {
-		// for(uint32_t i = 0; i < max_particle_count; i++) {
+		for(uint32_t i = 0; i < max_particle_count; i++) {
 			math::Vec2 const current_position = particles[i].position;
 			math::Vec2 gravity = math::VEC2_ZERO;
 
 			bool paused = false;
 
-			for(uint32_t j = 0; j < active_player_count; j++)
-			{
+			for(uint32_t j = 0; j < active_player_count; j++) {
 				math::Vec2 const direction_to_particle = { player_particles[j].position.x - current_position.x, player_particles[j].position.y - current_position.y };
 
-				float const length_squared = direction_to_particle.x * direction_to_particle.x + direction_to_particle.y * direction_to_particle.y;
-				if(length_squared < min_distance_sqr[j]) {
-					// if(particles[i].mass > 0.f) {
-					// 	player_particles[j].mass += particle_mass_to_consume;	
-					// 	particles[i].mass = 0.f;
-					// }
-
-					// if(paused && pause_particle == false) {
-					// 	particles[i].velocity = particles[i].velocity * 16.f;
-					// }
-
+				float const length_sqr = math::length_squared(direction_to_particle);
+				if(length_sqr < min_distance_sqr[j]) {
 					paused = pause_particle;
 				}
 				else {
-					//float const gravity_constant = 0.00002f;
-					float const particle_gravity = gravity_constant * (player_particles[j].mass / length_squared);
-
-					float const inv_length = (length_squared > 0.f) ? 1.f / std::sqrt(length_squared) : 0.f;
+					float const particle_gravity = gravity_constant * (player_particles[j].mass / length_sqr);
+					float const inv_length = (length_sqr > 0.f) ? 1.f / std::sqrt(length_sqr) : 0.f;
 
 					gravity.x += direction_to_particle.x * inv_length * particle_gravity;
 					gravity.y += direction_to_particle.y * inv_length * particle_gravity;
@@ -487,6 +462,7 @@ int main() {
 			float const half_radius = get_particle_radius(player_particles[i].mass) * 0.4f;
 
 			// uint32_t const particle_count = static_cast<uint32_t>(player_particles[i].mass - initial_player_mass) * 8;
+			static uint32_t k = 0;
 			for(uint32_t j = 0; j < max_cloud_particle_count; j++) {
 				float const u = static_cast<float>(j) / 1024.f;
 				float const v = math::pseudo_random_float(u) * 0.08f;
@@ -497,14 +473,10 @@ int main() {
 				float const r_x = math::pseudo_random_float(u + static_cast<float>(i) * 0.2f);
 				float const r_y = math::pseudo_random_float(r_x);
 
-				float const t = (get_current_time() * r_x * 0.02f + r_y);// * math::PI * 2.f;
-				// float const t = (2.f * r_x * 0.02f + r_y);
+				float const t = (get_current_time() * r_x * 0.02f + r_y * 1.6f);
 
-				// float const x = std::cos(t * inv_log_v_squared) * log_v;
-				// float const y = std::sin(t * inv_log_v_squared) * log_v;
-
-				float const x = (math::simplex_noise(t * 8.f, 1.f) - 0.5f) * log_v * 2.4f;
-				float const y = (math::simplex_noise(t * 8.f, 6.f) - 0.5f) * log_v * 2.4f;
+				float const x = (math::simplex_noise(t * 8.f, 1.f) - 0.5f) * log_v * 8.f;
+				float const y = (math::simplex_noise(t * 8.f, 6.f) - 0.5f) * log_v * 8.f;
 
 				uint32_t const vert_id = j * particle_vert_size;
 				cloud_verts[vert_id + 0] = x;
@@ -521,29 +493,33 @@ int main() {
 		glViewport(0, 0, static_cast<GLsizei>(screen_dimension_x), static_cast<GLsizei>(screen_dimension_y));
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		// glEnable(GL_BLEND);
-		// glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		// glEnable(GL_PROGRAM_POINT_SIZE);
 
-		// glEnableVertexAttribArray(0);
-		// glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
-		// glBufferSubData(GL_ARRAY_BUFFER, 0, particle_vertex_buffer.size_in_bytes, particle_verts);
-		// glVertexAttribPointer(0, particle_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, particle_vertex_buffer.id);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, particle_vertex_buffer.size_in_bytes, particle_verts);
+		glVertexAttribPointer(0, particle_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
 
-		// glUseProgram(particle_program_id);
-		// glUniform1f(particle_aspect_id, aspect_ratio);
-		// glUniform2f(particle_camera_position_id, camera_position.x, camera_position.y);
-		// glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);	
+		glUseProgram(particle_program_id);
+		glUniform1f(particle_aspect_id, aspect_ratio);
+		glUniform2f(particle_camera_position_id, camera_position.x, camera_position.y);
+		glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);	
 
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, cloud_vertex_buffer.id);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, cloud_vertex_buffer.size_in_bytes, cloud_verts);
 		glVertexAttribPointer(0, cloud_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
 
+		uint32_t const total_frame_count = 96;
+
 		glUseProgram(particle_program_id);
 		glUniform1f(particle_aspect_id, aspect_ratio);
-		glUniform2f(particle_camera_position_id, -player_particles[0].position.x, -player_particles[0].position.y);
-		glDrawArrays(GL_POINTS, 0, cloud_vertex_buffer.vert_count);	
+		//glUniform2f(particle_camera_position_id, -player_particles[0].position.x, -player_particles[0].position.y);
+		// if(frame_count < total_frame_count) {
+			glDrawArrays(GL_POINTS, 0, cloud_vertex_buffer.vert_count);	
+		// }
 
 		glUseProgram(player_program_id);
 		glUniform1f(player_aspect_id, aspect_ratio);
@@ -562,7 +538,7 @@ int main() {
 
 			glUniform2f(player_position_id, position.x, position.y);
 			glUniform1f(player_radius_id, radius);
-			//glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
+			// glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
 		}
 
 		char txt_buffer[256] = {};

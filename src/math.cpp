@@ -9,7 +9,7 @@ namespace math {
 	}
 
 	float pseudo_random_float(float x) {
-		return frac(std::sin(x * 12.9898f) * 43758.5453f);
+		return (frac(std::sin(x * 12.9898f) * 43758.5453f) + 1.f) * 0.5f;
 		// return simplex_noise(x * 512.f, 0.f);
 	}
 
