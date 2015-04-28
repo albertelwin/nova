@@ -6,16 +6,8 @@
 #include <cmath>
 
 namespace math {
-	struct Vec2 {
-		float x, y;
-	};
-
 	float const PI = 3.14159265359f;
-	// float const FLOAT_MAX = 1e+37f;
-	float const FLOAT_MAX = 1000.f;
-
-	Vec2 const VEC2_ZERO = { 0.f, 0.f };
-	Vec2 const VEC2_ONE = { 1.f, 1.f };
+	float const FLOAT_MAX = 1e+37f;
 
 	float min(float x, float y) {
 		return (x < y) ? x : y;
@@ -43,9 +35,14 @@ namespace math {
 
 	float random_float();
 	float psuedo_random_float(float x);
-	Vec2 random_sample_circle();
-
 	float simplex_noise(float x, float y);
+
+	struct Vec2 {
+		float x, y;
+	};
+
+	Vec2 const VEC2_ZERO = { 0.f, 0.f };
+	Vec2 const VEC2_ONE = { 1.f, 1.f };
 
 	Vec2 operator+(Vec2 const & x, Vec2 const & y) {
 		Vec2 tmp = x;
@@ -134,6 +131,8 @@ namespace math {
 		float const len = length(v);
 		return (len > 0.f) ? v / len : math::VEC2_ZERO;
 	}
+
+	Vec2 random_sample_circle();
 }
 
 #endif

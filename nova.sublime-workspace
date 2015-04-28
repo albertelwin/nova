@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"00f",
+				"00f"
+			],
+			[
+				"f",
+				"f"
+			],
+			[
+				"cur",
+				"current_time"
+			],
+			[
+				"max",
+				"max_cloud_particle_count"
+			],
+			[
 				"lo",
 				"lo_bound"
 			],
@@ -102,10 +118,6 @@
 			[
 				"inv_",
 				"inv_log_v_squared"
-			],
-			[
-				"f",
-				"f"
 			],
 			[
 				"get_",
@@ -388,10 +400,6 @@
 				"glUniform2f"
 			],
 			[
-				"cur",
-				"current_y"
-			],
-			[
 				"PI",
 				"PI"
 			],
@@ -506,14 +514,6 @@
 			[
 				"totla",
 				"total_read_input_time"
-			],
-			[
-				"unma",
-				"unmapped_x0"
-			],
-			[
-				"GLFW",
-				"GLFW_PRESS"
 			]
 		]
 	},
@@ -528,18 +528,18 @@
 			}
 		},
 		{
-			"file": "src/win32_main.cpp",
-			"settings":
-			{
-				"buffer_size": 20047,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/basic.vert",
 			"settings":
 			{
 				"buffer_size": 316,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/win32_main.cpp",
+			"settings":
+			{
+				"buffer_size": 17723,
 				"line_ending": "Windows"
 			}
 		},
@@ -555,7 +555,7 @@
 			"file": "src/particle.frag",
 			"settings":
 			{
-				"buffer_size": 351,
+				"buffer_size": 267,
 				"line_ending": "Windows"
 			}
 		},
@@ -571,7 +571,7 @@
 			"file": "src/math.cpp",
 			"settings":
 			{
-				"buffer_size": 5189,
+				"buffer_size": 5146,
 				"line_ending": "Windows"
 			}
 		},
@@ -579,7 +579,23 @@
 			"file": "src/math.hpp",
 			"settings":
 			{
-				"buffer_size": 2359,
+				"buffer_size": 2323,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/nova.cpp",
+			"settings":
+			{
+				"buffer_size": 76,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/nova.hpp",
+			"settings":
+			{
+				"buffer_size": 119,
 				"line_ending": "Windows"
 			}
 		},
@@ -587,17 +603,86 @@
 			"file": "build.bat",
 			"settings":
 			{
-				"buffer_size": 596,
+				"buffer_size": 594,
 				"line_ending": "Windows"
 			}
 		}
 	],
 	"build_system": "Nova",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Nova",
+					""
+				],
+				[
+					"Nova",
+					"Run"
+				],
+				[
+					"Nova",
+					"Debug"
+				]
+			],
+			[
+				"Nova",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Nova",
+					"Run"
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/Redox.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Nova",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 196.0,
+		"last_filter": "build",
 		"selected_items":
 		[
+			[
+				"build",
+				"Build With: Nova"
+			],
+			[
+				"bui",
+				"Build With: Nova"
+			],
+			[
+				"open",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Disable Package"
+			],
 			[
 				"debu",
 				"Build: Debug"
@@ -627,15 +712,7 @@
 				"Build: Debug"
 			],
 			[
-				"build",
-				"Build: Debug"
-			],
-			[
 				"Package Control: ",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
 				"Package Control: Install Package"
 			],
 			[
@@ -649,10 +726,6 @@
 			[
 				"packcon",
 				"Package Control: Enable Package"
-			],
-			[
-				"pack",
-				"Package Control: Install Package"
 			],
 			[
 				"packcontrol",
@@ -677,10 +750,6 @@
 			[
 				"Package Control: remov",
 				"Package Control: Remove Package"
-			],
-			[
-				"bui",
-				"Build: Clean"
 			],
 			[
 				"build test",
@@ -739,11 +808,21 @@
 	],
 	"file_history":
 	[
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/albertelwin/Xform/Assets/Scripts/AudioTransform.cs",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/PackageResourceViewer/README.md",
+		"/C/Users/albertelwin/Nova/repo/src/win32_main.cpp",
+		"/C/Program Files (x86)/Sublime Text 3/Packages/Default.sublime-package",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/albertelwin/Nova/repo/src/nova.cpp",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/albertelwin/Haxe/main.hx",
 		"/C/Users/albertelwin/Blog/LICENSE",
 		"/C/Users/albertelwin/Frag/repo/Source/OpenGL4.hpp",
 		"/C/Users/albertelwin/Frag/repo/Source/OpenGL4.cpp",
 		"/C/Users/albertelwin/Nova/repo/src/math_main.cpp",
-		"/C/Users/albertelwin/Nova/repo/src/nova.cpp",
 		"/C/Users/albertelwin/Nova/repo/src/nova.hpp",
 		"/C/Users/albertelwin/Nova/repo/src/args.cpp",
 		"/C/Users/albertelwin/Nova/repo/src/multi_return_args.hpp",
@@ -751,7 +830,6 @@
 		"/C/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include/D3Dcompiler.h",
 		"/C/ProgramData/NVIDIA Corporation/NVIDIA Direct3D SDK 11/source/DiffuseGlobalIllumination/LPV_Propagate.hlsl",
 		"/C/Users/albertelwin/Downloads/LPVPrototype/LPVPrototype/reflectiveShadowMap.h",
-		"/C/Users/albertelwin/Nova/repo/src/win32_main.cpp",
 		"/C/Users/albertelwin/Downloads/DOOM-master/DOOM-master/linuxdoom-1.10/g_game.c",
 		"/C/Users/albertelwin/Downloads/DOOM-master/DOOM-master/linuxdoom-1.10/r_bsp.h",
 		"/C/Users/albertelwin/Downloads/DOOM-master/DOOM-master/linuxdoom-1.10/r_bsp.c",
@@ -857,16 +935,7 @@
 		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Projects/Frag.sublime-project",
 		"/C/MinGW/msys/1.0/home/albertelwin/Rust/paths.txt",
 		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
-		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
-		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/SublimeClang/SublimeClang.sublime-settings",
-		"/C/MinGW/msys/1.0/home/albertelwin/Rand/Empty.cpp",
-		"/C/MinGW/msys/1.0/home/albertelwin/Rand/lambda.cs",
-		"/C/MSYS2/home/albertelwin/Rust/Nova/src/math.rs",
-		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/Redox.sublime-build",
-		"/C/MSYS2/home/albertelwin/Rust/Nova/src/main.rs",
-		"/C/MSYS2/home/albertelwin/Rust/Nova/builds/change_log.txt",
-		"/C/MSYS2/home/albertelwin/Rust/Nova/images/nova_wallpaper_black - Copy.png",
-		"/C/MSYS2/home/albertelwin/Rust/Nova/Cargo.toml"
+		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings"
 	],
 	"find":
 	{
@@ -885,6 +954,120 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"particle_mass_to_consume",
+			"active_player_count",
+			"max_cloud_part",
+			"max_cloud_",
+			"basic",
+			"alt+down",
+			"alt+up",
+			"end",
+			"home",
+			"[\"",
+			"ctrl",
+			"std",
+			"nova",
+			"std",
+			"Hello, world.\\n\")",
+			"Vec",
+			"Vec2",
+			"v",
+			"gl_compile_shader_from_source",
+			"7.0f",
+			"3.0f",
+			"8.0f",
+			"1.50f",
+			"5.0f",
+			"3.0f",
+			"std::exp(-d * t)",
+			"-d",
+			"0.008f",
+			"define",
+			"12",
+			"4",
+			"8f",
+			"004f",
+			"00",
+			"50",
+			"45",
+			"12",
+			"0.002f",
+			"02",
+			"0.02",
+			"math::random_float",
+			" = ",
+			"static",
+			"float const",
+			" = ",
+			"00",
+			"f;",
+			"f",
+			"f\n",
+			"f",
+			", ",
+			",",
+			"=",
+			"pi",
+			" ",
+			"Image",
+			"2",
+			" * ",
+			" = ",
+			"2",
+			"3",
+			"1",
+			"2",
+			"3",
+			"PI * 2.f",
+			"* 2.f",
+			"12",
+			"math::PI ",
+			"* ;",
+			"0.f;",
+			" =",
+			"12",
+			"4",
+			"02",
+			"2",
+			"02",
+			"0.",
+			" * ",
+			"math::PI",
+			"5",
+			"75",
+			"0.004f",
+			"st",
+			"// float const ",
+			"static float ",
+			" = ;",
+			"static",
+			"const",
+			"float const d0 = 0.004f;",
+			"100",
+			"const",
+			"1",
+			"t d",
+			", ",
+			", f",
+			", ",
+			"var A",
+			"a",
+			"A",
+			"std::exp(-d * t)",
+			"frame_count",
+			"75f",
+			"0.25f",
+			"-d",
+			"12",
+			" * 0.5f",
+			"0.02f",
+			"0.01f",
+			"1",
+			"0",
+			"k",
+			"max_particle_count",
+			"frame_count",
+			"total_frame_count",
 			"16",
 			"get_current_time()",
 			"16",
@@ -898,121 +1081,7 @@
 			"t * 8.f",
 			"2f",
 			"particle_total_frame_count_id",
-			"log_v",
-			"* 8.f",
-			"8.f",
-			"frame_count",
-			"particle_total_frame_count_id",
-			"particle_frame_count_id",
-			"frame_count",
-			"srand",
-			"pseudo_random_float",
-			"math::pseudo_random_float",
-			"k",
-			"j",
-			"pseudo_random_float",
-			"for(uint",
-			"2.4f",
-			"DEBUG_COMPILER_FLAGS",
-			"math_main",
-			"CONCAT_TOKEN2",
-			"CONCAT_LINE",
-			"CON",
-			"UNIQUE_RETURN_TYPE",
-			"TOKEN_CONCAT",
-			"UNIQUE_TYPE",
-			"APPEND_UNIQUE_ID(return_t_)",
-			"return_t",
-			"struct_t",
-			"DECLARE_STRUCT",
-			"DECLARE_STRUCT(x_struct_t)",
-			"DECLARE_STRUCT",
-			"TOKEN_CONCAT2(x_struct_t, __LINE__)",
-			"CONCAT_LINE_NUMBER(x_val)",
-			"CONCAT_LINE_NUMBER",
-			"type_x",
-			"6.f",
-			"8.f",
-			"target_position",
-			"target_pos",
-			"length_squared",
-			") {",
-			"glfwSetCursorPos",
-			"MATH_INCLUDED_HPP",
-			"it_particle_count",
-			"max_cloud_particle_count",
-			"for(uint32_t i = 0; i < max",
-			"f",
-			"7.2f",
-			"9.f",
-			"24",
-			"9.f",
-			"7.2f",
-			"2048",
-			"9.f",
-			"16.f",
-			"7.2f",
-			"0.2f",
-			"6.f",
-			"* 7.2f",
-			"6.f",
-			";//",
-			"4.f",
-			"2.f",
-			"7.2f",
-			"0.5f)",
-			"max_particle_count",
-			"		for(uint32_t i = 0; i < max_particle_count; i++) {\n",
-			"r_t",
-			"8.f",
-			"3.2f",
-			"t * 4.f",
-			"4.f",
-			"3.2f",
-			"0.02f",
-			"0.4f",
-			" * 2.f",
-			"simplex_noise",
-			"inv_log_v_squared",
-			" * 60.f",
-			" * g",
-			"inv_log_v_squared",
-			"rt ",
-			"rt",
-			" * g",
-			"(gravity_constant / 0.00002f)",
-			"inv_log_v_squared",
-			"512",
-			" * 16.f",
-			"inv_log_v_squared",
-			"1.2f",
-			"2.f",
-			"inv_log_v_squared",
-			"log_v",
-			"freqs",
-			"camera_position",
-			"particle_vertex_buffer",
-			"cloud_vertex_buffer",
-			"init_particles",
-			"GL_",
-			"GL_SRC_ALPHA",
-			"false",
-			"particles[i].mass",
-			"player_particle_radius",
-			"radius",
-			"particle_mass_to_consume",
-			"half_world_size",
-			"move_player",
-			"4.f",
-			"1.2f",
-			"half_world_size",
-			"uint32_t",
-			"x_index",
-			"half_world_size",
-			"world_size",
-			".x",
-			"1.f",
-			"aspect_ratio"
+			"log_v"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1030,7 +1099,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1046,8 +1115,8 @@
 						"selection":
 						[
 							[
-								322,
-								322
+								351,
+								351
 							]
 						],
 						"settings":
@@ -1059,39 +1128,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/win32_main.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 20047,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								18480,
-								18480
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 4423.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "src/basic.vert",
 					"semi_transient": false,
 					"settings":
@@ -1103,8 +1144,8 @@
 						"selection":
 						[
 							[
-								232,
-								232
+								304,
+								304
 							]
 						],
 						"settings":
@@ -1115,7 +1156,36 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/win32_main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17723,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8898,
+								8898
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1143,7 +1213,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -1152,15 +1222,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 351,
+						"buffer_size": 267,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								304,
-								304
+								106,
+								106
 							]
 						],
 						"settings":
@@ -1171,7 +1241,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1199,7 +1269,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1208,22 +1278,35 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5189,
+						"buffer_size": 5146,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								164,
-								183
+								3502,
+								3502
 							]
 						],
 						"settings":
 						{
 							"auto_name": "",
 							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"action": null,
+								"action_count": "",
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 28
+							}
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1238,44 +1321,116 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2359,
+						"buffer_size": 2323,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1905,
-								1905
+								507,
+								507
 							]
 						],
 						"settings":
 						{
+							"highlight_line": false,
 							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"translate_tabs_to_spaces": false,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": true,
+								"action": null,
+								"action_count": "",
+								"mode": "mode_insert",
+								"motion": null,
+								"motion_count": "",
+								"must_capture_register_name": false,
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"sequence": "",
+								"xpos": 13
+							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 1320.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/nova.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 76,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								69,
+								69
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "build.bat",
+					"buffer": 9,
+					"file": "src/nova.hpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 596,
+						"buffer_size": 119,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								437,
-								437
+								82,
+								82
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "build.bat",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 594,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								472,
+								472
 							]
 						],
 						"settings":
@@ -1286,7 +1441,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 9,
 					"type": "text"
 				}
 			]
@@ -1294,7 +1449,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 21.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -1335,6 +1490,7 @@
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "Nova",
 	"project": "nova.sublime-project",
 	"replace":
 	{
@@ -1344,15 +1500,48 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"particle",
+				"particle.frag"
+			],
+			[
+				"pari",
+				"particle.vert"
+			],
+			[
+				"win32",
+				"win32_main.cpp"
+			],
+			[
+				"nova",
+				"C:\\Users\\albertelwin\\Nova\\repo\\nova.sublime-project"
+			],
 			[
 				"",
 				"win32_main.cpp"
 			],
 			[
+				"bui",
+				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
+			],
+			[
+				"de",
+				"C:\\Users\\albertelwin\\AppData\\Roaming\\Sublime Text 3\\Packages\\Default\\Default (Windows).sublime-keymap"
+			],
+			[
+				"win",
+				"win32_main.cpp"
+			],
+			[
+				"math",
+				"math.hpp"
+			],
+			[
 				"part",
-				"particle.vert"
+				"particle.frag"
 			],
 			[
 				"m",
@@ -1361,10 +1550,6 @@
 			[
 				"wi",
 				"win32_main.cpp"
-			],
-			[
-				"math",
-				"math.cpp"
 			],
 			[
 				"main",
@@ -1383,14 +1568,6 @@
 				"particle.vert"
 			],
 			[
-				"bui",
-				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
-			],
-			[
-				"win",
-				"win32_main.cpp"
-			],
-			[
 				"w",
 				"win32_main.cpp"
 			],
@@ -1401,14 +1578,6 @@
 			[
 				"p",
 				"particle.vert"
-			],
-			[
-				"win32",
-				"win32_main.cpp"
-			],
-			[
-				"particle",
-				"particle.frag"
 			],
 			[
 				"win3",
@@ -1449,10 +1618,6 @@
 			[
 				"mth",
 				"math.cpp"
-			],
-			[
-				"nova",
-				"C:\\Users\\albertelwin\\Nova\\repo\\nova.sublime-project"
 			],
 			[
 				"graph",
@@ -1676,6 +1841,7 @@
 	"select_project":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -1684,6 +1850,7 @@
 	"select_symbol":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -1692,8 +1859,17 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"_vintageous_last_buffer_search": "vec2",
+		"_vintageous_last_buffer_search_command": "vi_slash",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": "t",
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "C:\\Users\\albertelwin\\AppData\\Roaming\\Sublime Text 3\\Packages"
+		}
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": false,

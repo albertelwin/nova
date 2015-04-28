@@ -169,8 +169,8 @@ int main() {
 	uint32_t const monitor_size_x = video_mode->width;
 	uint32_t const monitor_size_y = video_mode->height;
 
-	uint32_t const initial_window_size_x = enable_full_screen ? monitor_size_x : 512;
-	uint32_t const initial_window_size_y = enable_full_screen ? monitor_size_y : 512;
+	uint32_t const initial_window_size_x = enable_full_screen ? monitor_size_x : 960;
+	uint32_t const initial_window_size_y = enable_full_screen ? monitor_size_y : 540;
 
 	GLFWwindow * window = glfwCreateWindow(initial_window_size_x, initial_window_size_y, "Nova", enable_full_screen ? glfwGetPrimaryMonitor() : 0, 0);
 	if(!window) {
@@ -242,8 +242,7 @@ int main() {
 	uint32_t const player_count = 2;
 
 	math::Vec2 const player_start_positions[player_count] = {
-		// { -0.75f * initial_aspect_ratio, 0.f },
-		{ 0.f, 0.f },
+		{ -0.75f * initial_aspect_ratio, 0.f },
 		{  0.75f * initial_aspect_ratio, 0.f},
 	};
 
@@ -258,7 +257,7 @@ int main() {
 	math::Vec2 const half_world_size = world_size * 0.5f;
 
 	//TODO: Get memory from the game memory pool
-	uint32_t const grid_size = 0;
+	uint32_t const grid_size = 512;
 	uint32_t const max_particle_count = grid_size * grid_size;
 	Particle * particles = new Particle[max_particle_count];
 
@@ -276,7 +275,6 @@ int main() {
 	}
 
 	float const particle_radius = 0.001805f;
-	float const particle_mass_to_consume = 0.02f;
 
 	uint32_t const particle_vert_size = 2;
 	GLfloat * particle_verts = new GLfloat[max_particle_count * particle_vert_size];
@@ -288,26 +286,16 @@ int main() {
 
 	VertexBuffer const particle_vertex_buffer = gl_create_vertex_buffer(max_particle_count, particle_vert_size, particle_verts, GL_DYNAMIC_DRAW);
 
-	uint32_t const max_cloud_particle_count = 4096 * 32;
-	GLfloat * cloud_verts = new GLfloat[max_cloud_particle_count * particle_vert_size];
-	for(uint32_t i = 0; i < max_cloud_particle_count * particle_vert_size; i++) {
-		cloud_verts[i] = 0.f;
-	}
-
-	VertexBuffer const cloud_vertex_buffer = gl_create_vertex_buffer(max_cloud_particle_count, particle_vert_size, cloud_verts, GL_DYNAMIC_DRAW);
-
 	GLfloat const point_verts[] = { 0.f, 0.f };
 	VertexBuffer const point_vertex_buffer = gl_create_vertex_buffer(1, 2, point_verts, GL_STATIC_DRAW);
 
 	glClearColor(0.f, 0.f, 0.f, 0.f);
 
 	float this_frame_time = get_current_time();
-	uint32_t frame_count = 0;
 
 	while(!glfwWindowShouldClose(window)) {
 		float const last_frame_time = this_frame_time;
 		this_frame_time = get_current_time();
-		frame_count++;
 
 		float const delta_time = this_frame_time - last_frame_time;
 
@@ -454,36 +442,6 @@ int main() {
 			particle_verts[vert_id + 1] = particles[i].position.y;
 		}
 
-		// float const total_particle_update_time = get_current_time() - start_particle_update_time;
-
-		for(uint32_t i = 0; i < 1; i++)
-		// for(uint32_t i = 0; i < active_player_count; i++)
-		{
-			float const half_radius = get_particle_radius(player_particles[i].mass) * 0.4f;
-
-			// uint32_t const particle_count = static_cast<uint32_t>(player_particles[i].mass - initial_player_mass) * 8;
-			static uint32_t k = 0;
-			for(uint32_t j = 0; j < max_cloud_particle_count; j++) {
-				float const u = static_cast<float>(j) / 1024.f;
-				float const v = math::pseudo_random_float(u) * 0.08f;
-
-				float const log_v = std::log(v) * half_radius;
-				float const inv_log_v_squared = 1.f / (log_v * log_v);
-
-				float const r_x = math::pseudo_random_float(u + static_cast<float>(i) * 0.2f);
-				float const r_y = math::pseudo_random_float(r_x);
-
-				float const t = (get_current_time() * r_x * 0.02f + r_y * 1.6f);
-
-				float const x = (math::simplex_noise(t * 8.f, 1.f) - 0.5f) * log_v * 8.f;
-				float const y = (math::simplex_noise(t * 8.f, 6.f) - 0.5f) * log_v * 8.f;
-
-				uint32_t const vert_id = j * particle_vert_size;
-				cloud_verts[vert_id + 0] = x;
-				cloud_verts[vert_id + 1] = y;
-			}
-		}	
-
 		float const total_particle_update_time = get_current_time() - start_particle_update_time;
 
 		float const aspect_ratio = screen_dimension_y / screen_dimension_x;
@@ -493,8 +451,8 @@ int main() {
 		glViewport(0, 0, static_cast<GLsizei>(screen_dimension_x), static_cast<GLsizei>(screen_dimension_y));
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		// glEnable(GL_BLEND);
+		// glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		// glEnable(GL_PROGRAM_POINT_SIZE);
 
 		glEnableVertexAttribArray(0);
@@ -506,20 +464,6 @@ int main() {
 		glUniform1f(particle_aspect_id, aspect_ratio);
 		glUniform2f(particle_camera_position_id, camera_position.x, camera_position.y);
 		glDrawArrays(GL_POINTS, 0, particle_vertex_buffer.vert_count);	
-
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, cloud_vertex_buffer.id);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, cloud_vertex_buffer.size_in_bytes, cloud_verts);
-		glVertexAttribPointer(0, cloud_vertex_buffer.vert_size, GL_FLOAT, GL_FALSE, 0, static_cast<void *>(0));
-
-		uint32_t const total_frame_count = 96;
-
-		glUseProgram(particle_program_id);
-		glUniform1f(particle_aspect_id, aspect_ratio);
-		//glUniform2f(particle_camera_position_id, -player_particles[0].position.x, -player_particles[0].position.y);
-		// if(frame_count < total_frame_count) {
-			glDrawArrays(GL_POINTS, 0, cloud_vertex_buffer.vert_count);	
-		// }
 
 		glUseProgram(player_program_id);
 		glUniform1f(player_aspect_id, aspect_ratio);
@@ -538,7 +482,7 @@ int main() {
 
 			glUniform2f(player_position_id, position.x, position.y);
 			glUniform1f(player_radius_id, radius);
-			// glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
+			glDrawArrays(GL_TRIANGLES, 0, player_vertex_buffer.vert_count);
 		}
 
 		char txt_buffer[256] = {};
