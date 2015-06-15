@@ -1,6 +1,6 @@
 
-#define NOMINMAX
-#include <windows.h>
+#include <sys.hpp>
+
 #include <xinput.h>
 
 #define GLEW_STATIC
@@ -12,15 +12,15 @@
 #include <cstdint>
 #include <ctime>
 
+#include <gl.hpp>
+
+#include <asset.hpp>
 #include <math.hpp>
+#include <nova.hpp>
 
+#include <asset.cpp>
 #include <math.cpp>
-
-#define STRINGIFY_GLSL_SHADER(version, shader) "#version " #version "\n" #shader
-#include <basic.vert>
-#include <basic.frag>
-#include <particle.vert>
-#include <particle.frag>
+#include <nova.cpp>
 
 typedef DWORD WINAPI XInputGetStateProc(DWORD dwUserIndex, XINPUT_STATE *pState);
 DWORD WINAPI x_input_get_state_stub(DWORD dwUserIndex, XINPUT_STATE *pState) {
@@ -43,23 +43,6 @@ XInputGetStateProc * load_x_input_library() {
 XInputGetStateProc * x_input_get_state = load_x_input_library();
 #define XInputGetState x_input_get_state
 
-struct Particle {
-	math::Vec2 position;
-	math::Vec2 velocity;
-	float mass;
-};
-
-struct VertexBuffer {
-	uint32_t vert_count;
-	uint32_t vert_size;
-	uint32_t size_in_bytes;
-	GLuint id;
-}; 
-
-float get_particle_radius(float mass) {
-	return std::sqrt(mass / math::PI) * 0.0032f;
-}
-
 void error_callback(int e, char const * desc) {
 	if(e == GLFW_VERSION_UNAVAILABLE) {
 		//TODO: Get OpenGL version
@@ -80,58 +63,6 @@ float get_current_time() {
 	return static_cast<float>(glfwGetTime());
 }
 
-GLuint gl_compile_shader_from_source(char const * shader_src, GLenum shader_type) {
-	GLuint shader_id = glCreateShader(shader_type);
-	glShaderSource(shader_id, 1, &shader_src, 0);
-	glCompileShader(shader_id);
-
-	GLint compile_result;
-	glGetShaderiv(shader_id, GL_COMPILE_STATUS, &compile_result);
-	if(compile_result == GL_FALSE) {
-		GLint info_log_length;
-		glGetShaderiv(shader_id, GL_INFO_LOG_LENGTH, &info_log_length);
-		char * info_log = new char[info_log_length];
-		glGetShaderInfoLog(shader_id, info_log_length, 0, info_log);
-
-		std::printf("%s: %s\n", shader_src, info_log);
-		delete[] info_log;
-	}
-
-	return shader_id;
-}
-
-GLuint gl_link_shader_program(GLuint vert_id, GLuint frag_id) {
-	GLuint program_id = glCreateProgram();
-	glAttachShader(program_id, vert_id);
-	glAttachShader(program_id, frag_id);
-	glLinkProgram(program_id);
-
-	GLint link_result;
-	glGetProgramiv(program_id, GL_LINK_STATUS, &link_result);
-	if(link_result == GL_FALSE) {
-		GLint info_log_length;
-		glGetProgramiv(program_id, GL_INFO_LOG_LENGTH, &info_log_length);
-		char * info_log = new char[info_log_length];
-		glGetProgramInfoLog(program_id, info_log_length, 0, info_log);
-
-		std::printf("%s\n", info_log);
-		delete[] info_log;
-	}
-
-	return program_id;
-}
-
-VertexBuffer gl_create_vertex_buffer(uint32_t vert_count, uint32_t vert_size, GLfloat const * vert_memory, GLenum usage_flag) {
-	uint32_t const total_size_in_bytes = vert_count * vert_size * sizeof(float);
-
-	GLuint vertex_buffer_id;
-	glGenBuffers(1, &vertex_buffer_id);
-	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_id);
-	glBufferData(GL_ARRAY_BUFFER, total_size_in_bytes, vert_memory, usage_flag);
-
-	return { vert_count, vert_size, total_size_in_bytes, vertex_buffer_id };
-}
-
 math::Vec2 map_stick_to_vec2(int32_t stick_x, int32_t stick_y) {
 	float const raw_stick_x = static_cast<float>(stick_x);
 	float const raw_stick_y = static_cast<float>(stick_y);
@@ -145,9 +76,125 @@ math::Vec2 map_stick_to_vec2(int32_t stick_x, int32_t stick_y) {
 	float const dead_zone = 0.12f;
 	float const valid_range = 1.f - dead_zone;
 
-	math::Vec2 const mapped_stick = (math::length(stick) > dead_zone) ? (stick - dead_zone) / valid_range : math::VEC2_ZERO;
+	math::Vec2 const mapped_stick = (math::length(stick) > dead_zone) ? (stick - dead_zone) / valid_range : math::vec2(0.0f);
 	return math::normalize(mapped_stick);
 };
+
+math::Vec2 get_mouse_pos(GLFWwindow * window) {
+	double raw_mouse_x, raw_mouse_y;
+	glfwGetCursorPos(window, &raw_mouse_x, &raw_mouse_y);
+	return math::vec2((float)raw_mouse_x, (float)raw_mouse_y);
+}
+
+int main() {
+	glfwSetErrorCallback(error_callback);
+
+	if(!glfwInit()) {
+		return 0;
+	}
+
+	bool enable_full_screen = false;
+	bool enable_v_sync = false;
+
+	glfwWindowHint(GLFW_SAMPLES, 16);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	GLFWvidmode const * video_mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	uint32_t monitor_width = video_mode->width;
+	uint32_t monitor_height = video_mode->height;
+
+	uint32_t window_width = enable_full_screen ? monitor_width : 512;
+	uint32_t window_height = enable_full_screen ? monitor_height : 512;
+
+	GLFWwindow * window = glfwCreateWindow(window_width, window_height, "Nova", enable_full_screen ? glfwGetPrimaryMonitor() : 0, 0);
+	if(!window) {
+		glfwTerminate();
+		return 0;
+	}
+
+	// uint32_t window_frame_size_lft;
+	// uint32_t window_frame_size_top;
+	// uint32_t window_frame_size_rgt;
+	// uint32_t window_frame_size_bot;
+	// glfwGetWindowFrameSize(window, &window_frame_size_lft, &window_frame_size_top, &window_frame_size_rgt, &window_frame_size_bot);
+
+	// glfwSetWindowPos(window, window_frame_size_lft, window_frame_size_rgt);
+
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetInputMode(window, GLFW_STICKY_MOUSE_BUTTONS, GL_TRUE);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
+	glfwMakeContextCurrent(window);
+	glewExperimental = true;
+	if(glewInit() != GLEW_OK) {
+		return 0;
+	}
+
+	if(enable_v_sync) {
+		glfwSwapInterval(1);
+	}
+
+	GLuint vertex_array_id;
+	glGenVertexArrays(1, &vertex_array_id);
+	glBindVertexArray(vertex_array_id);
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+	nova::GameState game_state = {};
+	game_state.back_buffer_width = (float)window_width;
+	game_state.back_buffer_height = (float)window_height;
+	game_state.key_space_pressed = false;
+	game_state.mouse_pos = get_mouse_pos(window);
+
+	float frame_time = get_current_time();
+	bool last_key_space = false;
+
+	while(!glfwWindowShouldClose(window)) {
+		float last_frame_time = frame_time;
+		frame_time = get_current_time();
+
+		game_state.delta_time = frame_time - last_frame_time;
+		game_state.total_time += game_state.delta_time;
+
+		glfwPollEvents();
+
+		math::Vec2 mouse_pos = get_mouse_pos(window);
+		game_state.mouse_delta = mouse_pos - game_state.mouse_pos;
+		game_state.mouse_pos = mouse_pos;
+
+		bool key_space = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
+		game_state.key_space_pressed = (!last_key_space && key_space);
+		last_key_space = key_space;
+
+		nova::tick(&game_state);
+
+		char txt_buffer[256] = {};
+		std::sprintf(txt_buffer, "Nova %.3fms", game_state.delta_time * 1000.0f);
+		glfwSetWindowTitle(window, txt_buffer);
+
+		glfwSwapBuffers(window);			
+	}
+
+	glfwDestroyWindow(window);
+	glfwTerminate(); 
+
+	return 0;
+}
+
+/*
+
+struct Particle {
+	math::Vec2 position;
+	math::Vec2 velocity;
+	float mass;
+};
+
+float get_particle_radius(float mass) {
+	return std::sqrt(mass / math::PI) * 0.0032f;
+}
 
 int main() {
 	glfwSetErrorCallback(error_callback);
@@ -496,4 +543,4 @@ int main() {
 	glfwTerminate(); 
 
 	return 0;
-}
+}*/

@@ -6,7 +6,7 @@ layout(location = 0) out vec4 o_color;
 void main() {
 	// float d = 1.0 - log(distance(gl_PointCoord - 0.5, vec2(0.0)) * 8.0);
 	// o_color = vec4(vec3(d), 0.04);
-	o_color = vec4(vec3(1.0), 0.2);
+	o_color = vec4(1.0);
 }
 
 );

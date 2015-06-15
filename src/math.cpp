@@ -1,21 +1,15 @@
 
 #include <math.hpp>
 
-#include <cstdlib>
-
 namespace math {
-	float random_float() {
-		return (static_cast<float>(rand()) / static_cast<float>(RAND_MAX));
+	float pseudo_rand_float(float x) {
+		return (frac(std::sin(x * 12.9898f) * 43758.5453f) + 1.0f) * 0.5f;
 	}
 
-	float pseudo_random_float(float x) {
-		return (frac(std::sin(x * 12.9898f) * 43758.5453f) + 1.f) * 0.5f;
-	}
-
-	Vec2 random_sample_in_circle() {
-		float const t = 2.f * PI * random_float();
-		float const u = random_float() + random_float();
-		float const r = (u > 1.f) ? 2.f - u : u;
+	Vec2 rand_sample_in_circle() {
+		float t = 2.0f * PI * rand_float();
+		float u = rand_float() + rand_float();
+		float r = (u > 1.0f) ? 2.0f - u : u;
 		return { r * std::cos(t), r * std::sin(t) };
 	}
 
@@ -99,42 +93,41 @@ namespace math {
 	}
 
 	float simplex_noise(float x, float y) {
-		float const f2 = 0.5f * (std::sqrtf(3.0f) - 1.0f);
-		float const g2 = (3.0f - std::sqrtf(3.0f)) / 6.0f;
+		float f2 = 0.5f * (std::sqrtf(3.0f) - 1.0f);
+		float g2 = (3.0f - std::sqrtf(3.0f)) / 6.0f;
 
-	    float const s = (x + y) * f2;
-	    int32_t const i = floor_float_to_int(x + s);
-	    int32_t const j = floor_float_to_int(y + s);
+	    float s = (x + y) * f2;
+	    int32_t i = floor_float_to_int(x + s);
+	    int32_t j = floor_float_to_int(y + s);
 
-	    float const t = (i + j) * g2;
+	    float t = (i + j) * g2;
 
-	    float const x0 = x - (i - t);
-	    float const y0 = y - (j - t);
+	    float x0 = x - (i - t);
+	    float y0 = y - (j - t);
 
-	    int32_t const i1 = (x0 > y0) ? 1 : 0;
-	    int32_t const j1 = (x0 > y0) ? 0 : 1;
+	    int32_t i1 = (x0 > y0) ? 1 : 0;
+	    int32_t j1 = (x0 > y0) ? 0 : 1;
 
-	    float const x1 = x0 - i1 + g2;
-	    float const y1 = y0 - j1 + g2;
-	    float const x2 = x0 - 1.0f + 2.0f * g2;
-	    float const y2 = y0 - 1.0f + 2.0f * g2;
+	    float x1 = x0 - i1 + g2;
+	    float y1 = y0 - j1 + g2;
+	    float x2 = x0 - 1.0f + 2.0f * g2;
+	    float y2 = y0 - 1.0f + 2.0f * g2;
 
-	    int32_t const ii = i & 0xFF;
-	    int32_t const jj = j & 0xFF;
+	    int32_t ii = i & 0xFF;
+	    int32_t jj = j & 0xFF;
 
-	    int32_t const g_idx0 = noise_permutations[ii + noise_permutations[jj]] % 12;
-	    int32_t const g_idx1 = noise_permutations[ii + i1 + noise_permutations[jj + j1]] % 12;
-	    int32_t const g_idx2 = noise_permutations[ii + 1 + noise_permutations[jj + 1]] % 12;
+	    int32_t g_idx0 = noise_permutations[ii + noise_permutations[jj]] % 12;
+	    int32_t g_idx1 = noise_permutations[ii + i1 + noise_permutations[jj + j1]] % 12;
+	    int32_t g_idx2 = noise_permutations[ii + 1 + noise_permutations[jj + 1]] % 12;
 
-	    float const t0 = 0.5f - (x0 * x0) - (y0 * y0);
-	    float const t1 = 0.5f - (x1 * x1) - (y1 * y1);
-	    float const t2 = 0.5f - (x2 * x2) - (y2 * y2);
+	    float t0 = 0.5f - (x0 * x0) - (y0 * y0);
+	    float t1 = 0.5f - (x1 * x1) - (y1 * y1);
+	    float t2 = 0.5f - (x2 * x2) - (y2 * y2);
 
-	    float const n0 = (t0 < 0.f) ? 0.f : (t0 * t0 * t0 * t0) * (noise_gradients[g_idx0][0] * x0 + noise_gradients[g_idx0][1] * y0);
-	    float const n1 = (t1 < 0.f) ? 0.f : (t1 * t1 * t1 * t1) * (noise_gradients[g_idx1][0] * x1 + noise_gradients[g_idx1][1] * y1);
-	    float const n2 = (t2 < 0.f) ? 0.f : (t2 * t2 * t2 * t2) * (noise_gradients[g_idx2][0] * x2 + noise_gradients[g_idx2][1] * y2);
+	    float n0 = (t0 < 0.0f) ? 0.0f : (t0 * t0 * t0 * t0) * (noise_gradients[g_idx0][0] * x0 + noise_gradients[g_idx0][1] * y0);
+	    float n1 = (t1 < 0.0f) ? 0.0f : (t1 * t1 * t1 * t1) * (noise_gradients[g_idx1][0] * x1 + noise_gradients[g_idx1][1] * y1);
+	    float n2 = (t2 < 0.0f) ? 0.0f : (t2 * t2 * t2 * t2) * (noise_gradients[g_idx2][0] * x2 + noise_gradients[g_idx2][1] * y2);
 
-	   	float const raw_noise = n0 + n1 + n2;
-	    return ((70.0f * raw_noise) + 1.f) * 0.5f;
+	    return ((70.0f * (n0 + n1 + n2)) + 1.0f) * 0.5f;
 	}
 }
