@@ -93,7 +93,7 @@ int main() {
 		return 0;
 	}
 
-	bool enable_full_screen = false;
+	bool enable_full_screen = true;
 	bool enable_v_sync = false;
 
 	glfwWindowHint(GLFW_SAMPLES, 16);

@@ -317,6 +317,37 @@ namespace math {
 		return { v.x, v.y, z, w };
 	}
 
+	Vec4 operator+(Vec4 const & x, Vec4 const & y) {
+		Vec4 tmp = x;
+		tmp.x += y.x;
+		tmp.y += y.y;
+		tmp.z += y.z;
+		tmp.w += y.w;
+		return tmp;
+	}
+
+	Vec4 operator-(Vec4 const & x, Vec4 const & y) {
+		Vec4 tmp = x;
+		tmp.x -= y.x;
+		tmp.y -= y.y;
+		tmp.z -= y.z;
+		tmp.w -= y.w;
+		return tmp;
+	}
+
+	Vec4 operator*(Vec4 const & x, Vec4 const & y) {
+		Vec4 tmp = x;
+		tmp.x *= y.x;
+		tmp.y *= y.y;
+		tmp.z *= y.z;
+		tmp.w *= y.w;
+		return tmp;
+	}
+
+	float dot(Vec4 const & x, Vec4 const & y) {
+		return x.x * y.x + x.y * y.y + x.z * y.z + x.w * y.w;
+	}
+
 	struct Mat4 {
 		float v[16];
 	};
@@ -354,24 +385,70 @@ namespace math {
 		return tmp;
 	}
 
-	//TODO: Does this actually work??
 	Vec4 operator*(Mat4 const & m, Vec4 const & v) {
 		Vec4 tmp;
-		tmp.x = v.x * m.v[ 0] + v.y * m.v[ 1] + v.z * m.v[ 2] + v.w * m.v[ 3];
-		tmp.y = v.x * m.v[ 4] + v.y * m.v[ 5] + v.z * m.v[ 6] + v.w * m.v[ 7];
-		tmp.z = v.x * m.v[ 8] + v.y * m.v[ 9] + v.z * m.v[10] + v.w * m.v[11];
-		tmp.w = v.x * m.v[12] + v.y * m.v[13] + v.z * m.v[14] + v.w * m.v[15];
+		tmp.x = v.x * m.v[ 0] + v.y * m.v[ 4] + v.z * m.v[ 8] + v.w * m.v[12];
+		tmp.y = v.x * m.v[ 1] + v.y * m.v[ 5] + v.z * m.v[ 9] + v.w * m.v[13];
+		tmp.z = v.x * m.v[ 2] + v.y * m.v[ 6] + v.z * m.v[10] + v.w * m.v[14];
+		tmp.w = v.x * m.v[ 3] + v.y * m.v[ 7] + v.z * m.v[11] + v.w * m.v[15];
 		return tmp;
 	}
 
 	Mat4 inverse(Mat4 const & x) {
-		// Mat4 adj;
+		float c_00 = x.v[10] * x.v[15] - x.v[14] * x.v[11];
+		float c_02 = x.v[ 6] * x.v[15] - x.v[14] * x.v[ 7];
+		float c_03 = x.v[ 6] * x.v[11] - x.v[10] * x.v[ 7];
 
-		// float deter;
-		// ASSERT(deter > 0.0f);
-		// return adj / deter;
+		float c_04 = x.v[ 9] * x.v[15] - x.v[13] * x.v[11];
+		float c_06 = x.v[ 5] * x.v[15] - x.v[13] * x.v[ 7];
+		float c_07 = x.v[ 5] * x.v[11] - x.v[ 9] * x.v[ 7];
 
-		return MAT4_IDENTITY;
+		float c_08 = x.v[ 9] * x.v[14] - x.v[13] * x.v[10];
+		float c_10 = x.v[ 5] * x.v[14] - x.v[13] * x.v[ 6];
+		float c_11 = x.v[ 5] * x.v[10] - x.v[ 9] * x.v[ 6];
+
+		float c_12 = x.v[ 8] * x.v[15] - x.v[12] * x.v[11];
+		float c_14 = x.v[ 4] * x.v[15] - x.v[12] * x.v[ 7];
+		float c_15 = x.v[ 4] * x.v[11] - x.v[ 8] * x.v[ 7];
+
+		float c_16 = x.v[ 8] * x.v[14] - x.v[12] * x.v[10];
+		float c_18 = x.v[ 4] * x.v[14] - x.v[12] * x.v[ 6];
+		float c_19 = x.v[ 4] * x.v[10] - x.v[ 8] * x.v[ 6];
+
+		float c_20 = x.v[ 8] * x.v[13] - x.v[12] * x.v[ 9];
+		float c_22 = x.v[ 4] * x.v[13] - x.v[12] * x.v[ 5];
+		float c_23 = x.v[ 4] * x.v[ 9] - x.v[ 8] * x.v[ 5];
+
+		Vec4 sign_0 = vec4(+1.0f, -1.0f, +1.0f, -1.0f);
+		Vec4 sign_1 = vec4(-1.0f, +1.0f, -1.0f, +1.0f);
+
+		Vec4 fac_0 = vec4(c_00, c_00, c_02, c_03);
+		Vec4 fac_1 = vec4(c_04, c_04, c_06, c_07);
+		Vec4 fac_2 = vec4(c_08, c_08, c_10, c_11);
+		Vec4 fac_3 = vec4(c_12, c_12, c_14, c_15);
+		Vec4 fac_4 = vec4(c_16, c_16, c_18, c_19);
+		Vec4 fac_5 = vec4(c_20, c_20, c_22, c_23);
+
+		Vec4 vec_0 = vec4(x.v[ 4], x.v[ 0], x.v[ 0], x.v[ 0]);
+		Vec4 vec_1 = vec4(x.v[ 5], x.v[ 1], x.v[ 1], x.v[ 1]);
+		Vec4 vec_2 = vec4(x.v[ 6], x.v[ 2], x.v[ 2], x.v[ 2]);
+		Vec4 vec_3 = vec4(x.v[ 7], x.v[ 3], x.v[ 3], x.v[ 3]);
+
+		Vec4 inv_0 = sign_0 * (vec_1 * fac_0 - vec_2 * fac_1 + vec_3 * fac_2);
+		Vec4 inv_1 = sign_1 * (vec_0 * fac_0 - vec_2 * fac_3 + vec_3 * fac_4);
+		Vec4 inv_2 = sign_0 * (vec_0 * fac_1 - vec_1 * fac_3 + vec_3 * fac_5);
+		Vec4 inv_3 = sign_1 * (vec_0 * fac_2 - vec_1 * fac_4 + vec_2 * fac_5);
+
+		Vec4 row_0 = vec4(inv_0.x, inv_1.x, inv_2.x, inv_3.x);
+		float det = dot(vec4(x.v[ 0], x.v[ 1], x.v[ 2], x.v[ 3]), row_0);
+		ASSERT(intrin::abs(det) > 0.0f);
+
+		return {
+			inv_0.x / det, inv_0.y / det, inv_0.z / det, inv_0.w / det,
+			inv_1.x / det, inv_1.y / det, inv_1.z / det, inv_1.w / det,
+			inv_2.x / det, inv_2.y / det, inv_2.z / det, inv_2.w / det,
+			inv_3.x / det, inv_3.y / det, inv_3.z / det, inv_3.w / det,
+		};
 	}
 
 	Mat4 translate(float x, float y, float z) {

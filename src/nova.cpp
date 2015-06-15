@@ -154,13 +154,14 @@ namespace nova {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		glUseProgram(game_state->quad_program_id); {
-			math::Mat4 inverse_view_projection = math::inverse(view_projection_matrix); 
+			math::Mat4 inverse_view_projection = math::inverse(view_projection_matrix);
 
-			math::Vec2 screen_pos = math::vec2(game_state->mouse_pos.x / game_state->back_buffer_width, game_state->mouse_pos.y / game_state->back_buffer_height) * 2.0f - 1.0f;
+			math::Vec2 screen_pos = math::vec2(game_state->mouse_pos.x / game_state->back_buffer_width, (game_state->back_buffer_height - game_state->mouse_pos.y) / game_state->back_buffer_height) * 2.0f - 1.0f;
 			math::Vec4 image_point = inverse_view_projection * math::vec4(screen_pos, 0.0f, 1.0f);
-			// std::printf("LOG: (%f, %f)\n", screen_pos.x, screen_pos.y);
 
-			math::Ray camera_ray = math::ray(camera_pos, (image_point.xyz / image_point.w) - camera_pos);
+			math::Ray camera_ray = {};
+			camera_ray.o = camera_pos;
+			camera_ray.d = normalize((image_point.xyz / image_point.w) - camera_pos);
 
 			math::Vec3 pos = math::vec3(0.0f);
 			float t = math::ray_plane_intersection(camera_ray, math::vec3(0.0f, 1.0f, 0.0f), 0.0f);
