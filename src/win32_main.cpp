@@ -93,7 +93,7 @@ int main() {
 		return 0;
 	}
 
-	bool enable_full_screen = true;
+	bool enable_full_screen = false;
 	bool enable_v_sync = false;
 
 	glfwWindowHint(GLFW_SAMPLES, 16);
@@ -106,8 +106,8 @@ int main() {
 	uint32_t monitor_width = video_mode->width;
 	uint32_t monitor_height = video_mode->height;
 
-	uint32_t window_width = enable_full_screen ? monitor_width : 512;
-	uint32_t window_height = enable_full_screen ? monitor_height : 512;
+	uint32_t window_width = enable_full_screen ? monitor_width : 960;
+	uint32_t window_height = enable_full_screen ? monitor_height : 540;
 
 	GLFWwindow * window = glfwCreateWindow(window_width, window_height, "Nova", enable_full_screen ? glfwGetPrimaryMonitor() : 0, 0);
 	if(!window) {
@@ -147,6 +147,7 @@ int main() {
 	game_state.back_buffer_width = (float)window_width;
 	game_state.back_buffer_height = (float)window_height;
 	game_state.key_space_pressed = false;
+	game_state.key_mouse_down = false;
 	game_state.mouse_pos = get_mouse_pos(window);
 
 	float frame_time = get_current_time();
@@ -168,6 +169,8 @@ int main() {
 		bool key_space = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
 		game_state.key_space_pressed = (!last_key_space && key_space);
 		last_key_space = key_space;
+
+		game_state.key_mouse_down = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
 
 		nova::tick(&game_state);
 

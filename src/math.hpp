@@ -44,6 +44,11 @@ namespace math {
 		return x * x;
 	}
 
+	float sqrt(float x) {
+		//TODO: Optimize this??
+		return std::sqrt(x);
+	}
+
 	float lerp(float x, float y, float t) {
 		//TODO: Assert 0 <= t <= 1??
 		return x * (1.0f - t) + y * t;
@@ -78,6 +83,18 @@ namespace math {
 		tmp.x += x;
 		tmp.y += x;
 		return tmp;
+	}
+
+	Vec2 & operator+=(Vec2 & x, Vec2 const & y) {
+		x.x += y.x;
+		x.y += y.y;
+		return x;
+	}
+
+	Vec2 & operator+=(Vec2 & v, float x) {
+		v.x += x;
+		v.y += x;
+		return v;
 	}
 
 	Vec2 operator-(Vec2 const & v) {
@@ -193,6 +210,13 @@ namespace math {
 		return tmp;
 	}
 
+	Vec3 & operator+=(Vec3 & x, Vec3 const & y) {
+		x.x += y.x;
+		x.y += y.y;
+		x.z += y.z;
+		return x;
+	}
+
 	Vec3 & operator+=(Vec3 & v, float x) {
 		v.x += x;
 		v.y += x;
@@ -222,6 +246,13 @@ namespace math {
 		tmp.y -= x;
 		tmp.z -= x;
 		return tmp;
+	}
+
+	Vec3 & operator-=(Vec3 & x, Vec3 const & y) {
+		x.x -= y.x;
+		x.y -= y.y;
+		x.z -= y.z;
+		return x;
 	}
 
 	Vec3 & operator-=(Vec3 & v, float x) {
@@ -275,6 +306,18 @@ namespace math {
 		v.y /= x;
 		v.z /= x;
 		return v;
+	}
+
+	Vec3 lerp(Vec3 const & x, Vec3 const & y, float t) {
+		return x * (1.0f - t) + y * t;
+	}
+
+	float length(Vec3 const & v) {
+		return std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+	}
+
+	float length_squared(Vec3 const & v) {
+		return v.x * v.x + v.y * v.y + v.z * v.z;
 	}
 
 	Vec3 normalize(Vec3 const & v) {

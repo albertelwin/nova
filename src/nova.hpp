@@ -7,7 +7,17 @@
 namespace nova {
 	struct Particle {
 		math::Vec3 position;
-		math::Vec3 axis;
+		math::Vec3 velocity;
+		float mass;
+	};
+
+	struct ParticleArray {
+		Particle * v;
+		uint32_t length;
+
+		gl::VertexBuffer vertex_buffer;
+		float * verts;
+		uint32_t verts_length;
 	};
 
 	struct GameState {
@@ -18,16 +28,15 @@ namespace nova {
 		gl::VertexBuffer quad_vertex_buffer;
 
 		uint32_t particle_program_id;
-		gl::VertexBuffer particle_vertex_buffer;
 		uint32_t particle_vert_length;
-		float * particle_vert_array;
-		uint32_t particle_vert_array_length;
 
-		Particle * particle_array;
-		uint32_t particle_array_length;
+		ParticleArray cloud_particles;
+		ParticleArray disc_particles;
 
 		float back_buffer_width;
 		float back_buffer_height;
+
+		float protostar_mass;
 
 		bool running_particle_sim;
 		float camera_pos;
@@ -42,6 +51,7 @@ namespace nova {
 		math::Vec2 mouse_delta;
 
 		bool key_space_pressed;
+		bool key_mouse_down;
 
 		bool started;
 	};
