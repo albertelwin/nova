@@ -10,7 +10,6 @@
 
 namespace math {
 	float const PI = 3.14159265359f;
-	float const FLOAT_MAX = 1e+37f;
 
 	float to_radians(float x) {
 		return (PI / 180.0f) * x;
@@ -174,7 +173,7 @@ namespace math {
 	union Vec3 {
 		struct { float x, y, z; };
 		struct { Vec2 xy; float z; };
-		struct { float z; Vec2 yz; };
+		struct { float x; Vec2 yz; };
 		float v[3];
 	};
 

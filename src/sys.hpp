@@ -25,6 +25,8 @@ void __assert_func(bool expression, char const * message) {
 #define ARRAY_COUNT(x) (sizeof((x)) / sizeof((x)[0]))
 
 namespace sys {
+	float const FLOAT_MAX = 1e+37f;
+
 	char __exe_path_buffer[MAX_PATH];
 	char const * __get_exe_path() {
 		GetModuleFileNameA(0, __exe_path_buffer, MAX_PATH);
