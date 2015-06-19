@@ -1,1 +1,1 @@
-clang++ ./src/main.cpp -I./ -I./src -I/usr/local/include -L/usr/local/lib -lglfw3 -framework openGL -std=c++11 -g -o nova
+clang++ ./src/main.cpp -I./ -I./src -I/usr/local/include -L/usr/local/lib -lglfw3 -framework openGL -std=c++11 -O2 -o nova
