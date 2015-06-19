@@ -31,9 +31,9 @@ namespace nova {
 			game_state->sphere_program_id = gl::link_shader_program(sphere_vert_id, sphere_frag_id);
 
 			char file_path[256];
-			std::strcpy(file_path, sys::exe_path_str);
-			// std::strcat(file_path, "../dat/sphere.obj");
-			std::strcat(file_path, "/sphere.obj");
+			std::strcpy(file_path, sys::get_exe_path());
+			//TODO: Package up assets on someway, contents of /dat is just copied into bin folder atm
+			std::strcat(file_path, "sphere.obj");
 			asset::Model model = asset::load_obj_from_file(file_path);
 			game_state->sphere_vertex_buffer = gl::create_vertex_buffer(model.vert_data, model.vert_data_length, 3, GL_STATIC_DRAW);
 
