@@ -22,26 +22,26 @@
 #include <math.cpp>
 #include <nova.cpp>
 
-typedef DWORD WINAPI XInputGetStateProc(DWORD dwUserIndex, XINPUT_STATE *pState);
-DWORD WINAPI x_input_get_state_stub(DWORD dwUserIndex, XINPUT_STATE *pState) {
-	return ERROR_DEVICE_NOT_CONNECTED;
-}
+// typedef DWORD WINAPI XInputGetStateProc(DWORD dwUserIndex, XINPUT_STATE *pState);
+// DWORD WINAPI x_input_get_state_stub(DWORD dwUserIndex, XINPUT_STATE *pState) {
+// 	return ERROR_DEVICE_NOT_CONNECTED;
+// }
 
-XInputGetStateProc * load_x_input_library() {
-	HMODULE x_input_library = LoadLibraryA("xinput1_3.dll");
-	if(x_input_library) {
-		XInputGetStateProc * x_input_get_state_proc = (XInputGetStateProc *)(GetProcAddress(x_input_library, "XInputGetState"));
-		if(x_input_get_state_proc) {
-			return x_input_get_state_proc;
-		}
-	}
+// XInputGetStateProc * load_x_input_library() {
+// 	HMODULE x_input_library = LoadLibraryA("xinput1_3.dll");
+// 	if(x_input_library) {
+// 		XInputGetStateProc * x_input_get_state_proc = (XInputGetStateProc *)(GetProcAddress(x_input_library, "XInputGetState"));
+// 		if(x_input_get_state_proc) {
+// 			return x_input_get_state_proc;
+// 		}
+// 	}
 
-	return x_input_get_state_stub;
-}
+// 	return x_input_get_state_stub;
+// }
 
 
-XInputGetStateProc * x_input_get_state = load_x_input_library();
-#define XInputGetState x_input_get_state
+// XInputGetStateProc * x_input_get_state = load_x_input_library();
+// #define XInputGetState x_input_get_state
 
 void error_callback(int e, char const * desc) {
 	if(e == GLFW_VERSION_UNAVAILABLE) {

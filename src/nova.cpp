@@ -19,8 +19,8 @@ namespace nova {
 		float g_constant = 0.01f;
 
 		float protostar_initial_mass = 76.0f;
-		float protostar_jeans_mass = protostar_initial_mass + 120.0f;
-		float protostar_collapsed_mass = 48000.0f;
+		float protostar_jeans_mass = protostar_initial_mass + 240.0f;
+		float protostar_collapsed_mass = 160000.0f;
 
 		if(!game_state->started) {
 			game_state->started = true;
@@ -71,7 +71,7 @@ namespace nova {
 
 			game_state->cloud_particles.vertex_buffer = gl::create_vertex_buffer(game_state->cloud_particles.verts, game_state->cloud_particles.verts_length, 3, GL_DYNAMIC_DRAW);
 
-			game_state->disc_particles.length = 65536 / 2;
+			game_state->disc_particles.length = 65536;
 			game_state->disc_particles.v = new Particle[game_state->disc_particles.length];
 			game_state->disc_particles.verts_length = game_state->disc_particles.length * game_state->particle_vert_length * 3;
 			game_state->disc_particles.verts = new float[game_state->disc_particles.verts_length];
@@ -90,7 +90,6 @@ namespace nova {
 
 				Particle * particle = game_state->disc_particles.v + i;
 				particle->position = pos;
-				// particle->velocity = math::normalize((math::rotate_around_y(67.5f) * math::vec4(pos, 1.0f)).xyz) * vel_mag;
 				particle->velocity = math::normalize((math::rotate_around_y(67.5f) * math::vec4(pos, 1.0f)).xyz) * vel_mag;
 				particle->mass = 1.0f;
 
@@ -203,7 +202,7 @@ namespace nova {
 				float protostar_mass = game_state->protostar_mass;
 
 				float touch_gravity_mod = game_state->key_mouse_down ? 1.0f : 0.0f;
-				float physics_delta_time = game_state->delta_time * 0.08f;
+				float physics_delta_time = game_state->delta_time * 0.04f;
 
 				for(uint32_t i = 0; i < game_state->disc_particles.length; i++) {
 					Particle * particle = game_state->disc_particles.v + i;
@@ -213,7 +212,7 @@ namespace nova {
 					math::Vec3 centre_dir = -particle->position;
 					float centre_r = math::length_squared(centre_dir);
 					if(centre_r < 0.002f && particle->mass > 0.0f) {
-						game_state->protostar_mass += 0.04f;
+						game_state->protostar_mass += 0.08f;
 						particle->mass = 0.0f;
 					}
 					else {
@@ -225,7 +224,7 @@ namespace nova {
 					math::Vec3 touch_dir = touch_pos - particle->position;
 					float touch_r = math::length_squared(touch_dir);
 					if(touch_r > 0.0f) {
-						float touch_gravity = math::min(g_constant * (32.0f / touch_r), 32.0f);
+						float touch_gravity = math::min(g_constant * (32.0f / touch_r), 64.0f);
 						acceleration -= (touch_dir / math::sqrt(touch_r)) * touch_gravity * touch_gravity_mod;
 					}
 

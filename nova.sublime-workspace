@@ -4,8 +4,52 @@
 		"selected_items":
 		[
 			[
+				"nrom",
+				"normalize"
+			],
+			[
+				"protostar_",
+				"protostar_initial_mass"
+			],
+			[
+				"camera",
+				"camera_pos"
+			],
+			[
+				"prot",
+				"protostar_explode_mass"
+			],
+			[
+				"touch",
+				"touch_gravity_mod"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"ac",
+				"acceleration"
+			],
+			[
+				"proto",
+				"protostar_explode_mass"
+			],
+			[
+				"game",
+				"game_state"
+			],
+			[
+				"protostar",
+				"protostar_current_mass	(nova.hpp)"
+			],
+			[
+				"act",
+				"actual_pos"
+			],
+			[
 				"vel",
-				"vel_mag"
+				"velocity"
 			],
 			[
 				"init",
@@ -26,10 +70,6 @@
 			[
 				"pro",
 				"protostar_mass"
-			],
-			[
-				"touch",
-				"touch_pos"
 			],
 			[
 				"tou",
@@ -108,20 +148,12 @@
 				"Particle_"
 			],
 			[
-				"pos",
-				"pos	(nova.cpp)"
-			],
-			[
 				"world",
 				"world_pos"
 			],
 			[
 				"dire",
 				"direction	(PathTracer.frag)"
-			],
-			[
-				"camera",
-				"camera_ray"
 			],
 			[
 				"back",
@@ -482,38 +514,6 @@
 			[
 				"aspec",
 				"aspect_ratio"
-			],
-			[
-				"tan",
-				"tan_fov_over_2"
-			],
-			[
-				"asp",
-				"aspect_ratio"
-			],
-			[
-				"GL_TR",
-				"GL_TRIANGLES"
-			],
-			[
-				"verte",
-				"vertex_buffer"
-			],
-			[
-				"frag",
-				"frag_id"
-			],
-			[
-				"link",
-				"link_shader_program"
-			],
-			[
-				"game",
-				"game_state"
-			],
-			[
-				"compile",
-				"compile_shader_from_source"
 			]
 		]
 	},
@@ -523,7 +523,15 @@
 			"file": "src/nova.hpp",
 			"settings":
 			{
-				"buffer_size": 991,
+				"buffer_size": 982,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/nova.cpp",
+			"settings":
+			{
+				"buffer_size": 15870,
 				"line_ending": "Windows"
 			}
 		},
@@ -544,18 +552,10 @@
 			}
 		},
 		{
-			"file": "src/nova.cpp",
-			"settings":
-			{
-				"buffer_size": 15123,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "src/sys.hpp",
 			"settings":
 			{
-				"buffer_size": 1277,
+				"buffer_size": 1311,
 				"line_ending": "Windows"
 			}
 		},
@@ -579,7 +579,7 @@
 			"file": "src/math.hpp",
 			"settings":
 			{
-				"buffer_size": 14320,
+				"buffer_size": 14549,
 				"line_ending": "Windows"
 			}
 		},
@@ -587,7 +587,7 @@
 			"file": "build.bat",
 			"settings":
 			{
-				"buffer_size": 604,
+				"buffer_size": 602,
 				"line_ending": "Windows"
 			}
 		},
@@ -603,7 +603,7 @@
 			"file": "src/win32_main.cpp",
 			"settings":
 			{
-				"buffer_size": 18853,
+				"buffer_size": 18985,
 				"line_ending": "Windows"
 			}
 		},
@@ -685,7 +685,7 @@
 		[
 			[
 				"build",
-				"Build With: Nova"
+				"Build With: Nova - Debug"
 			],
 			[
 				"bui",
@@ -832,6 +832,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/albertelwin/Nova/repo/src/nova.cpp",
 		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/MinGW/msys/1.0/home/albertelwin/Frag/Include/glm/core/func_matrix.inl",
@@ -859,7 +860,6 @@
 		"/C/Users/albertelwin/Nova/repo/src/math.cpp",
 		"/C/Users/albertelwin/Nova/repo/src/math.hpp",
 		"/C/Users/albertelwin/Nova/repo/src/nova.hpp",
-		"/C/Users/albertelwin/Nova/repo/src/nova.cpp",
 		"/C/Users/albertelwin/Nova/repo/src/intrin.hpp",
 		"/C/Users/albertelwin/Nova/repo/src/sys.hpp",
 		"/C/Users/albertelwin/Downloads/repo/repo/src/app.hpp",
@@ -978,6 +978,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"64",
+			"32",
+			"Vec3",
+			"2.0f",
+			"game_state->protostar_current_mass",
+			"protostar_explode_mass",
+			"jeans_mass",
+			"math::min(g",
+			"64",
+			"32",
+			" = ",
+			"64",
+			";\n",
+			"32",
+			"game_state->delta_time",
+			"16",
+			"game_state->delta_time * 0.2f",
+			"32",
+			"delta_time",
+			"protostar_current_mass",
+			"protostar_mass",
+			"initial_protostar_mass",
+			"48",
+			"32",
+			"Vec2",
+			"velocity",
 			"196.0f",
 			"200",
 			" * 0.2f",
@@ -1079,33 +1105,7 @@
 			"Inverse",
 			"m.v[",
 			"view_projection_matrix",
-			" / Determinant",
-			"Inverse",
-			"Inverse[",
-			"v[",
-			"v[0",
-			"0.",
-			"m[",
-			"(",
-			"1,",
-			"(",
-			" const",
-			"detail::tvec4<T>",
-			"3][3",
-			"3][2",
-			"3][1",
-			"3][0",
-			"2][3",
-			"2][2",
-			"2][1",
-			"2][0",
-			"1][3",
-			"1][2",
-			"1][1",
-			"1][0",
-			"0][3",
-			"0][2",
-			"0][1"
+			" / Determinant"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1123,7 +1123,7 @@
 	"groups":
 	[
 		{
-			"selected": 10,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1132,15 +1132,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 991,
+						"buffer_size": 982,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								708,
-								708
+								699,
+								699
 							]
 						],
 						"settings":
@@ -1153,11 +1153,41 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "src/nova.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3777,
+								3777
+							]
+						],
+						"settings":
+						{
+							"easy_motion_mode": false,
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 485.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "src/basic.vert",
 					"semi_transient": false,
 					"settings":
@@ -1185,11 +1215,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "src/basic.frag",
 					"semi_transient": false,
 					"settings":
@@ -1213,37 +1243,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/nova.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15123,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11556,
-								11556
-							]
-						],
-						"settings":
-						{
-							"easy_motion_mode": false,
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2490.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -1252,15 +1252,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1277,
+						"buffer_size": 1311,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								657,
+								657
 							]
 						],
 						"settings":
@@ -1269,10 +1269,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 106.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1301,7 +1301,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1330,7 +1330,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -1339,15 +1339,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14320,
+						"buffer_size": 14549,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								809,
-								809
+								211,
+								211
 							]
 						],
 						"settings":
@@ -1360,7 +1360,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1369,15 +1369,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 604,
+						"buffer_size": 602,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								445,
-								445
+								602,
+								602
 							]
 						],
 						"settings":
@@ -1388,7 +1388,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1404,8 +1404,8 @@
 						"selection":
 						[
 							[
-								144,
-								144
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1417,7 +1417,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -1426,15 +1426,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 18853,
+						"buffer_size": 18985,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2971,
-								2971
+								2452,
+								2452
 							]
 						],
 						"settings":
@@ -1444,10 +1444,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1122.0,
+						"translation.y": 948.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1503,7 +1503,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -1531,7 +1531,7 @@
 						"translation.y": 1789.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 10,
 					"type": "text"
 				}
 			]
@@ -1595,11 +1595,39 @@
 		[
 			[
 				"",
-				"win32_main.cpp"
+				"nova.cpp"
+			],
+			[
+				"bui",
+				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
 			],
 			[
 				"nova",
 				"nova.cpp"
+			],
+			[
+				"noav",
+				"nova.hpp"
+			],
+			[
+				"math",
+				"math.hpp"
+			],
+			[
+				"sys",
+				"sys.hpp"
+			],
+			[
+				"win",
+				"win32_main.cpp"
+			],
+			[
+				"bu",
+				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
+			],
+			[
+				"in",
+				"intrin.hpp"
 			],
 			[
 				"bas",
@@ -1614,20 +1642,12 @@
 				"particle.frag"
 			],
 			[
-				"win",
-				"win32_main.cpp"
-			],
-			[
 				"basic",
 				"basic.frag"
 			],
 			[
 				"pre",
 				"C:\\Users\\albertelwin\\AppData\\Roaming\\Sublime Text 3\\Packages\\User\\Preferences.sublime-settings"
-			],
-			[
-				"math",
-				"math.hpp"
 			],
 			[
 				"b",
@@ -1682,20 +1702,12 @@
 				"intrin.hpp"
 			],
 			[
-				"sys",
-				"sys.hpp"
-			],
-			[
 				"part",
 				"particle.vert"
 			],
 			[
 				"vert",
 				"basic.vert"
-			],
-			[
-				"bu",
-				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
 			],
 			[
 				"find",
@@ -1758,10 +1770,6 @@
 				"win32_main.cpp"
 			],
 			[
-				"in",
-				"intrin.hpp"
-			],
-			[
 				"color",
 				"color.frag"
 			],
@@ -1772,10 +1780,6 @@
 			[
 				"pari",
 				"particle.vert"
-			],
-			[
-				"bui",
-				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
 			],
 			[
 				"de",

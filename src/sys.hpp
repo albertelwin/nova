@@ -17,7 +17,9 @@
 void __assert_func(bool expression, char const * message) {
 	if(!expression) {
 		MessageBoxA(0, message, "ASSERT", MB_OK | MB_ICONERROR);
-		*(static_cast<int *>(0)) = 0;
+		std::fprintf(stderr, "ASSERT: %s\n", message);
+		std::exit(EXIT_FAILURE);
+		// *((int *)(0)) = 0;
 	}
 }
 
