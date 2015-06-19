@@ -172,8 +172,8 @@ namespace math {
 
 	union Vec3 {
 		struct { float x, y, z; };
-		struct { Vec2 xy; float z; };
-		struct { float x; Vec2 yz; };
+		struct { Vec2 xy; float pad1; };
+		struct { float pad2; Vec2 yz; };
 		float v[3];
 	};
 
@@ -338,7 +338,7 @@ namespace math {
 
 	union Vec4 {
 		struct { float x, y, z, w; };
-		struct { Vec3 xyz; float w; };
+		struct { Vec3 xyz; float pad1; };
 		struct { Vec2 xy, zw; };
 		float v[4];
 	};

@@ -9,5 +9,5 @@ set COMMON_LINKER_FLAGS=-incremental:no -opt:ref
 set DEBUG_COMPILER_FLAGS=%COMMON_COMPILFER_FLAGS% -MTd -Od -Z7
 set RELEASE_COMPILER_FLAGS=%COMMON_COMPILFER_FLAGS% -MT -O2
 
-cl %DEBUG_COMPILER_FLAGS% -I../lib -I../src ../src/win32_main.cpp shell32.lib user32.lib gdi32.lib opengl32.lib glew32s.lib glfw3.lib -link %COMMON_LINKER_FLAGS% -libpath:../lib
+cl %DEBUG_COMPILER_FLAGS% -I../lib -I../src ../src/main.cpp shell32.lib user32.lib gdi32.lib opengl32.lib glew32s.lib glfw3.lib -link %COMMON_LINKER_FLAGS% -libpath:../lib
 cd ..
