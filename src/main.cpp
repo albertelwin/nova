@@ -63,7 +63,7 @@ int main() {
 		return 0;
 	}
 
-	bool enable_full_screen = false;
+	bool enable_full_screen = true;
 	bool enable_v_sync = false;
 
 	glfwWindowHint(GLFW_SAMPLES, 16);
@@ -120,11 +120,13 @@ int main() {
 	game_state.back_buffer_width = (float)window_width;
 	game_state.back_buffer_height = (float)window_height;
 	game_state.key_space_pressed = false;
+	game_state.key_enter_pressed = false;
 	game_state.key_mouse_down = false;
 	game_state.mouse_pos = get_mouse_pos(window);
 
 	float frame_time = get_current_time();
 	bool last_key_space = false;
+	bool last_key_enter = false;
 
 	while(!glfwWindowShouldClose(window)) {
 		float last_frame_time = frame_time;
@@ -142,6 +144,10 @@ int main() {
 		bool key_space = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
 		game_state.key_space_pressed = (!last_key_space && key_space);
 		last_key_space = key_space;
+
+		bool key_enter = glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS;
+		game_state.key_enter_pressed = (!last_key_enter && key_enter);
+		last_key_enter = key_enter;
 
 		game_state.key_mouse_down = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
 

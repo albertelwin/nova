@@ -24,8 +24,8 @@ namespace nova {
 		uint32_t sphere_program_id;
 		gl::VertexBuffer sphere_vertex_buffer;
 
-		uint32_t quad_program_id;
-		gl::VertexBuffer quad_vertex_buffer;
+		uint32_t disc_program_id;
+		gl::VertexBuffer disc_vertex_buffer;
 
 		uint32_t particle_program_id;
 		uint32_t particle_vert_length;
@@ -37,6 +37,7 @@ namespace nova {
 		float back_buffer_height;
 
 		float protostar_mass;
+		float particle_mass_consumed;
 
 		bool running_particle_sim;
 		float camera_pos;
@@ -51,6 +52,7 @@ namespace nova {
 		math::Vec2 mouse_delta;
 
 		bool key_space_pressed;
+		bool key_enter_pressed;
 		bool key_mouse_down;
 
 		bool started;

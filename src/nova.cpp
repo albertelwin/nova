@@ -5,6 +5,14 @@
 #include <intrin.hpp>
 #include <math.hpp>
 
+namespace {
+	float const g_constant = 0.01f;
+
+	float const protostar_initial_mass = 76.0f;
+	float const protostar_jeans_mass = protostar_initial_mass + 240.0f;
+	float const protostar_collapsed_mass = 160000.0f;
+}
+
 namespace nova {
 	math::Vec3 get_particle_pos(Particle * particle, float t, float dt) {
 		float axis_offset = intrin::sin(t + particle->velocity.x) * math::PI * 1.25f;
@@ -15,13 +23,35 @@ namespace nova {
 		return pos;
 	}
 
+	void initialize_disc_particles(GameState * game_state) {
+		for(uint32_t i = 0; i < game_state->disc_particles.length; i++) {
+			float d = math::rand_float();
+			d = d * d;
+			d *= 4.0f;
+			
+			//TODO: Better initial position, pick a random point a circumference then move it in/out
+			math::Vec2 pos_2d = math::rand_sample_in_circle() * d;
+			pos_2d += math::normalize(pos_2d) * 0.2f;
+			math::Vec3 pos = math::vec3(pos_2d.x, 0.0f, pos_2d.y);
+
+			// float vel_mag = (4.0f / math::length_squared(pos)) * 0.2f;
+			float vel_mag = math::sqrt((g_constant * protostar_initial_mass) / math::length(pos)) * (1.0f - math::simplex_noise(pos_2d.x, pos_2d.y) * 0.1f);
+
+			Particle * particle = game_state->disc_particles.v + i;
+			particle->position = pos;
+			particle->velocity = math::normalize((math::rotate_around_y(67.5f) * math::vec4(pos, 1.0f)).xyz) * vel_mag;
+			particle->mass = 1.0f;
+
+			uint32_t v_idx = i * (game_state->particle_vert_length * 3);
+			for(uint32_t k = 0; k < game_state->particle_vert_length; k++) {
+				game_state->disc_particles.verts[v_idx++] = pos.v[0];
+				game_state->disc_particles.verts[v_idx++] = pos.v[1];
+				game_state->disc_particles.verts[v_idx++] = pos.v[2];
+			}
+		}
+	}
+
 	void tick(GameState * game_state) {
-		float g_constant = 0.01f;
-
-		float protostar_initial_mass = 76.0f;
-		float protostar_jeans_mass = protostar_initial_mass + 240.0f;
-		float protostar_collapsed_mass = 160000.0f;
-
 		if(!game_state->started) {
 			game_state->started = true;
 
@@ -38,11 +68,11 @@ namespace nova {
 			// game_state->sphere_vertex_buffer = gl::create_vertex_buffer(model.vert_data, model.vert_data_length, 3, GL_STATIC_DRAW);
 			game_state->sphere_vertex_buffer = gl::create_vertex_buffer(asset::icosphere_verts, ARRAY_COUNT(asset::icosphere_verts), 3, GL_STATIC_DRAW);
 
-			uint32_t quad_vert_id = gl::compile_shader_from_source(BASIC_VERT_SRC, GL_VERTEX_SHADER);
-			uint32_t quad_frag_id = gl::compile_shader_from_source(BASIC_FRAG_SRC, GL_FRAGMENT_SHADER);
-			game_state->quad_program_id = gl::link_shader_program(quad_vert_id, quad_frag_id);
+			uint32_t disc_vert_id = gl::compile_shader_from_source(BASIC_VERT_SRC, GL_VERTEX_SHADER);
+			uint32_t disc_frag_id = gl::compile_shader_from_source(BASIC_FRAG_SRC, GL_FRAGMENT_SHADER);
+			game_state->disc_program_id = gl::link_shader_program(disc_vert_id, disc_frag_id);
 
-			game_state->quad_vertex_buffer = gl::create_vertex_buffer(asset::quad_verts, ARRAY_COUNT(asset::quad_verts), 3, GL_STATIC_DRAW);
+			game_state->disc_vertex_buffer = gl::create_vertex_buffer(asset::disc_verts, ARRAY_COUNT(asset::disc_verts), 3, GL_STATIC_DRAW);
 
 			uint32_t particle_vert_id = gl::compile_shader_from_source(PARTICLE_VERT_SRC, GL_VERTEX_SHADER);
 			uint32_t particle_frag_id = gl::compile_shader_from_source(PARTICLE_FRAG_SRC, GL_FRAGMENT_SHADER);
@@ -72,39 +102,17 @@ namespace nova {
 
 			game_state->cloud_particles.vertex_buffer = gl::create_vertex_buffer(game_state->cloud_particles.verts, game_state->cloud_particles.verts_length, 3, GL_DYNAMIC_DRAW);
 
-			game_state->disc_particles.length = 65536;
+			game_state->disc_particles.length = 65536 / 2;
 			game_state->disc_particles.v = new Particle[game_state->disc_particles.length];
 			game_state->disc_particles.verts_length = game_state->disc_particles.length * game_state->particle_vert_length * 3;
 			game_state->disc_particles.verts = new float[game_state->disc_particles.verts_length];
-			for(uint32_t i = 0; i < game_state->disc_particles.length; i++) {
-				float d = math::rand_float();
-				d = d * d;
-				d *= 4.0f;
-				
-				//TODO: Better initial position, pick a random point a circumference then move it in/out
-				math::Vec2 pos_2d = math::rand_sample_in_circle() * d;
-				pos_2d += math::normalize(pos_2d) * 0.2f;
-				math::Vec3 pos = math::vec3(pos_2d.x, 0.0f, pos_2d.y);
-
-				// float vel_mag = (4.0f / math::length_squared(pos)) * 0.2f;
-				float vel_mag = math::sqrt((g_constant * protostar_initial_mass) / math::length(pos)) * (1.0f - math::simplex_noise(pos_2d.x, pos_2d.y) * 0.1f);
-
-				Particle * particle = game_state->disc_particles.v + i;
-				particle->position = pos;
-				particle->velocity = math::normalize((math::rotate_around_y(67.5f) * math::vec4(pos, 1.0f)).xyz) * vel_mag;
-				particle->mass = 1.0f;
-
-				uint32_t v_idx = i * (game_state->particle_vert_length * 3);
-				for(uint32_t k = 0; k < game_state->particle_vert_length; k++) {
-					game_state->disc_particles.verts[v_idx++] = pos.v[0];
-					game_state->disc_particles.verts[v_idx++] = pos.v[1];
-					game_state->disc_particles.verts[v_idx++] = pos.v[2];
-				}
-			}
+			initialize_disc_particles(game_state);
 
 			game_state->disc_particles.vertex_buffer = gl::create_vertex_buffer(game_state->disc_particles.verts, game_state->disc_particles.verts_length, 3, GL_DYNAMIC_DRAW);
 
 			game_state->protostar_mass = protostar_initial_mass;
+			game_state->particle_mass_consumed = (65536.0f / (float)game_state->disc_particles.length) * 0.08f;
+			std::printf("LOG: %f\n", game_state->particle_mass_consumed);
 
 			game_state->running_particle_sim = true;
 			game_state->camera_pos = 0.0f;
@@ -121,6 +129,11 @@ namespace nova {
 		}
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		if(game_state->key_enter_pressed) {
+			initialize_disc_particles(game_state);
+			game_state->protostar_mass = protostar_initial_mass;
+		}
 
 		if(game_state->key_space_pressed) {
 			game_state->running_particle_sim = !game_state->running_particle_sim;
@@ -213,10 +226,10 @@ namespace nova {
 					math::Vec3 centre_dir = -particle->position;
 					float centre_r = math::length_squared(centre_dir);
 					if(centre_r < 0.002f && particle->mass > 0.0f) {
-						game_state->protostar_mass += 0.08f;
+						game_state->protostar_mass += game_state->particle_mass_consumed;
 						particle->mass = 0.0f;
 					}
-					else {
+					if(centre_r > 0.0f) {
 						float centre_r_sqrt = math::sqrt(centre_r);
 						float centre_gravity = math::min(g_constant * (protostar_mass / centre_r), protostar_mass);
 						acceleration += (centre_dir / centre_r_sqrt) * centre_gravity;				
@@ -295,22 +308,22 @@ namespace nova {
 		// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
 
-		glUseProgram(game_state->quad_program_id); {
-			math::Mat4 world_matrix = math::translate(touch_pos) * math::rotate_around_x(math::PI * 0.5f) * math::scale(0.25f);
+		glUseProgram(game_state->disc_program_id); {
+			math::Mat4 world_matrix = math::translate(touch_pos) * math::rotate_around_x(math::PI * 0.5f) * math::scale(0.025f);
 			math::Mat4 world_view_projection_matrix = view_projection_matrix * world_matrix;
 
-			uint32_t xform_id = glGetUniformLocation(game_state->quad_program_id, "xform");
+			uint32_t xform_id = glGetUniformLocation(game_state->disc_program_id, "xform");
 			glUniformMatrix4fv(xform_id, 1, GL_FALSE, world_view_projection_matrix.v);
 
-			uint32_t color_id = glGetUniformLocation(game_state->quad_program_id, "color");
+			uint32_t color_id = glGetUniformLocation(game_state->disc_program_id, "color");
 			glUniform3f(color_id, 1.0f, 1.0f, 1.0f);
 
-			glBindBuffer(GL_ARRAY_BUFFER, game_state->quad_vertex_buffer.id);
+			glBindBuffer(GL_ARRAY_BUFFER, game_state->disc_vertex_buffer.id);
 
 			glEnableVertexAttribArray(0);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
 
-			glDrawArrays(GL_TRIANGLES, 0, game_state->quad_vertex_buffer.vert_count);
+			glDrawArrays(GL_TRIANGLES, 0, game_state->disc_vertex_buffer.vert_count);
 		}
 
 		glDisable(GL_BLEND);
