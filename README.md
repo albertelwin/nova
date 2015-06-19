@@ -1,14 +1,27 @@
-# NOVA
+# Nova
 
 ## About
 
-_todo_
+Nova is an experimental game about the formation and evolution of stars, written in C++.
+
+Development status: **sketch**.
 
 ## Build Instructions
 
 ### Windows
 
-_todo_
+You'll need [*MSVC*](https://www.visualstudio.com/). Download and install it if you don't already have it.
+
+Then simply run `build.bat`.
+
+```
+build.bat
+```
+And the .exe will be created in the `bin` directory, where you can run it. 
+
+```
+bin\nova
+```
 
 ### Mac
 
