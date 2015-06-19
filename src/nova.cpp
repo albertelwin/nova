@@ -30,12 +30,13 @@ namespace nova {
 			uint32_t sphere_frag_id = gl::compile_shader_from_source(PARTICLE_FRAG_SRC, GL_FRAGMENT_SHADER);
 			game_state->sphere_program_id = gl::link_shader_program(sphere_vert_id, sphere_frag_id);
 
-			char file_path[256];
-			std::strcpy(file_path, sys::get_exe_path());
-			//TODO: Package up assets on someway, contents of /dat is just copied into bin folder atm
-			std::strcat(file_path, "sphere.obj");
-			asset::Model model = asset::load_obj_from_file(file_path);
-			game_state->sphere_vertex_buffer = gl::create_vertex_buffer(model.vert_data, model.vert_data_length, 3, GL_STATIC_DRAW);
+			// char file_path[256];
+			// std::strcpy(file_path, sys::get_exe_path());
+			// //TODO: Package up assets on someway, contents of /dat is just copied into bin folder atm
+			// std::strcat(file_path, "sphere.obj");
+			// asset::Model model = asset::load_obj_from_file(file_path);
+			// game_state->sphere_vertex_buffer = gl::create_vertex_buffer(model.vert_data, model.vert_data_length, 3, GL_STATIC_DRAW);
+			game_state->sphere_vertex_buffer = gl::create_vertex_buffer(asset::icosphere_verts, ARRAY_COUNT(asset::icosphere_verts), 3, GL_STATIC_DRAW);
 
 			uint32_t quad_vert_id = gl::compile_shader_from_source(BASIC_VERT_SRC, GL_VERTEX_SHADER);
 			uint32_t quad_frag_id = gl::compile_shader_from_source(BASIC_FRAG_SRC, GL_FRAGMENT_SHADER);

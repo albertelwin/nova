@@ -10,7 +10,7 @@ Development status: **sketch**.
 
 ### Windows
 
-You'll need [*MSVC*](https://www.visualstudio.com/). Download and install it if you don't already have it.
+You'll need [*MSVC*](https://www.visualstudio.com/). Download and install it if you don't have it already.
 
 Then simply run `build.bat`.
 
