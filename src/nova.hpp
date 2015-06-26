@@ -53,7 +53,9 @@ namespace nova {
 
 		bool key_space_pressed;
 		bool key_enter_pressed;
-		bool key_mouse_down;
+		bool key_rgt_mouse_pressed;
+		bool key_lft_mouse_down;
+		bool key_rgt_mouse_down;
 
 		bool started;
 	};

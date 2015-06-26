@@ -121,12 +121,15 @@ int main() {
 	game_state.back_buffer_height = (float)window_height;
 	game_state.key_space_pressed = false;
 	game_state.key_enter_pressed = false;
-	game_state.key_mouse_down = false;
+	game_state.key_rgt_mouse_pressed = false;
+	game_state.key_lft_mouse_down = false;
+	game_state.key_rgt_mouse_down = false;
 	game_state.mouse_pos = get_mouse_pos(window);
 
 	float frame_time = get_current_time();
 	bool last_key_space = false;
 	bool last_key_enter = false;
+	bool last_key_rgt_mouse = false;
 
 	while(!glfwWindowShouldClose(window)) {
 		float last_frame_time = frame_time;
@@ -142,14 +145,20 @@ int main() {
 		game_state.mouse_pos = mouse_pos;
 
 		bool key_space = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
-		game_state.key_space_pressed = (!last_key_space && key_space);
+		game_state.key_space_pressed = !last_key_space && key_space;
 		last_key_space = key_space;
 
 		bool key_enter = glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS;
-		game_state.key_enter_pressed = (!last_key_enter && key_enter);
+		game_state.key_enter_pressed = !last_key_enter && key_enter;
 		last_key_enter = key_enter;
 
-		game_state.key_mouse_down = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
+		game_state.key_lft_mouse_down = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
+
+		//TODO: Only use one key!!
+		bool key_rgt_mouse = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS;
+		game_state.key_rgt_mouse_pressed = (!last_key_rgt_mouse && key_rgt_mouse) || game_state.key_space_pressed;
+		game_state.key_rgt_mouse_down = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) || key_space;
+		last_key_rgt_mouse = key_rgt_mouse;
 
 		nova::tick(&game_state);
 

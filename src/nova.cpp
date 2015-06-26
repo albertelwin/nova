@@ -10,6 +10,7 @@ namespace {
 
 	float const protostar_initial_mass = 76.0f;
 	float const protostar_jeans_mass = protostar_initial_mass + 240.0f;
+	// float const protostar_critial_mass = protostar_initial_mass + 240.0f;
 	float const protostar_collapsed_mass = 160000.0f;
 }
 
@@ -26,7 +27,6 @@ namespace nova {
 	void initialize_disc_particles(GameState * game_state) {
 		for(uint32_t i = 0; i < game_state->disc_particles.length; i++) {
 			float d = math::rand_float();
-			d = d * d;
 			d *= 4.0f;
 			
 			//TODO: Better initial position, pick a random point a circumference then move it in/out
@@ -112,7 +112,6 @@ namespace nova {
 
 			game_state->protostar_mass = protostar_initial_mass;
 			game_state->particle_mass_consumed = (65536.0f / (float)game_state->disc_particles.length) * 0.08f;
-			std::printf("LOG: %f\n", game_state->particle_mass_consumed);
 
 			game_state->running_particle_sim = true;
 			game_state->camera_pos = 0.0f;
@@ -139,7 +138,7 @@ namespace nova {
 			game_state->running_particle_sim = !game_state->running_particle_sim;
 		}
 
-		game_state->camera_pos += game_state->delta_time * 0.04f;
+		game_state->camera_pos += game_state->delta_time * 0.02f;
 		// if(!game_state->running_particle_sim) {
 		// 	game_state->camera_pos += game_state->delta_time * 0.2f;
 		// }
@@ -165,6 +164,7 @@ namespace nova {
 		}
 
 		glUseProgram(game_state->particle_program_id); {
+			// float dt_mod = game_state->key_rgt_mouse_down ? 0.5f : 0.5f;
 			float dt = game_state->delta_time * 56.0f * 0.5f;
 			dt = math::min(dt, 1.0f);
 
@@ -215,8 +215,18 @@ namespace nova {
 			{
 				float protostar_mass = game_state->protostar_mass;
 
-				float touch_gravity_mod = game_state->key_mouse_down ? 1.0f : 0.0f;
+				float touch_gravity_mod = game_state->key_lft_mouse_down ? 1.0f : 0.0f;
 				float physics_delta_time = game_state->delta_time * 0.04f;
+
+				static float time_mod_timer = 0.0f;
+				if(game_state->key_rgt_mouse_pressed) {
+					time_mod_timer = 0.12f;
+				}
+
+				if(time_mod_timer > 0.0f) {
+					time_mod_timer -= game_state->delta_time;
+					physics_delta_time *= 10.0f;
+				}
 
 				for(uint32_t i = 0; i < game_state->disc_particles.length; i++) {
 					Particle * particle = game_state->disc_particles.v + i;
