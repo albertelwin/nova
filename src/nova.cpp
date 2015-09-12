@@ -78,22 +78,6 @@ namespace nova {
 
 			game_state->disc_particles.vertex_buffer = gl::create_vertex_buffer(game_state->disc_particles.verts, game_state->disc_particles.verts_length, 3, GL_DYNAMIC_DRAW);
 
-			uint32_t quad_vert_id = gl::compile_shader_from_source(SCREEN_QUAD_VERT_SRC, GL_VERTEX_SHADER);
-			uint32_t quad_frag_id = gl::compile_shader_from_source(TEXTURE_FRAG_SRC, GL_FRAGMENT_SHADER);
-			game_state->quad_program_id = gl::link_shader_program(quad_vert_id, quad_frag_id);
-			game_state->quad_vertex_buffer = gl::create_vertex_buffer(asset::quad_verts, ARRAY_COUNT(asset::quad_verts), 3, GL_STATIC_DRAW);
-
-			game_state->msaa_frame_buffer = gl::create_msaa_frame_buffer(game_state->back_buffer_width, game_state->back_buffer_height, 8);
-			game_state->resolve_frame_buffer = gl::create_frame_buffer(game_state->back_buffer_width, game_state->back_buffer_height);
-
-			game_state->threshold_program_id = gl::link_shader_program(quad_vert_id, gl::compile_shader_from_source(THRESHOLD_TEXTURE_FRAG_SRC, GL_FRAGMENT_SHADER));
-			game_state->threshold_frame_buffer = gl::create_frame_buffer(game_state->back_buffer_width, game_state->back_buffer_height, GL_LINEAR, GL_LINEAR);
-
-			game_state->blur_program_id = gl::link_shader_program(quad_vert_id, gl::compile_shader_from_source(BLUR_TEXTURE_FRAG_SRC, GL_FRAGMENT_SHADER));
-			for(uint32_t i = 0; i < ARRAY_COUNT(game_state->blur_frame_buffers); i++) {
-				game_state->blur_frame_buffers[i] = gl::create_frame_buffer(game_state->back_buffer_width, game_state->back_buffer_height / 32, GL_LINEAR, GL_LINEAR);
-			}
-
 			game_state->protostar_mass = protostar_initial_mass;
 			game_state->protostar_size = protostar_initial_size;
 			game_state->particles_consumed = 0;
@@ -278,10 +262,8 @@ namespace nova {
 			game_state->disc_particles.verts[v_idx + 11] = pos.v[2];
 		}
 
-		glBindFramebuffer(GL_FRAMEBUFFER, game_state->msaa_frame_buffer.id);
-		glViewport(0, 0, game_state->msaa_frame_buffer.width, game_state->msaa_frame_buffer.height);
-		// glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		// glViewport(0, 0, game_state->back_buffer_width, game_state->back_buffer_height);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0, 0, game_state->back_buffer_width, game_state->back_buffer_height);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glUseProgram(game_state->particle_program_id); {
@@ -343,89 +325,5 @@ namespace nova {
 
 		glDisable(GL_BLEND);
 		glDisable(GL_DEPTH_TEST);
-
-		gl::resolve_msaa_frame_buffer(game_state->msaa_frame_buffer, game_state->resolve_frame_buffer);
-
-		glBindFramebuffer(GL_FRAMEBUFFER, game_state->threshold_frame_buffer.id);
-		glViewport(0, 0, game_state->threshold_frame_buffer.width, game_state->threshold_frame_buffer.height);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		glUseProgram(game_state->threshold_program_id); {
-			glBindBuffer(GL_ARRAY_BUFFER, game_state->quad_vertex_buffer.id);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
-
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, game_state->resolve_frame_buffer.texture_id);
-			glUniform1i(glGetUniformLocation(game_state->threshold_program_id, "tex_0"), 0);
-
-			glUniform1f(glGetUniformLocation(game_state->threshold_program_id, "bias"), -0.6f);
-			glUniform1f(glGetUniformLocation(game_state->threshold_program_id, "scale"), 3.0f);
-
-			glDrawArrays(GL_TRIANGLES, 0, game_state->quad_vertex_buffer.vert_count);
-		}
-
-		uint32_t blur_tex_id = game_state->threshold_frame_buffer.texture_id;
-		glUseProgram(game_state->blur_program_id); {
-			glBindBuffer(GL_ARRAY_BUFFER, game_state->quad_vertex_buffer.id);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
-
-		for(uint32_t i = 0; i < 2; i++) {
-				uint32_t idx = i % 2;
-
-				glBindFramebuffer(GL_FRAMEBUFFER, game_state->blur_frame_buffers[idx].id);
-				glViewport(0, 0, game_state->blur_frame_buffers[idx].width, game_state->blur_frame_buffers[idx].height);
-				glClear(GL_COLOR_BUFFER_BIT);
-
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, blur_tex_id);
-				glUniform1i(glGetUniformLocation(game_state->threshold_program_id, "tex_0"), 0);
-
-				glUniform1f(glGetUniformLocation(game_state->blur_program_id, "tex_height_r"), 1.0f / (float)game_state->blur_frame_buffers[idx].height);
-
-				glDrawArrays(GL_TRIANGLES, 0, game_state->quad_vertex_buffer.vert_count);
-
-				blur_tex_id = game_state->blur_frame_buffers[idx].texture_id; 
-			}
-		}
-
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glViewport(0, 0, game_state->back_buffer_width, game_state->back_buffer_height);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		glUseProgram(game_state->quad_program_id); {
-			glBindBuffer(GL_ARRAY_BUFFER, game_state->quad_vertex_buffer.id);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
-
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, game_state->resolve_frame_buffer.texture_id);
-			glUniform1i(glGetUniformLocation(game_state->quad_program_id, "tex_0"), 0);
-
-			glDrawArrays(GL_TRIANGLES, 0, game_state->quad_vertex_buffer.vert_count);
-		}
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
-
-		glUseProgram(game_state->quad_program_id); {
-			glBindBuffer(GL_ARRAY_BUFFER, game_state->quad_vertex_buffer.id);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
-
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, blur_tex_id);
-			// glBindTexture(GL_TEXTURE_2D, game_state->threshold_frame_buffer.texture_id);
-			glUniform1i(glGetUniformLocation(game_state->quad_program_id, "tex_0"), 0);
-
-			glDrawArrays(GL_TRIANGLES, 0, game_state->quad_vertex_buffer.vert_count);
-		}
-
-		glDisable(GL_BLEND);
 	}
 }

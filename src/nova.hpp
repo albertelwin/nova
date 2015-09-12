@@ -37,18 +37,6 @@ namespace nova {
 		uint32_t particle_vert_length;
 		ParticleArray disc_particles;
 
-		uint32_t quad_program_id;
-		gl::VertexBuffer quad_vertex_buffer;
-
-		gl::FrameBuffer msaa_frame_buffer;
-		gl::FrameBuffer resolve_frame_buffer;
-
-		uint32_t threshold_program_id;
-		gl::FrameBuffer threshold_frame_buffer;
-
-		uint32_t blur_program_id;
-		gl::FrameBuffer blur_frame_buffers[2];
-
 		uint32_t back_buffer_width;
 		uint32_t back_buffer_height;
 
