@@ -20,6 +20,12 @@ namespace nova {
 		uint32_t verts_length;
 	};
 
+	struct Camera {
+		float angle;
+		float dist;
+		float timer;
+	};
+
 	struct GameState {
 		uint32_t sphere_program_id;
 		gl::VertexBuffer sphere_vertex_buffer;
@@ -29,18 +35,31 @@ namespace nova {
 
 		uint32_t particle_program_id;
 		uint32_t particle_vert_length;
-
-		ParticleArray cloud_particles;
 		ParticleArray disc_particles;
 
-		float back_buffer_width;
-		float back_buffer_height;
+		uint32_t quad_program_id;
+		gl::VertexBuffer quad_vertex_buffer;
+
+		gl::FrameBuffer msaa_frame_buffer;
+		gl::FrameBuffer resolve_frame_buffer;
+
+		uint32_t threshold_program_id;
+		gl::FrameBuffer threshold_frame_buffer;
+
+		uint32_t blur_program_id;
+		gl::FrameBuffer blur_frame_buffers[2];
+
+		uint32_t back_buffer_width;
+		uint32_t back_buffer_height;
 
 		float protostar_mass;
+		float protostar_size;
+		uint32_t particles_consumed;
+		float particles_consumed_threshold;
 		float particle_mass_consumed;
 
-		bool running_particle_sim;
-		float camera_pos;
+		Camera camera;
+		Camera initial_camera;
 
 		math::Mat4 view_matrix;
 		math::Mat4 projection_matrix;
@@ -52,7 +71,6 @@ namespace nova {
 		math::Vec2 mouse_delta;
 
 		bool key_space_pressed;
-		bool key_enter_pressed;
 		bool key_rgt_mouse_pressed;
 		bool key_lft_mouse_down;
 		bool key_rgt_mouse_down;

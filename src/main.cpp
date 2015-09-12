@@ -66,7 +66,7 @@ int main() {
 	bool enable_full_screen = true;
 	bool enable_v_sync = false;
 
-	glfwWindowHint(GLFW_SAMPLES, 16);
+	glfwWindowHint(GLFW_SAMPLES, 8);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -117,10 +117,9 @@ int main() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	nova::GameState game_state = {};
-	game_state.back_buffer_width = (float)window_width;
-	game_state.back_buffer_height = (float)window_height;
+	game_state.back_buffer_width = window_width;
+	game_state.back_buffer_height = window_height;
 	game_state.key_space_pressed = false;
-	game_state.key_enter_pressed = false;
 	game_state.key_rgt_mouse_pressed = false;
 	game_state.key_lft_mouse_down = false;
 	game_state.key_rgt_mouse_down = false;
@@ -128,7 +127,6 @@ int main() {
 
 	float frame_time = get_current_time();
 	bool last_key_space = false;
-	bool last_key_enter = false;
 	bool last_key_rgt_mouse = false;
 
 	while(!glfwWindowShouldClose(window)) {
@@ -147,10 +145,6 @@ int main() {
 		bool key_space = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
 		game_state.key_space_pressed = !last_key_space && key_space;
 		last_key_space = key_space;
-
-		bool key_enter = glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS;
-		game_state.key_enter_pressed = !last_key_enter && key_enter;
-		last_key_enter = key_enter;
 
 		game_state.key_lft_mouse_down = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
 

@@ -9,12 +9,12 @@ namespace asset {
 	};
 
 	float const quad_verts[] = {
-		-0.5f,-0.5f, 0.0f, 
-		 0.5f,-0.5f, 0.0f,
-		-0.5f, 0.5f, 0.0f,
-		 0.5f,-0.5f, 0.0f,
-		 0.5f, 0.5f, 0.0f,
-		-0.5f, 0.5f, 0.0f, 
+		-1.0f,-1.0f, 0.0f, 
+		 1.0f,-1.0f, 0.0f,
+		-1.0f, 1.0f, 0.0f,
+		 1.0f,-1.0f, 0.0f,
+		 1.0f, 1.0f, 0.0f,
+		-1.0f, 1.0f, 0.0f, 
 	};
 
 	float const disc_verts[] = {

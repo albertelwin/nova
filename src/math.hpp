@@ -10,6 +10,7 @@
 
 namespace math {
 	float const PI = 3.14159265359f;
+	float const TAU = 6.28318530718f;
 
 	float to_radians(float x) {
 		return (PI / 180.0f) * x;
@@ -39,7 +40,7 @@ namespace math {
 		return x - static_cast<int32_t>(x);
 	}
 
-	float squared(float x) {
+	float sqr(float x) {
 		return x * x;
 	}
 
@@ -51,6 +52,13 @@ namespace math {
 	float lerp(float x, float y, float t) {
 		//TODO: Assert 0 <= t <= 1??
 		return x * (1.0f - t) + y * t;
+	}
+
+	float ease(float x, float y, float t) {
+		float u = (1.0f - t);
+		float t_sqr = sqr(t);
+		float u_sqr = sqr(u);
+		return 3.0f * t * u_sqr * x + 3.0f * t_sqr * u * y + (t_sqr * t);
 	}
 
 	float rand_float() {

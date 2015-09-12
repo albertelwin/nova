@@ -11,14 +11,17 @@
 					"name": "Run",
 					"shell_cmd": "\"bin/nova\""
 				},
+
 				{
 					"name": "Debug",
 					"shell_cmd": "build.bat && devenv \"bin/nova.exe\""
 				}
 			],
+			
 			"working_dir": "$project_path"
 		}
 	],
+
 	"folders":
 	[
 		{
