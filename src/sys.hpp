@@ -25,6 +25,8 @@ void __assert_func(bool expression, char const * message) {
 #define ASSERT(x) __ASSERT(x)
 #define ARRAY_COUNT(x) (sizeof((x)) / sizeof((x)[0]))
 
+typedef uint8_t bool8_t;
+
 namespace sys {
 	//NOTE: No constexpr in VS :(
 	float const FLOAT_MAX = 1e+37f;

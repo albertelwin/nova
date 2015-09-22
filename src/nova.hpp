@@ -58,10 +58,8 @@ namespace nova {
 		math::Vec2 mouse_pos;
 		math::Vec2 mouse_delta;
 
-		bool key_space_pressed;
-		bool key_rgt_mouse_pressed;
-		bool key_lft_mouse_down;
-		bool key_rgt_mouse_down;
+		bool8_t left_mouse_key_down;
+		bool8_t right_mouse_key_down;
 
 		bool started;
 	};

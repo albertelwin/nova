@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"resol",
+				"resolve_frame_buffer"
+			],
+			[
+				"resolve",
+				"resolve_msaa_frame_buffer	(gl.hpp)"
+			],
+			[
 				"light",
 				"light_dir"
 			],
@@ -506,14 +514,6 @@
 			[
 				"x",
 				"x"
-			],
-			[
-				"norm",
-				"normalize"
-			],
-			[
-				"random",
-				"random_vec3	(math.hpp)"
 			]
 		]
 	},
@@ -523,7 +523,31 @@
 			"file": "src/nova.cpp",
 			"settings":
 			{
-				"buffer_size": 20827,
+				"buffer_size": 15265,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/math.cpp",
+			"settings":
+			{
+				"buffer_size": 4823,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/math.hpp",
+			"settings":
+			{
+				"buffer_size": 14768,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/nova.hpp",
+			"settings":
+			{
+				"buffer_size": 1199,
 				"line_ending": "Windows"
 			}
 		},
@@ -536,11 +560,27 @@
 			}
 		},
 		{
-			"file": "nova.sublime-project",
+			"file": "src/gl.hpp",
 			"settings":
 			{
-				"buffer_size": 403,
-				"line_ending": "Unix"
+				"buffer_size": 5520,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/asset.hpp",
+			"settings":
+			{
+				"buffer_size": 131929,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/asset.cpp",
+			"settings":
+			{
+				"buffer_size": 2623,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -555,7 +595,7 @@
 			"file": "/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 			"settings":
 			{
-				"buffer_size": 521,
+				"buffer_size": 630,
 				"line_ending": "Windows"
 			}
 		},
@@ -564,6 +604,14 @@
 			"settings":
 			{
 				"buffer_size": 710,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/sys.hpp",
+			"settings":
+			{
+				"buffer_size": 781,
 				"line_ending": "Windows"
 			}
 		},
@@ -819,10 +867,12 @@
 	],
 	"file_history":
 	[
-		"/C/Users/albertelwin/Nova/repo/subl",
+		"/C/Users/albertelwin/Shadows/Assets/ShadowVolume.shader",
 		"/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
-		"/C/Users/albertelwin/Nova/repo/build.bat",
+		"/C/Users/albertelwin/Nova/repo/.gitignore",
 		"/C/Users/albertelwin/Nova/repo/nova.sublime-project",
+		"/C/Users/albertelwin/Nova/repo/subl",
+		"/C/Users/albertelwin/Nova/repo/build.bat",
 		"/C/Users/albertelwin/Nova/repo/edit.bat",
 		"/C/Program Files/Sublime Text 3/%1",
 		"/C/Users/albertelwin/Killbox/Assets/Scripts/ShadowVolume.cs",
@@ -944,9 +994,7 @@
 		"/C/MinGW/msys/1.0/home/albertelwin/Rand/multiple_return_values.cpp",
 		"/C/Users/albertelwin/Nova/docs/life_and_death_of_stars_notes.txt",
 		"/C/Users/albertelwin/Nova/docs/nova_design.txt",
-		"/C/Users/albertelwin/Blog/blog.html",
-		"/C/Users/albertelwin/Blog/_config.yml",
-		"/C/Users/albertelwin/Blog/portfolio.html"
+		"/C/Users/albertelwin/Blog/blog.html"
 	],
 	"find":
 	{
@@ -965,6 +1013,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"&",
+			"->",
+			"resolve_msaa_frame_buffer",
+			"buffer.",
+			"game_state->",
+			"ASSERT",
+			"sys_win",
+			"sys.hpp",
+			"ASSERT",
+			"+.",
+			"f4",
+			"tmp_int",
+			"ASSERT",
 			"Mathf.Infinity",
 			"GameObject",
 			"tris",
@@ -1079,20 +1140,7 @@
 			"dist_to_centre",
 			"expanding_timer",
 			"particles_consumed",
-			", dt",
-			"initialize_disc_particles",
-			"particles_percentage_consumed",
-			"dt",
-			"last_key_right_mouse",
-			"= (!",
-			"id_0",
-			" - Description",
-			"padding-top: 2px",
-			"bottom",
-			"<div><input type=",
-			"class=\"block form-group\">",
-			"quad",
-			"disc_verts"
+			", dt"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1110,7 +1158,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1119,15 +1167,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20827,
+						"buffer_size": 15265,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19534,
-								19698
+								4226,
+								4226
 							]
 						],
 						"settings":
@@ -1137,14 +1185,101 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5133.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "src/math.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4823,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/math.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14768,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 5104.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/nova.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1199,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								653,
+								653
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 340.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "src/main.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1156,8 +1291,8 @@
 						"selection":
 						[
 							[
-								1571,
-								1571
+								4405,
+								4405
 							]
 						],
 						"settings":
@@ -1167,43 +1302,101 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 903.0,
+						"translation.y": 1746.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "nova.sublime-project",
+					"buffer": 5,
+					"file": "src/gl.hpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 403,
+						"buffer_size": 5520,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								141,
-								141
+								5262,
+								5262
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/C++/C++.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1700.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 6,
+					"file": "src/asset.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 131929,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 22598.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/asset.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2623,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 1234.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "build.bat",
 					"semi_transient": false,
 					"settings":
@@ -1215,8 +1408,8 @@
 						"selection":
 						[
 							[
-								591,
-								591
+								247,
+								247
 							]
 						],
 						"settings":
@@ -1227,16 +1420,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 9,
 					"file": "/C/Users/albertelwin/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 521,
+						"buffer_size": 630,
 						"regions":
 						{
 						},
@@ -1255,11 +1448,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 10,
 					"file": "src/sys_win.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1284,11 +1477,39 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 11,
+					"file": "src/sys.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 781,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
 					"file": "src/basic.frag",
 					"semi_transient": false,
 					"settings":
@@ -1312,11 +1533,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 13,
 					"file": "src/basic.vert",
 					"semi_transient": false,
 					"settings":
@@ -1340,7 +1561,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 13,
 					"type": "text"
 				}
 			]
@@ -1404,7 +1625,31 @@
 		[
 			[
 				"",
-				"C:\\Users\\albertelwin\\Nova\\repo\\nova.sublime-project"
+				"nova.cpp"
+			],
+			[
+				"nova",
+				"nova.hpp"
+			],
+			[
+				"math",
+				"math.hpp"
+			],
+			[
+				"ass",
+				"asset.cpp"
+			],
+			[
+				"gl",
+				"gl.hpp"
+			],
+			[
+				"build",
+				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
+			],
+			[
+				"sys",
+				"sys.hpp"
 			],
 			[
 				"ed",
@@ -1427,28 +1672,12 @@
 				"basic.frag"
 			],
 			[
-				"math",
-				"math.hpp"
-			],
-			[
-				"sys",
-				"sys.hpp"
-			],
-			[
-				"nova",
-				"nova.cpp"
-			],
-			[
 				"blur",
 				"blur_texture.frag"
 			],
 			[
 				"thres",
 				"threshold_texture.frag"
-			],
-			[
-				"gl",
-				"gl.hpp"
 			],
 			[
 				"th",
@@ -1509,14 +1738,6 @@
 			[
 				"noav",
 				"nova.hpp"
-			],
-			[
-				"ass",
-				"asset.hpp"
-			],
-			[
-				"build",
-				"C:\\Users\\albertelwin\\Nova\\repo\\build.bat"
 			],
 			[
 				"intr",

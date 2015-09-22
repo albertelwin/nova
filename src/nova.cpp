@@ -134,7 +134,7 @@ namespace nova {
 		}
 
 		float physics_delta_time = game_state->delta_time * 0.04f;
-		if(game_state->key_rgt_mouse_down) {
+		if(game_state->right_mouse_key_down) {
 			physics_delta_time *= 4.0f;	
 		}
 
@@ -145,7 +145,7 @@ namespace nova {
 			float protostar_mass = game_state->protostar_mass;
 			float protostar_delta_mass = 0.0f;
 
-			float touch_gravity_mod = game_state->key_lft_mouse_down ? 1.0f : 0.0f;
+			float touch_gravity_mod = game_state->left_mouse_key_down ? 1.0f : 0.0f;
 
 			for(uint32_t i = 0; i < game_state->disc_particles.length; i++) {
 				Particle * particle = game_state->disc_particles.v + i;

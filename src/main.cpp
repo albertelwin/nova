@@ -27,6 +27,39 @@
 #include <math.cpp>
 #include <nova.cpp>
 
+uint16_t const CUSTOM_KEY_CODE_POS = GLFW_KEY_LAST + 1;
+
+//NOTE: Use these instead of GLFW_MOUSE_BUTTON_XXX!!
+uint16_t const GLFW_KEY_MOUSE_LEFT = GLFW_MOUSE_BUTTON_LEFT + CUSTOM_KEY_CODE_POS;
+uint16_t const GLFW_KEY_MOUSE_RIGHT = GLFW_MOUSE_BUTTON_RIGHT + CUSTOM_KEY_CODE_POS;
+uint16_t const GLFW_KEY_MOUSE_MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE + CUSTOM_KEY_CODE_POS;
+
+uint16_t const KEY_ARRAY_LENGTH = GLFW_KEY_MOUSE_MIDDLE + 1;
+
+uint8_t const KEY_DOWN_BIT = 0;
+uint8_t const KEY_PRESSED_BIT = 1;
+uint8_t const KEY_RELEASED_BIT = 2;
+
+uint8_t const KEY_DOWN = 1 << KEY_DOWN_BIT;
+uint8_t const KEY_PRESSED = 1 << KEY_PRESSED_BIT;
+uint8_t const KEY_RELEASED = 1 << KEY_RELEASED_BIT;
+
+void read_and_store_key_values(GLFWwindow * window, uint8_t * key_array) {
+	for(uint32_t i = 0; i < KEY_ARRAY_LENGTH; i++) {
+		bool8_t key_was_down = key_array[i] & KEY_DOWN;
+		bool8_t key_down = (i < CUSTOM_KEY_CODE_POS ? glfwGetKey(window, i) : glfwGetMouseButton(window, i - CUSTOM_KEY_CODE_POS)) == GLFW_PRESS;
+		bool8_t key_pressed = key_down && !key_was_down;
+		bool8_t key_released = !key_down && key_was_down;
+
+		uint8_t packed_key_value = 0;
+		packed_key_value |= (key_down << KEY_DOWN_BIT);
+		packed_key_value |= (key_pressed << KEY_PRESSED_BIT);
+		packed_key_value |= (key_released << KEY_RELEASED_BIT);	
+
+		key_array[i] = packed_key_value;
+	}
+}
+
 void error_callback(int e, char const * desc) {
 #ifdef WIN32
 	if(e == GLFW_VERSION_UNAVAILABLE) {
@@ -44,16 +77,6 @@ void key_callback(GLFWwindow * window, int key, int scan_code, int action, int m
 	if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	}
-}
-
-float get_current_time() {
-	return static_cast<float>(glfwGetTime());
-}
-
-math::Vec2 get_mouse_pos(GLFWwindow * window) {
-	double raw_mouse_x, raw_mouse_y;
-	glfwGetCursorPos(window, &raw_mouse_x, &raw_mouse_y);
-	return math::vec2((float)raw_mouse_x, (float)raw_mouse_y);
 }
 
 int main() {
@@ -85,6 +108,7 @@ int main() {
 		return 0;
 	}
 
+	//TODO: Set window position!!
 	// uint32_t window_frame_size_lft;
 	// uint32_t window_frame_size_top;
 	// uint32_t window_frame_size_rgt;
@@ -119,40 +143,32 @@ int main() {
 	nova::GameState game_state = {};
 	game_state.back_buffer_width = window_width;
 	game_state.back_buffer_height = window_height;
-	game_state.key_space_pressed = false;
-	game_state.key_rgt_mouse_pressed = false;
-	game_state.key_lft_mouse_down = false;
-	game_state.key_rgt_mouse_down = false;
-	game_state.mouse_pos = get_mouse_pos(window);
 
-	float frame_time = get_current_time();
-	bool last_key_space = false;
-	bool last_key_rgt_mouse = false;
+	uint8_t key_array[KEY_ARRAY_LENGTH];
+	for(uint32_t i = 0; i < ARRAY_COUNT(key_array); i++) {
+		key_array[i] = 0;
+	}
+
+	float frame_time = (float)glfwGetTime();
 
 	while(!glfwWindowShouldClose(window)) {
 		float last_frame_time = frame_time;
-		frame_time = get_current_time();
+		frame_time = (float)glfwGetTime();
 
 		game_state.delta_time = frame_time - last_frame_time;
 		game_state.total_time += game_state.delta_time;
 
 		glfwPollEvents();
+		read_and_store_key_values(window, key_array);
 
-		math::Vec2 mouse_pos = get_mouse_pos(window);
+		double raw_mouse_x, raw_mouse_y;
+		glfwGetCursorPos(window, &raw_mouse_x, &raw_mouse_y);
+		math::Vec2 mouse_pos = math::vec2((float)raw_mouse_x, (float)raw_mouse_y);
 		game_state.mouse_delta = mouse_pos - game_state.mouse_pos;
 		game_state.mouse_pos = mouse_pos;
 
-		bool key_space = glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS;
-		game_state.key_space_pressed = !last_key_space && key_space;
-		last_key_space = key_space;
-
-		game_state.key_lft_mouse_down = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
-
-		//TODO: Only use one key!!
-		bool key_rgt_mouse = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS;
-		game_state.key_rgt_mouse_pressed = (!last_key_rgt_mouse && key_rgt_mouse) || game_state.key_space_pressed;
-		game_state.key_rgt_mouse_down = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) || key_space;
-		last_key_rgt_mouse = key_rgt_mouse;
+		game_state.left_mouse_key_down = key_array[GLFW_KEY_MOUSE_LEFT] & KEY_DOWN;
+		game_state.right_mouse_key_down = key_array[GLFW_KEY_MOUSE_RIGHT] & KEY_DOWN || key_array[GLFW_KEY_SPACE] & KEY_DOWN;
 
 		nova::tick(&game_state);
 
