@@ -34,7 +34,7 @@ uint16_t const GLFW_KEY_MOUSE_LEFT = GLFW_MOUSE_BUTTON_LEFT + CUSTOM_KEY_CODE_PO
 uint16_t const GLFW_KEY_MOUSE_RIGHT = GLFW_MOUSE_BUTTON_RIGHT + CUSTOM_KEY_CODE_POS;
 uint16_t const GLFW_KEY_MOUSE_MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE + CUSTOM_KEY_CODE_POS;
 
-uint16_t const KEY_ARRAY_LENGTH = GLFW_KEY_MOUSE_MIDDLE + 1;
+uint16_t const GLFW_LAST_CUSTOM_KEY = GLFW_KEY_MOUSE_MIDDLE;
 
 uint8_t const KEY_DOWN_BIT = 0;
 uint8_t const KEY_PRESSED_BIT = 1;
@@ -44,9 +44,19 @@ uint8_t const KEY_DOWN = 1 << KEY_DOWN_BIT;
 uint8_t const KEY_PRESSED = 1 << KEY_PRESSED_BIT;
 uint8_t const KEY_RELEASED = 1 << KEY_RELEASED_BIT;
 
-void read_and_store_key_values(GLFWwindow * window, uint8_t * key_array) {
-	for(uint32_t i = 0; i < KEY_ARRAY_LENGTH; i++) {
-		bool8_t key_was_down = key_array[i] & KEY_DOWN;
+struct KeyArray {
+	uint8_t v[GLFW_LAST_CUSTOM_KEY + 1];
+};
+
+void clear_key_values(KeyArray * key_array) {	
+	for(uint32_t i = 0; i < ARRAY_COUNT(key_array->v); i++) {
+		key_array->v[i] = 0;
+	}
+}
+
+void read_and_store_key_values(GLFWwindow * window, KeyArray * key_array) {
+	for(uint32_t i = 0; i < ARRAY_COUNT(key_array->v); i++) {
+		bool8_t key_was_down = key_array->v[i] & KEY_DOWN;
 		bool8_t key_down = (i < CUSTOM_KEY_CODE_POS ? glfwGetKey(window, i) : glfwGetMouseButton(window, i - CUSTOM_KEY_CODE_POS)) == GLFW_PRESS;
 		bool8_t key_pressed = key_down && !key_was_down;
 		bool8_t key_released = !key_down && key_was_down;
@@ -56,7 +66,7 @@ void read_and_store_key_values(GLFWwindow * window, uint8_t * key_array) {
 		packed_key_value |= (key_pressed << KEY_PRESSED_BIT);
 		packed_key_value |= (key_released << KEY_RELEASED_BIT);	
 
-		key_array[i] = packed_key_value;
+		key_array->v[i] = packed_key_value;
 	}
 }
 
@@ -144,10 +154,8 @@ int main() {
 	game_state.back_buffer_width = window_width;
 	game_state.back_buffer_height = window_height;
 
-	uint8_t key_array[KEY_ARRAY_LENGTH];
-	for(uint32_t i = 0; i < ARRAY_COUNT(key_array); i++) {
-		key_array[i] = 0;
-	}
+	KeyArray key_array;
+	clear_key_values(&key_array);
 
 	float frame_time = (float)glfwGetTime();
 
@@ -159,7 +167,7 @@ int main() {
 		game_state.total_time += game_state.delta_time;
 
 		glfwPollEvents();
-		read_and_store_key_values(window, key_array);
+		read_and_store_key_values(window, &key_array);
 
 		double raw_mouse_x, raw_mouse_y;
 		glfwGetCursorPos(window, &raw_mouse_x, &raw_mouse_y);
@@ -167,8 +175,8 @@ int main() {
 		game_state.mouse_delta = mouse_pos - game_state.mouse_pos;
 		game_state.mouse_pos = mouse_pos;
 
-		game_state.left_mouse_key_down = key_array[GLFW_KEY_MOUSE_LEFT] & KEY_DOWN;
-		game_state.right_mouse_key_down = key_array[GLFW_KEY_MOUSE_RIGHT] & KEY_DOWN || key_array[GLFW_KEY_SPACE] & KEY_DOWN;
+		game_state.left_mouse_key_down = key_array.v[GLFW_KEY_MOUSE_LEFT] & KEY_DOWN;
+		game_state.right_mouse_key_down = key_array.v[GLFW_KEY_MOUSE_RIGHT] & KEY_DOWN || key_array.v[GLFW_KEY_SPACE] & KEY_DOWN;
 
 		nova::tick(&game_state);
 
